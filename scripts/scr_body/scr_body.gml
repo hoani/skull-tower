@@ -39,6 +39,11 @@ function accelerate_x(_face) {
     }
     var _accel = (f.floor.inst == noone) ? lateral.air.accel : lateral.floor.accel;
     var _max = (f.floor.inst == noone) ? lateral.air.max : (1 - _face*slip_factor*f.floor.ssin)*lateral.floor.max;
+    
+    if (_face == F_LEFT && f.wall.left != noone) || (_face == F_RIGHT && f.wall.right != noone) {
+        _accel = 0;          
+    }
+    
     var _spd = spd.x + _face*_accel;
     if abs(_spd) < _max || abs(_spd) < abs(spd.x) {
         spd.x = _spd    
@@ -128,12 +133,17 @@ function body_update_speed(cmds) {
         body_apply_gravity(1, jump.wall_factor);
     }
     
-    spd.x += -slip*f.floor.ssin;
+    if f.floor.inst != noone {
+        var _slip = -slip*f.floor.ssin
+        if (sign(_slip) == F_LEFT && f.wall.left == noone) || (sign(_slip) == F_RIGHT && f.wall.right == noone) {
+            spd.x += _slip;
+        }
+    }
     
     if abs(spd.x) > 0 {
-        var _delta = air_decel;
+        var _delta = lateral.air.decel;
         if f.floor.inst != noone {
-            _delta = frict * abs(f.floor.scos);
+            _delta = lateral.floor.frict * abs(f.floor.scos);
         }
         if abs(spd.x) < _delta {
             spd.x = 0;
@@ -393,18 +403,17 @@ function move_to_hang(dy, hang_candidate) {
         return
     }
     
-    var dist = 0;
-
-    while (dist < abs(dy)) {
-        if check_hang(hang_candidate){
-            break;
-        }
-        body_move(0, -1, false)
-        dist += 1;
+    if g.dir == 270 { 
+        y = min(hang_candidate.y0, hang_candidate.y1, hang_candidate.y2, hang_candidate.y3) + h_2;
+    } else if g.dir == 90 {
+        y = max(hang_candidate.y0, hang_candidate.y1, hang_candidate.y2, hang_candidate.y3) - h_2; 
+    } else if g.dir == 0 {
+        x = min(hang_candidate.x0, hang_candidate.x1, hang_candidate.x2, hang_candidate.x3) + w_2;
+    } else {
+        x = max(hang_candidate.x0, hang_candidate.x1, hang_candidate.x2, hang_candidate.x3) - w_2;
     }
-    show_debug_message($">>>>>moved {dist}")
+    update_excludes();
 }
-
 
 
 function update_excludes() {

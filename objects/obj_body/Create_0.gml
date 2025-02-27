@@ -23,13 +23,10 @@ f = {
 };
 
 
-decel = 0.5;
-
 // These values affect slipping and climbing up slopes.
 frict = 1.0;
 slip = 2.0;
 slip_factor = 0.5; // Portion of max speed that is affected by slopes.
-air_decel = 0.125;
 
 
 term_velocity = 8;
@@ -55,12 +52,12 @@ lateral = {
     floor: {
         max: 2,
         accel: 0.25 + frict,
-        decel: 0.125,
+        frict: frict,
     },
     air: {
-        max: 4,
+        max: 2,
         accel: 0.125,
-        decel: 1/16,
+        decel: 1/32,
     },
 }
 
@@ -94,3 +91,13 @@ decelerating = false;
 
 squash_floor = body_squash_floor 
 squash_block = body_squash_block
+
+
+
+#macro IMG_IDLE_INDEX (0)
+#macro IMG_JUMP_INDEX (1)
+#macro IMG_RUN_INDEX (2)
+#macro IMG_RUN_NUM (4)
+#macro IMG_RUN_RATE (8) 
+#macro IMG_WALL_INDEX (IMG_RUN_INDEX + IMG_RUN_NUM)
+#macro IMG_HANG_INDEX (IMG_WALL_INDEX + 1)

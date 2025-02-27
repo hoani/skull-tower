@@ -224,6 +224,9 @@ function check_collision_roof() {
 }
 
 function check_collision_floor() {
+    if spd.y < 0 {
+        return noone;
+    }
     var dx = (w_2-1);
     var dy = h_2+0.5;
     var c = body_collision_coords(-dx, dy, dx, dy)
@@ -232,10 +235,11 @@ function check_collision_floor() {
 
 function update_wall_frames() {
     var dx = w_2;
-    var dy = h_2-1;
-    var c = body_collision_coords(-dx, dy, -(dx+1), -dy);
+    var dy0 = h_2-step_height.floor;
+    var dy1 = -(h_2-1);
+    var c = body_collision_coords(-dx, dy0, -(dx+1), dy1);
     f.wall.left = check_collision_rectangle(c.x0, c.y0, c.x1, c.y1, obj_block, f.excludes, f.wall.left);
-    c = body_collision_coords(dx, dy, dx+1, -dy);
+    c = body_collision_coords(dx, dy0, dx+1, dy1);
     f.wall.right = check_collision_rectangle(c.x0, c.y0, c.x1, c.y1, obj_block, f.excludes, f.wall.right);
 }
     
@@ -245,7 +249,7 @@ function body_update_movement() {
     var spdx = spd.x;
     var spdy = spd.y;
     show_debug_message($" pos ({x},{y}) spd ({spd.x}, {spd.y})")
-    move_contact_x(spdx, obj_block);
+    move_contact_x(spdx, obj_block)
     
     if spdy > 0 {
         var dx = (w_2*1.5)*face;

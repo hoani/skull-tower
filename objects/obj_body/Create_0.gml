@@ -79,7 +79,7 @@ height = 8;
 h_2 = height/2;
 
 step_height = {
-    floor: 6,
+    floor: 4,
     air: 4,   
 }
 

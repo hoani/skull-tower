@@ -215,7 +215,7 @@ function check_collision_roof() {
 
 function check_collision_floor() {
     var dx = (w_2-1);
-    var dy = h_2+1;
+    var dy = h_2+0.5;
     var c = body_collision_coords(-dx, dy, dx, dy)
     return check_collision_line(c.x0, c.y0, c.x1, c.y1, obj_floor, f.excludes, f.floor.inst)
 }
@@ -318,7 +318,6 @@ function move_contact_x(dx, obj, forcex=false) {
             var inst2 = check_collision_rectangle(c.x0, c.y0, c.x1, c.y1, obj, f.excludes)
             if inst2 == noone {
                 inst = noone;
-                show_debug_message("attempting step")
                 body_move(delta*sx, abs(delta)*sy - _step_height)
                 if forcex {
                     dist += abs(delta)*point_distance(0, 0, sx, sy);
@@ -371,7 +370,7 @@ function move_contact_y(dy, obj, _update_gravity=true) {
     var dist = 0;
     var delta = dy;
     var inst = noone;
-    while(dist < abs(dy)) {
+    while(dist < abs(dy) && abs(delta) > 0.125) {
         var dx0 = - (w_2-1);
         var dx1 = w_2-1;
         var dy0 = h_2*sign(dy);
@@ -383,10 +382,7 @@ function move_contact_y(dy, obj, _update_gravity=true) {
             body_move(0, delta, _update_gravity)
             dist += abs(delta);
         } else {
-            if abs(delta) == 1.0 { // This is a consequence of using ceil for updating delta.
-                break;
-            }
-            delta = sign(delta)*ceil(abs(delta)/2.0);
+            delta = delta/2.0;
         }
     }
     return inst
@@ -515,7 +511,7 @@ function set_floor_frame(inst) {
         f.floor.slope = 0;
     }
     f.floor.scos = dcos(f.floor.slope);
-    f.floor.ssin = dsin(f.floor.slope)
+    f.floor.ssin = dsin(f.floor.slope);
 }
 
 function body_squash_floor(xspd, yspd) {

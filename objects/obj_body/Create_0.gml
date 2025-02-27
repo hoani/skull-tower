@@ -32,12 +32,12 @@ slip_factor = 0.5; // Portion of max speed that is affected by slopes.
 air_decel = 0.125;
 
 
-term_velocity = 10;
+term_velocity = 8;
 wall_friction_factor = 0.25; 
 jump_height = {
-    min: 18,
-    max: 36,
-    hang: 32,
+    min: 8,
+    max: 18,
+    hang: 16,
 }
 g = new Gravity(global.g.mag, global.g.dir);
 
@@ -53,13 +53,13 @@ lateral = {
     cooldown: 0,
     wallkick_cooldown: 5,
     floor: {
-        max: 8,
-        accel: 1.0 + frict,
-        decel: 0.5,
+        max: 2,
+        accel: 0.25 + frict,
+        decel: 0.125,
     },
     air: {
-        max: 8,
-        accel: 0.5,
+        max: 4,
+        accel: 0.125,
         decel: 1/16,
     },
 }
@@ -76,13 +76,13 @@ jump = {
 }
 
 
-width = 12;
+width = 8;
 w_2 = width/2;
-height = 26;
+height = 8;
 h_2 = height/2;
 
 step_height = {
-    floor: 10,
+    floor: 6,
     air: 4,   
 }
 

@@ -18,6 +18,8 @@ switch state.current {
 }
 
 
+
+
 draw_set_color(c_white);
 draw_set_halign(fa_center)
 draw_text(x, y +12, state.current)
@@ -46,7 +48,11 @@ if f.roof != noone {
     draw_rectangle(f.roof.x, f.roof.y, f.roof.x+8, f.roof.y+8, false);
 }
 
+draw_set_color(c_white)
+draw_set_alpha(1)
 
+
+return
 
 var c = body_collision_coords(-w_2, -h_2, w_2, h_2)
 

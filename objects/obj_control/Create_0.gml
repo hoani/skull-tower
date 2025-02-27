@@ -5,4 +5,4 @@ game_init()
 
 global.p = self
 
-global.g = new Gravity(0.5, 270);
+global.g = new Gravity(0.125, 270);

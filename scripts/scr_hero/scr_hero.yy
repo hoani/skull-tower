@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"scr_hero",
   "parent":{
-    "name":"platform",
-    "path":"folders/Scripts/platform.yy",
+    "name":"hero",
+    "path":"folders/Scripts/hero.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

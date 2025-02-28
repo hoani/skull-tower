@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"scr_body",
+  "%Name":"scr_scroll_canvas",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"scr_body",
+  "name":"scr_scroll_canvas",
   "parent":{
-    "name":"hero",
-    "path":"folders/Scripts/hero.yy",
+    "name":"game",
+    "path":"folders/Scripts/game.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

@@ -1,3 +1,3 @@
 draw_self()
 
-draw_point(x + sign(xspd)*xfloor, y + sign(yspd)*yfloor)
+draw_point(x + xfloor, y + yfloor)

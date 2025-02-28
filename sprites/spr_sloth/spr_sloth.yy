@@ -27,8 +27,8 @@
   "nineSlice":null,
   "origin":0,
   "parent":{
-    "name":"Sprites",
-    "path":"folders/Sprites.yy",
+    "name":"sloth",
+    "path":"folders/Sprites/bosses/sloth.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

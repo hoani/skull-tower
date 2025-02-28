@@ -162,7 +162,7 @@ function moving_block_update() {
             if contact != noone && contact != f.floor.inst {
                 squash_block(_pspd.x, _pspd.y);
             }
-            contact = move_contact_y(_pspd.y, obj_floor);
+            contact = move_contact_y(_pspd.y, obj_block);
             if contact != noone && contact != f.floor.inst {
                 squash_block(_pspd.x, _pspd.y);
             }

@@ -39,6 +39,9 @@
     "name":"spr_hero",
     "path":"sprites/spr_hero/spr_hero.yy",
   },
-  "spriteMaskId":null,
+  "spriteMaskId":{
+    "name":"spr_hero_mask",
+    "path":"sprites/spr_hero_mask/spr_hero_mask.yy",
+  },
   "visible":true,
 }

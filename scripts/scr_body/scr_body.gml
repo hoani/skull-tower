@@ -4,12 +4,79 @@
 #macro B_HANG "HANG"
 #macro B_WALL "WALL"
 #macro B_DASH "DASH"
+#macro B_ATTACK "ATTACK"
 
 #macro F_LEFT (-1)
 #macro F_RIGHT (1)
 
 
+function attack_update() {
+    state_update(attack.state);
+    
+    switch attack.state.current {
+        case ATTACK_NONE:
+            break;
+        case ATTACK_START:
+            if attack.state.step >= attack.start.count {
+                state_set(attack.state, ATTACK_SLASH);
+            }
+            break;
+        case ATTACK_SLASH:
+            if attack.state.step >= attack.slash.count {
+                if attack.buffering == 0 {
+                    state_set(attack.state, ATTACK_NONE);
+                } else {
+                    state_set(attack.state, ATTACK_STAB);
+                    spd.x += face*attack.stab.xspd*2;
+                    spd.y += attack.stab.yspd;
+                }
+            }
+            break;
+        case ATTACK_STAB:
+            if attack.state.step >= attack.stab.count {
+                if attack.buffering == 0 {
+                    state_set(attack.state, ATTACK_NONE);
+                } else {
+                    state_set(attack.state, ATTACK_SWING);
+                    spd.y += attack.swing.yspd;
+                }
+            }
+            break;
+        case ATTACK_SWING:
+            if attack.state.step >= attack.swing.count {
+                state_set(attack.state, ATTACK_RECOVER);
+            }
+            break;
+        case ATTACK_RECOVER:
+            if attack.state.step >= attack.recover.count {
+                state_set(attack.state, ATTACK_NONE);
+            }
+            break;
+    }
+}
 
+function command_attack() {
+    switch attack.state.current {
+        case ATTACK_NONE:
+            state_set(attack.state, ATTACK_START);
+            return true;
+        case ATTACK_START:
+        case ATTACK_SLASH:
+        case ATTACK_STAB:
+        case ATTACK_SWING:
+        case ATTACK_RECOVER:
+            return false;
+    }
+}
+
+function update_attack_slash() {
+    attack.inst.image_index = attack.state.current;
+    attack.inst.x = x;
+    attack.inst.y = y;
+    attack.inst.image_xscale = face;
+    attack.inst.image_yscale = image_yscale;
+    attack.inst.image_angle = g.dir - 270;
+}
 
 
 function body_update(cmds) {
@@ -79,8 +146,9 @@ function body_update_speed(cmds) {
     var x_accel = 0;
     
 
-    dash.cooldown = max(dash.cooldown - global.s, 0);
-    lateral.cooldown = max(lateral.cooldown - global.s, 0);
+    dash.cooldown = max(0, dash.cooldown - global.s);
+    lateral.cooldown = max(0, lateral.cooldown - global.s);
+    attack.buffering = max(0, attack.buffering - global.s);
     
     if dash.cooldown == 0 && lateral.cooldown == 0 {
         if commands_check(cmds, CMD_LEFT) {
@@ -97,6 +165,16 @@ function body_update_speed(cmds) {
         }
     }
     
+    if commands_check_pressed(cmds, CMD_A) {
+        attack.buffering = attack.buffering_count;
+    }
+    
+    if attack.buffering != 0 && dash.cooldown == 0 {
+        if command_attack() {
+            attack.buffering = 0;
+        }
+    }
+    
     if commands_check(cmds, CMD_B) && dash.cooldown == 0 {
         dash.target = clamp(dash.target + global.s, dash.min, dash.max);
     }
@@ -105,10 +183,11 @@ function body_update_speed(cmds) {
         dash.trigger = true;    
     }
     
-    if commands_check_pressed(cmds, CMD_JUMP) && dash.cooldown == 0  {
+    if commands_check_pressed(cmds, CMD_JUMP) {
         jump.buffering = jump.buffering_count;
     }
-    if jump.buffering != 0 {
+    
+    if jump.buffering != 0 && dash.cooldown == 0 {
         if (f.floor.inst != noone || jump.coyote > 0) {
             spd.y = -jump.start_speed * f.floor.scos;
             spd.x += -jump.start_speed * f.floor.ssin;
@@ -171,6 +250,11 @@ function body_update_speed(cmds) {
 function body_update_state() {
     if dash.cooldown != 0 {
         state_set(state, B_DASH);
+        return
+    }
+    
+    if attack.state.current != ATTACK_NONE {
+        state_set(state, B_ATTACK);
         return
     }
     

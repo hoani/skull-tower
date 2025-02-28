@@ -15,26 +15,56 @@ function hero_draw(_x, _y) {
     switch state.current {
         case B_RUN:
             var img = animate(IMG_RUN_INDEX, IMG_RUN_NUM, IMG_RUN_RATE, state.step)
-            draw_sprite_ext(spr_hero, img, _x, _y, face, image_yscale, g.dir-270, c_white, 1)
+            draw_hero_sprite(spr_hero, img, _x, _y)
             break;
         case B_JUMP:
-            draw_sprite_ext(spr_hero, IMG_JUMP_INDEX, _x, _y, face, image_yscale, g.dir-270, c_white, 1)
+            draw_hero_sprite(spr_hero, IMG_JUMP_INDEX, _x, _y)
             break;
         case B_WALL:
-            draw_sprite_ext(spr_hero, IMG_WALL_INDEX, _x, _y, face, image_yscale, g.dir-270, c_white, 1)
+            draw_hero_sprite(spr_hero, IMG_WALL_INDEX, _x, _y)
             break
         case B_HANG:
-            draw_sprite_ext(spr_hero, IMG_HANG_INDEX, _x, _y, face, image_yscale, g.dir-270, c_white, 1)
+            draw_hero_sprite(spr_hero, IMG_HANG_INDEX, _x, _y)
             break
         case B_DASH:
-            draw_sprite_ext(spr_hero, IMG_DASH_INDEX, _x, _y, face, image_yscale, g.dir-270, c_white, 1)
+            draw_hero_sprite(spr_hero, IMG_DASH_INDEX, _x, _y)
+            break
+        case B_ATTACK:
+            hero_draw_attack(_x, _y);
             break
         case H_DIE:
             break;
         default:
-            draw_sprite_ext(spr_hero, IMG_IDLE_INDEX, _x, _y, face, image_yscale, g.dir-270, c_white, 1)
+            draw_hero_sprite(spr_hero, IMG_IDLE_INDEX, _x, _y)
             break
     }
+}
+
+function draw_hero_sprite(_spr, _img, _x, _y) {
+    draw_sprite_ext(_spr, _img, _x, _y, face, image_yscale, g.dir-270, c_white, 1)
+}
+
+function hero_draw_attack(_x, _y) {
+    var index = 0;
+    switch attack.state.current {
+        case ATTACK_START:
+            index = IMG_ATTACK_START_INDEX;
+            break;
+        case ATTACK_SLASH:
+            index = IMG_ATTACK_SLASH_INDEX;
+            break;
+        case ATTACK_STAB:
+            index = IMG_ATTACK_STAB_INDEX;
+            break;
+        case ATTACK_SWING:
+            index = IMG_ATTACK_SWING_INDEX;
+            break;
+        case ATTACK_RECOVER:
+            index = animate(IMG_ATTACK_RECOVER_INDEX, IMG_ATTACK_RECOVER_NUM, IMG_ATTACK_RECOVER_RATE, attack.state.step);
+            break;
+    }
+    
+    draw_hero_sprite(spr_hero_attack, index, _x, _y)
 }
 
 function hero_draw_projection() {

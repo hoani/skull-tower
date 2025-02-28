@@ -3,6 +3,7 @@
 #macro B_JUMP "JUMP"
 #macro B_HANG "HANG"
 #macro B_WALL "WALL"
+#macro B_DASH "DASH"
 
 #macro F_LEFT (-1)
 #macro F_RIGHT (1)
@@ -78,7 +79,7 @@ function body_update_speed(cmds) {
     var x_accel = 0;
     
     if lateral.cooldown >= 0 {
-        lateral.cooldown -= 1;
+        lateral.cooldown -= 1; //max(lateral.cooldown - global.s, 0);
     } else {
         if commands_check(cmds, CMD_LEFT) {
             x_accel -= g.y;
@@ -92,6 +93,14 @@ function body_update_speed(cmds) {
         if commands_check(cmds, CMD_UP) {
             x_accel += g.x;
         }
+    }
+    
+    if commands_check(cmds, CMD_B) {
+        dash.target = clamp(dash.target + global.s, dash.min, dash.max);
+    }
+    
+    if commands_check_released(cmds, CMD_B) {
+        dash.trigger = true;    
     }
     
     if commands_check_pressed(cmds, CMD_JUMP) {
@@ -116,11 +125,11 @@ function body_update_speed(cmds) {
             jump.coyote = 0;
             lateral.cooldown = lateral.wallkick_cooldown;
         } else {
-           jump.buffering--;
+            jump.buffering = max(0, jump.buffering - global.s);
         }
     }
     if jump.coyote > 0 {
-        jump.coyote--;
+        jump.coyote = max(0, jump.coyote - global.s);
     }
 
     if f.wall.pressing == false || spd.y < 0 {
@@ -136,7 +145,7 @@ function body_update_speed(cmds) {
     if f.floor.inst != noone {
         var _slip = -slip*f.floor.ssin
         if (sign(_slip) == F_LEFT && f.wall.left == noone) || (sign(_slip) == F_RIGHT && f.wall.right == noone) {
-            spd.x += _slip;
+            spd.x += _slip*global.s;
         }
     }
     
@@ -249,7 +258,7 @@ function body_update_movement() {
     var spdx = spd.x;
     var spdy = spd.y;
     show_debug_message($" pos ({x},{y}) spd ({spd.x}, {spd.y})")
-    move_contact_x(spdx, obj_block)
+    move_contact_x(spdx, obj_block);
     
     if spdy > 0 {
         var dx = (w_2*1.5)*face;
@@ -273,7 +282,49 @@ function body_update_movement() {
         f.roof = check_collision_roof()
         set_floor_frame(check_collision_floor())
     }
-    update_wall_frames()
+    update_wall_frames();
+    
+    calculate_dash()
+    
+    if dash.trigger {
+        do_dash()
+    }
+}
+
+function do_dash() {
+    dash.trigger = false;
+    x = dash.x;
+    y = dash.y;
+    dash.cooldown = dash.cooldown_count;
+    dash.target = 0;
+}
+
+function calculate_dash() {
+    var dx0 = 0;
+    var dx1 = face*(dash.target + w_2);
+    var dy0 = -h_2;
+    var dy1 = h_2;
+    var c = body_collision_coords(dx0, dy0, dx1, dy1)
+    
+    var def = body_collision_point(face*dash.target, 0);
+    dash.x = def.x;
+    dash.y = def.y;
+    
+    var list = ds_list_create();
+    var num = collision_rectangle_list(c.x0, c.y0, c.x1, c.y1, obj_block, true, true, list, false);
+    dash.distance = dash.target;
+    for (var i = 0; i < num; i++){
+        var candidate = ds_list_find_value(list, i);
+        if !array_contains(f.excludes, candidate) {
+            pos = get_block_contact(x, y, g.dir, face, candidate);
+            if point_distance(x, y, pos.x, pos.y) < dash.distance {
+                dash.x = pos.x;
+                dash.y = pos.y;
+                dash.distance = point_distance(x, y, pos.x, pos.y);
+            }
+        }
+    }
+    ds_list_destroy(list);
 }
 
 function check_hang(_inst) {

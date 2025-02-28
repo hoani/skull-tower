@@ -70,6 +70,19 @@ jump = {
     wall_factor: 1,
 }
 
+dash = {
+    min: 24,
+    max: 48,
+    target: 0,
+    cooldown: 0,
+    cooldown_count: 8,
+    trigger: false,
+    target: 0,
+    distance: 0,
+    x: 0,
+    y: 0,
+}
+
 
 width = 8;
 w_2 = width/2;

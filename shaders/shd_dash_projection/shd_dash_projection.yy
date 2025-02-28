@@ -1,0 +1,12 @@
+{
+  "$GMShader":"",
+  "%Name":"shd_dash_projection",
+  "name":"shd_dash_projection",
+  "parent":{
+    "name":"Shaders",
+    "path":"folders/Shaders.yy",
+  },
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
+}

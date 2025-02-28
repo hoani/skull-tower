@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"scr_physics",
+  "%Name":"scr_block",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"scr_physics",
+  "name":"scr_block",
   "parent":{
     "name":"platform",
     "path":"folders/Scripts/platform.yy",

@@ -7,11 +7,15 @@ function lateral_init(){
 }
 
 function lateral_update() {
-    xmove += xspd *global.s;
+    return base_lateral_update(xspd, yspd);
+}
+
+function base_lateral_update(_xspd, _yspd) {
+    xmove += _xspd *global.s;
     dx = sign(xmove) * floor(abs(xmove));
     xmove -= dx;
     
-    ymove += yspd *global.s;
+    ymove += _yspd *global.s;
     dy = sign(ymove) * floor(abs(ymove));
     ymove -= dy;
     

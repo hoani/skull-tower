@@ -30,8 +30,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_gravity_field",
-    "path":"sprites/spr_gravity_field/spr_gravity_field.yy",
+    "name":"spr_gravity_placement",
+    "path":"sprites/spr_gravity_placement/spr_gravity_placement.yy",
   },
   "spriteMaskId":null,
   "visible":true,

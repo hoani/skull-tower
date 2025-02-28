@@ -1,3 +1,4 @@
-image_alpha = 0.25
+image_speed = 1;
+sprite_index = spr_gravity_field;
 
 gdir = image_angle;

@@ -318,9 +318,9 @@ function body_collision_point(dx0, dy0) {
 }
 
 function check_collision_roof() {
-    var dx = (w_2-1);
-    var dy = -(h_2+1);
-    var c = body_collision_coords(-dx, dy, dx, dy)
+    var _dx = (w_2-1);
+    var _dy = -(h_2+1);
+    var c = body_collision_coords(-_dx, _dy, _dx, _dy)
     return check_collision_line(c.x0, c.y0, c.x1, c.y1, obj_block, f.excludes, f.roof)
 }
 
@@ -328,43 +328,44 @@ function check_collision_floor() {
     if spd.y < 0 {
         return noone;
     }
-    var dx = (w_2-1);
-    var dy = h_2+0.5;
-    var c = body_collision_coords(-dx, dy, dx, dy)
+    var _dx = (w_2-1);
+    var _dy = h_2+0.5;
+    var c = body_collision_coords(-_dx, _dy, _dx, _dy)
     return check_collision_line(c.x0, c.y0, c.x1, c.y1, obj_floor, f.excludes, f.floor.inst)
 }
 
 function update_wall_frames() {
-    var dx = w_2;
+    var dx0 = w_2;
     var dy0 = h_2-step_height.floor;
     var dy1 = -(h_2-1);
-    var c = body_collision_coords(-dx, dy0, -(dx+1), dy1);
+    var c = body_collision_coords(-dx0, dy0, -(dx0+1), dy1);
     f.wall.left = check_collision_rectangle(c.x0, c.y0, c.x1, c.y1, obj_block, f.excludes, f.wall.left);
-    c = body_collision_coords(dx, dy0, dx+1, dy1);
+    c = body_collision_coords(dx0, dy0, dx0+1, dy1);
     f.wall.right = check_collision_rectangle(c.x0, c.y0, c.x1, c.y1, obj_block, f.excludes, f.wall.right);
 }
     
 function body_update_movement() {
     update_excludes(); // Need to update excludes at least once, even if not moving.
     
-    var spdx = spd.x;
-    var spdy = spd.y;
-    show_debug_message($" pos ({x},{y}) spd ({spd.x}, {spd.y})")
+    base_lateral_update(spd.x, spd.y);
+    
+    var spdx = dx;
+    var spdy = dy;
+    show_debug_message($" pos ({x},{y}) spd ({spd.x}, {spd.y}) d ({dx}, {dy})")
     move_contact_x(spdx, obj_block);
     
     if spdy > 0 {
-        var dx = (w_2*1.5)*face;
-        var dy = -h_2;
-        var c = body_collision_point(dx, dy);    
+        var _dx = (w_2*1.5)*face;
+        var _dy = -h_2;
+        var c = body_collision_point(_dx, _dy);    
         var hang_candidate = face == F_LEFT ? f.wall.left : f.wall.right;
         var hang_start = collision_point(c.x, c.y, obj_block, true, true);
         set_floor_frame(move_contact_y(spdy, obj_floor))
         f.roof = check_collision_roof()
-        c = body_collision_point(dx, dy); 
+        c = body_collision_point(_dx, _dy); 
         if !hang_start && collision_point(c.x, c.y, hang_candidate, true, true) {
             f.hang = hang_candidate;
             spd.y = 0;
-            spd.x = spd.x;
             move_to_hang(-spdy, f.hang);
         }
     } else if spdy < 0 {
@@ -424,20 +425,20 @@ function calculate_dash() {
 }
 
 function check_hang(_inst) {
-    var dx = (w_2*1.5)*face;
-    var dy = -h_2;
-    var c1 = body_collision_point(dx, dy);    
-    var c2 = body_collision_point(dx, dy-1);
+    var _dx = (w_2*1.5)*face;
+    var _dy = -h_2;
+    var c1 = body_collision_point(_dx, _dy);    
+    var c2 = body_collision_point(_dx, _dy-1);
     return collision_point(c1.x, c1.y, _inst, true, true) && !collision_point(c2.x, c2.y, obj_block, true, true);
 }
 
 
-function move_contact_x(dx, obj, forcex=false) {
+function move_contact_x(_dx, obj, forcex=false) {
     var dist = 0;
-    var delta = min(dx, width); // If dx > width, we cap delta to avoid clipping through walls.
+    var delta = min(_dx, width); // If dx > width, we cap delta to avoid clipping through walls.
     var inst = noone;
     
-    if dx == 0 {
+    if _dx == 0 {
         return noone;
     }
     
@@ -445,7 +446,7 @@ function move_contact_x(dx, obj, forcex=false) {
     var sy = 0.0;
     if abs(f.floor.scos) > 1/4 {
         sx = f.floor.scos;
-        sy = -sign(dx)*f.floor.ssin;
+        sy = -sign(_dx)*f.floor.ssin;
         if forcex {
             sy = sy/sx;
             sx = 1.0;
@@ -454,7 +455,7 @@ function move_contact_x(dx, obj, forcex=false) {
         sy = 0 // Treat slope as a wall.
     }
     
-    while(dist < abs(dx) && abs(delta) > 0.125) {
+    while(dist < abs(_dx)) {
         var dx0 = sign(delta) < 0 ? floor(delta*sx) : ceil(delta*sx);
         var dx1 = dx0 + w_2*sign(delta);
         var dy0 = -h_2 + abs(delta)*sy;
@@ -488,7 +489,7 @@ function move_contact_x(dx, obj, forcex=false) {
                 set_floor_frame(move_contact_y(_step_height, obj_floor))
                 if abs(f.floor.scos) > 1/4 {
                     sx = f.floor.scos;
-                    sy = -sign(dx)*f.floor.ssin;
+                    sy = -sign(_dx)*f.floor.ssin;
                     if forcex {
                         sy = sy/sx;
                         sx = 1.0;
@@ -500,15 +501,21 @@ function move_contact_x(dx, obj, forcex=false) {
                 continue;
             }
         }
-        delta = delta/2.0;
+        if abs(delta) == 1.0 {
+            break;
+        }
+        delta = sign(delta)*ceil(abs(delta/2.0));
     }
     
-    show_debug_message($"floor_angle {f.floor.slope} sx, sx ({sx}, {sy}) spd ({spd.x}, {spd.y}), moved {dist}")
+    if global.debug {
+        show_debug_message($"floor_angle {f.floor.slope} sx, sx ({sx}, {sy}) spd ({spd.x}, {spd.y}), moved {dist}")
+    }
+    
     // Prevent jumping when reaching corners of slopes.
     if f.floor.slope != 0 {
         var _floor = check_collision_floor();
         if _floor == noone {
-            set_floor_frame(move_contact_y(abs(dx), obj_floor))
+            set_floor_frame(move_contact_y(abs(_dx), obj_floor))
         }
     }
     
@@ -524,33 +531,36 @@ function floor_is_steppable() {
 }
 
 
-function move_contact_y(dy, obj, _update_gravity=true) {
-    if abs(dy) == 0.0 {
+function move_contact_y(_dy, obj, _update_gravity=true) {
+    if abs(_dy) == 0.0 {
         return noone
     }
     var dist = 0;
-    var delta = dy;
+    var delta = _dy;
     var inst = noone;
-    while(dist < abs(dy) && abs(delta) > 0.125) {
+    while(dist < abs(_dy)) {
         var dx0 = - (w_2-1);
         var dx1 = w_2-1;
-        var dy0 = h_2*sign(dy);
+        var dy0 = h_2*sign(_dy);
         var dy1 = dy0 + delta;
         var c = body_collision_coords(dx0, dy0, dx1, dy1)
-        var current = dy > 0 ? f.floor.inst : f.roof; // Provide the current floor or roof for the collision rectangle.
+        var current = _dy > 0 ? f.floor.inst : f.roof; // Provide the current floor or roof for the collision rectangle.
         inst = check_collision_rectangle(c.x0, c.y0, c.x1, c.y1, obj, f.excludes, current) 
         if inst == noone {
             body_move(0, delta, _update_gravity)
             dist += abs(delta);
         } else {
-            delta = delta/2.0;
+            if abs(delta) == 1.0 {
+                break;
+            }
+            delta = sign(delta)*ceil(abs(delta/2.0));
         }
     }
     return inst
 }
 
-function move_to_hang(dy, hang_candidate) {
-    if abs(dy) == 0.0 {
+function move_to_hang(_dy, hang_candidate) {
+    if abs(_dy) == 0.0 {
         return
     }
     
@@ -568,9 +578,9 @@ function move_to_hang(dy, hang_candidate) {
 
 
 function update_excludes() {
-    var dx = w_2-1;
-    var dy = h_2-1;
-    var c = body_collision_coords(-dx, -dy, dx, dy)
+    var _dx = w_2-1;
+    var _dy = h_2-1;
+    var c = body_collision_coords(-_dx, -_dy, _dx, _dy)
     var list = ds_list_create();
     var num = collision_rectangle_list(c.x0, c.y0, c.x1, c.y1, obj_floor, true, true, list, false);
     f.excludes = [];

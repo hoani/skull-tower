@@ -117,7 +117,7 @@ function moving_block_update() {
             array_push(other.floor_bodies, id);
         } else if (f.wall.left == other.id || f.wall.right == other.id) && sign(spd.x) == sign(_pspd.x) && abs(spd.x) > abs(_pspd.x) {
             array_push(other.wall_bodies, id);
-        } else if place_meeting(x - other.dx, y - other.dy, other.id) && !place_meeting(x, y, other.id)  {
+        } else if place_meeting(x - other.dx, y - other.dy, other.id) && !array_contains(f.excludes, other.id)  {
             array_push(other.push_bodies, id);
         }
     }
@@ -127,7 +127,10 @@ function moving_block_update() {
         with(body) {
             var _pspd = g.convert(other.dx, other.dy, global.g);
             if sign(face) != sign(_pspd.x) {
-                move_contact_x(_pspd.x, obj_block); // Only move x if it is moving away from the block.
+                var contact = move_contact_x(_pspd.x, obj_block); // Only move x if it is moving away from the block.
+                if contact != noone && other.id == f.hang {
+                    squash_block(_pspd.x, _pspd.y);
+                }
             }
             if _pspd.y < 0 {
                 var contact = move_contact_y(_pspd.y, obj_block);
@@ -157,6 +160,16 @@ function moving_block_update() {
         }
     }
     
+    for (var i = 0; i<array_length(wall_bodies); i++) {
+        var body = wall_bodies[i];
+        with(body) {
+            var _pspd = g.convert(other.dx, other.dy, global.g);
+            if sign(face) != sign(_pspd.x) {
+                move_contact_x(_pspd.x + sign(_pspd.x), obj_block); // Only move x if it is moving away from the block.
+            }
+        }
+    }
+    
     
     
     moving_block_wraparound()
@@ -180,7 +193,11 @@ function moving_block_update() {
         var body = wall_bodies[i];
         with(body) {
             var _pspd = g.convert(other.dx, other.dy, global.g);
-            move_contact_x(sign(_pspd.x)*ceil(abs(_pspd.x)), obj_block, true);
+            if sign(face) == sign(_pspd.x) {
+                move_contact_x(_pspd.x, obj_block, true);
+            } else {
+                move_contact_x(-_pspd.x, obj_block, true);
+            }
         }
     }
     
@@ -190,7 +207,6 @@ function moving_block_update() {
             var _pspd = g.convert(other.dx, other.dy, global.g);
             if sign(face) == sign(_pspd.x) {
                 move_contact_x(_pspd.x, obj_block);
-                show_debug_message("hang moving") 
             } 
             if _pspd.y > 0 {
                 move_contact_y(_pspd.y, obj_floor);

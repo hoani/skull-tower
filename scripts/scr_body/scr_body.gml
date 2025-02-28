@@ -120,7 +120,6 @@ function accelerate_x(_face) {
         f.hang = noone;
     }
     face = _face;
-    f.wall.pressing = pressing_into_wall();
 }
 
 
@@ -202,6 +201,7 @@ function body_update_speed(cmds) {
         } else if f.wall.pressing {
             spd.y = -jump.start_speed;
             spd.x = -face * jump.start_speed * jump.wall_factor;
+            face = -face
             jump.buffering = 0;
             jump.coyote = 0;
             lateral.cooldown = lateral.wallkick_cooldown;
@@ -244,7 +244,9 @@ function body_update_speed(cmds) {
     
     accelerate_x(x_accel);
     
- 
+    if (sign(x_accel) == face || abs(spd.x) > 1.0) {
+        f.wall.pressing = pressing_into_wall();
+    }
 }
 
 function body_update_state() {

@@ -54,7 +54,7 @@ lateral = {
     },
     air: {
         max: 2,
-        accel: 0.125,
+        accel: 0.25,
         decel: 1/32,
     },
 }

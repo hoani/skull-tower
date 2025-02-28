@@ -81,6 +81,7 @@
     {"id":{"name":"rm_splash","path":"rooms/rm_splash/rm_splash.yy",},},
     {"id":{"name":"rm_test_blocks","path":"rooms/rm_test_blocks/rm_test_blocks.yy",},},
     {"id":{"name":"rm_test_platform","path":"rooms/rm_test_platform/rm_test_platform.yy",},},
+    {"id":{"name":"rm_test_walljump","path":"rooms/rm_test_walljump/rm_test_walljump.yy",},},
     {"id":{"name":"rm_test","path":"rooms/rm_test/rm_test.yy",},},
     {"id":{"name":"scr_animate","path":"scripts/scr_animate/scr_animate.yy",},},
     {"id":{"name":"scr_audio","path":"scripts/scr_audio/scr_audio.yy",},},
@@ -150,6 +151,7 @@
     {"roomId":{"name":"rm_test","path":"rooms/rm_test/rm_test.yy",},},
     {"roomId":{"name":"rm_test_blocks","path":"rooms/rm_test_blocks/rm_test_blocks.yy",},},
     {"roomId":{"name":"rm_test_platform","path":"rooms/rm_test_platform/rm_test_platform.yy",},},
+    {"roomId":{"name":"rm_test_walljump","path":"rooms/rm_test_walljump/rm_test_walljump.yy",},},
   ],
   "templateType":"game",
   "TextureGroups":[

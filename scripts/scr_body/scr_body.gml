@@ -78,9 +78,11 @@ function body_update_speed(cmds) {
     
     var x_accel = 0;
     
-    if lateral.cooldown >= 0 {
-        lateral.cooldown -= 1; //max(lateral.cooldown - global.s, 0);
-    } else {
+
+    dash.cooldown = max(dash.cooldown - global.s, 0);
+    lateral.cooldown = max(lateral.cooldown - global.s, 0);
+    
+    if dash.cooldown == 0 && lateral.cooldown == 0 {
         if commands_check(cmds, CMD_LEFT) {
             x_accel -= g.y;
         }
@@ -95,15 +97,15 @@ function body_update_speed(cmds) {
         }
     }
     
-    if commands_check(cmds, CMD_B) {
+    if commands_check(cmds, CMD_B) && dash.cooldown == 0 {
         dash.target = clamp(dash.target + global.s, dash.min, dash.max);
     }
     
-    if commands_check_released(cmds, CMD_B) {
+    if commands_check_released(cmds, CMD_B) && dash.cooldown == 0  {
         dash.trigger = true;    
     }
     
-    if commands_check_pressed(cmds, CMD_JUMP) {
+    if commands_check_pressed(cmds, CMD_JUMP) && dash.cooldown == 0  {
         jump.buffering = jump.buffering_count;
     }
     if jump.buffering != 0 {
@@ -167,6 +169,11 @@ function body_update_speed(cmds) {
 }
 
 function body_update_state() {
+    if dash.cooldown != 0 {
+        state_set(state, B_DASH);
+        return
+    }
+    
     if f.floor.inst == noone {
         if f.hang != noone {
             state_set(state, B_HANG);  
@@ -175,14 +182,15 @@ function body_update_state() {
         } else {
             state_set(state, B_JUMP);
         }
-        
-    } else {
-        if spd.x != 0  {
-            state_set(state, B_RUN);
-        } else {
-            state_set(state, B_IDLE);
-        }
+        return;
     }
+    
+    if spd.x != 0  {
+        state_set(state, B_RUN);
+    } else {
+        state_set(state, B_IDLE);
+    }
+    
 }
 
 function body_apply_gravity(_s, factor=1) {
@@ -292,11 +300,15 @@ function body_update_movement() {
 }
 
 function do_dash() {
+    if dash.distance >= 4 {
+        hero_create_after_shadow()
+        x = dash.x;
+        y = dash.y;
+        dash.cooldown = dash.cooldown_count;
+    }
     dash.trigger = false;
-    x = dash.x;
-    y = dash.y;
-    dash.cooldown = dash.cooldown_count;
     dash.target = 0;
+    dash.distance = 0;
 }
 
 function calculate_dash() {

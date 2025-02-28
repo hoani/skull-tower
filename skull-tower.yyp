@@ -67,6 +67,7 @@
     {"id":{"name":"obj_floor","path":"objects/obj_floor/obj_floor.yy",},},
     {"id":{"name":"obj_gravity_field","path":"objects/obj_gravity_field/obj_gravity_field.yy",},},
     {"id":{"name":"obj_hero_die","path":"objects/obj_hero_die/obj_hero_die.yy",},},
+    {"id":{"name":"obj_hero_shadow","path":"objects/obj_hero_shadow/obj_hero_shadow.yy",},},
     {"id":{"name":"obj_hero_spawner","path":"objects/obj_hero_spawner/obj_hero_spawner.yy",},},
     {"id":{"name":"obj_hero","path":"objects/obj_hero/obj_hero.yy",},},
     {"id":{"name":"obj_moving_block","path":"objects/obj_moving_block/obj_moving_block.yy",},},

@@ -6,3 +6,5 @@ game_init()
 global.p = self
 
 global.g = new Gravity(0.125, 270);
+
+boss_hp = new_hp(0, 0, function (){});

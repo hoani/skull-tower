@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_lateral",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_lateral",
+  "parent":{
+    "name":"utilities",
+    "path":"folders/Scripts/utilities.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

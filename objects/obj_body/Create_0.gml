@@ -44,8 +44,6 @@ spd = {
 }
 
 
-
-
 lateral = {
     cooldown: 0,
     wallkick_cooldown: 5,
@@ -89,15 +87,8 @@ face = F_RIGHT;
 
 decelerating = false;
 
-squash_floor = body_squash_floor 
-squash_block = body_squash_block
+
+disable = false;
 
 
 
-#macro IMG_IDLE_INDEX (0)
-#macro IMG_JUMP_INDEX (1)
-#macro IMG_RUN_INDEX (2)
-#macro IMG_RUN_NUM (4)
-#macro IMG_RUN_RATE (8) 
-#macro IMG_WALL_INDEX (IMG_RUN_INDEX + IMG_RUN_NUM)
-#macro IMG_HANG_INDEX (IMG_WALL_INDEX + 1)

@@ -25,19 +25,7 @@ function moving_block_wraparound() {
 }
 
 function moving_delta_update() {
-    xmove += xspd;
-    dx = sign(xmove) * floor(abs(xmove));
-    xmove -= dx;
-    
-    ymove += yspd;
-    dy = sign(ymove) * floor(abs(ymove));
-    ymove -= dy;
-    
-    if dx == 0 && dy == 0 {
-        return false;
-    }
-    
-    return true
+    return lateral_update()
 }
 
 function moving_floor_update() {

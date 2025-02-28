@@ -291,7 +291,7 @@ function move_contact_x(dx, obj, forcex=false) {
     var inst = noone;
     
     if dx == 0 {
-        return array_contains(f.excludes, f.wall) ? noone : f.wall;
+        return noone;
     }
     
     var sx = 1.0;

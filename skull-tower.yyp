@@ -121,6 +121,8 @@
     {"id":{"name":"spr_gravity_placement","path":"sprites/spr_gravity_placement/spr_gravity_placement.yy",},},
     {"id":{"name":"spr_greed_title","path":"sprites/spr_greed_title/spr_greed_title.yy",},},
     {"id":{"name":"spr_greed","path":"sprites/spr_greed/spr_greed.yy",},},
+    {"id":{"name":"spr_hero_alt","path":"sprites/spr_hero_alt/spr_hero_alt.yy",},},
+    {"id":{"name":"spr_hero_attack_alt","path":"sprites/spr_hero_attack_alt/spr_hero_attack_alt.yy",},},
     {"id":{"name":"spr_hero_attack","path":"sprites/spr_hero_attack/spr_hero_attack.yy",},},
     {"id":{"name":"spr_hero_die","path":"sprites/spr_hero_die/spr_hero_die.yy",},},
     {"id":{"name":"spr_hero_mask","path":"sprites/spr_hero_mask/spr_hero_mask.yy",},},

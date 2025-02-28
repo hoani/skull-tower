@@ -29,13 +29,10 @@ slip = 2.0;
 slip_factor = 0.5; // Portion of max speed that is affected by slopes.
 
 
-term_velocity = 8;
-wall_friction_factor = 0.25; 
-jump_height = {
-    min: 8,
-    max: 18,
-    hang: 16,
-}
+term_velocity = 3;
+wall_term_velocity = 1.5;
+wall_friction_factor = 0.5; 
+
 g = new Gravity(global.g.mag, global.g.dir);
 
 spd = {
@@ -59,15 +56,24 @@ lateral = {
     },
 }
 
+jump_height = {
+    min: 8,
+    max: 18,    
+    double: 16,
+    hang: 16,
+}
+
 jump = {
     hang_speed: sqrt(2.0*g.mag*jump_height.hang),
     start_speed: sqrt(2.0*g.mag*jump_height.max),
+    double_speed: sqrt(2.0*g.mag*jump_height.double),
     drop_factor: jump_height.max/jump_height.min,
     buffering: 0,
     buffering_count: 10,
     coyote: 0,
     coyote_count: 5,
     wall_factor: 1,
+    double: true,
 }
 
 dash = {
@@ -81,6 +87,7 @@ dash = {
     distance: 0,
     x: 0,
     y: 0,
+    face: F_LEFT, // helps when dashing from wall.
 }
 
 #macro ATTACK_NONE (0)

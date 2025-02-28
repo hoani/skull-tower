@@ -47,9 +47,9 @@ if f.roof != noone {
 
 draw_set_color(c_white)
 draw_set_alpha(1)
-
-var c = body_collision_coords(-w_2, -h_2, w_2, h_2)
-
-draw_set_color(c_white)
-draw_set_alpha(0.5)
-draw_rectangle(c.x0, c.y0, c.x1, c.y1, false);
+//
+//var c = body_collision_coords(-w_2, -h_2, w_2, h_2)
+//
+//draw_set_color(c_white)
+//draw_set_alpha(0.5)
+//draw_rectangle(c.x0, c.y0, c.x1, c.y1, false);

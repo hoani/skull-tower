@@ -70,7 +70,7 @@ function command_attack() {
 }
 
 function update_attack_slash() {
-    attack.inst.image_index = attack.state.current;
+    attack.inst.image_index = disable ? ATTACK_NONE: attack.state.current;
     attack.inst.x = x;
     attack.inst.y = y;
     attack.inst.image_xscale = face;
@@ -205,6 +205,11 @@ function body_update_speed(cmds) {
             jump.buffering = 0;
             jump.coyote = 0;
             lateral.cooldown = lateral.wallkick_cooldown;
+        } else if jump.double {
+            spd.y = -jump.double_speed;
+            jump.buffering = 0;
+            jump.coyote = 0;
+            jump.double = false;
         } else {
             jump.buffering = max(0, jump.buffering - global.s);
         }
@@ -215,12 +220,12 @@ function body_update_speed(cmds) {
 
     if f.wall.pressing == false || spd.y < 0 {
         if spd.y > 0 || !commands_check(cmds, CMD_JUMP) {
-            body_apply_gravity(1, jump.drop_factor);
+            body_apply_gravity(jump.drop_factor);
         } else {
-            body_apply_gravity(1);
+            body_apply_gravity();
         }
     } else {
-        body_apply_gravity(1, jump.wall_factor);
+        body_apply_gravity(jump.wall_factor);
     }
     
     if f.floor.inst != noone {
@@ -279,17 +284,20 @@ function body_update_state() {
     
 }
 
-function body_apply_gravity(_s, factor=1) {
+function body_apply_gravity(factor=1) {
     if f.floor.inst == noone && f.hang == noone {
-        spd.y += g.mag*factor*_s
+        var accel = g.mag*factor* global.s;
+        var y_spd_max = term_velocity;
+        if f.wall.pressing {
+            y_spd_max *= wall_friction_factor;
+        }
         if spd.y > 0 {
-            var y_spd_max = term_velocity;
-            if f.wall.pressing {
-                y_spd_max *= wall_friction_factor;
-            }
-            if spd.y > y_spd_max {
-                spd.y = y_spd_max;
-            }
+            accel *= f.wall.pressing ? wall_friction_factor : 1.0;
+        }
+        spd.y += accel
+            
+        if spd.y > y_spd_max {
+            spd.y = y_spd_max;
         }
     }
 }
@@ -384,11 +392,16 @@ function body_update_movement() {
     if dash.trigger {
         do_dash()
     }
+    
+    if f.floor.inst != noone {
+        jump.double = true;
+    }
 }
 
 function do_dash() {
     if dash.distance >= 4 {
         hero_create_after_shadow()
+        face = dash.face;
         x = dash.x;
         y = dash.y;
         dash.cooldown = dash.cooldown_count;
@@ -399,13 +412,14 @@ function do_dash() {
 }
 
 function calculate_dash() {
+    var _face = f.wall.pressing ? -face : face;
     var dx0 = 0;
-    var dx1 = face*(dash.target + w_2);
+    var dx1 = _face*(dash.target + w_2);
     var dy0 = -h_2;
     var dy1 = h_2;
     var c = body_collision_coords(dx0, dy0, dx1, dy1)
     
-    var def = body_collision_point(face*dash.target, 0);
+    var def = body_collision_point(_face*dash.target, 0);
     dash.x = def.x;
     dash.y = def.y;
     
@@ -415,10 +429,11 @@ function calculate_dash() {
     for (var i = 0; i < num; i++){
         var candidate = ds_list_find_value(list, i);
         if !array_contains(f.excludes, candidate) {
-            pos = get_block_contact(x, y, g.dir, face, candidate);
+            pos = get_block_contact(x, y, g.dir, _face, candidate);
             if point_distance(x, y, pos.x, pos.y) < dash.distance {
                 dash.x = pos.x;
                 dash.y = pos.y;
+                dash.face = _face;
                 dash.distance = point_distance(x, y, pos.x, pos.y);
             }
         }
@@ -611,6 +626,7 @@ function update_gravity() {
     }
     
     if gPrev.dir != g.dir {
+        f.hang = noone
         image_angle = (g.dir + 90 % 360)
         yspdPrev = spd.y
         spd = g.convert(spd.x, spd.y, gPrev);

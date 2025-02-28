@@ -12,22 +12,23 @@ function hero_die(){
 }
 
 function hero_draw(_x, _y) {
+    var spr = jump.double ? spr_hero : spr_hero_alt;
     switch state.current {
         case B_RUN:
             var img = animate(IMG_RUN_INDEX, IMG_RUN_NUM, IMG_RUN_RATE, state.step)
-            draw_hero_sprite(spr_hero, img, _x, _y)
+            draw_hero_sprite(spr, img, _x, _y)
             break;
         case B_JUMP:
-            draw_hero_sprite(spr_hero, IMG_JUMP_INDEX, _x, _y)
+            draw_hero_sprite(spr, IMG_JUMP_INDEX, _x, _y)
             break;
         case B_WALL:
-            draw_hero_sprite(spr_hero, IMG_WALL_INDEX, _x, _y)
+            draw_hero_sprite(spr, IMG_WALL_INDEX, _x, _y)
             break
         case B_HANG:
-            draw_hero_sprite(spr_hero, IMG_HANG_INDEX, _x, _y)
+            draw_hero_sprite(spr, IMG_HANG_INDEX, _x, _y)
             break
         case B_DASH:
-            draw_hero_sprite(spr_hero, IMG_DASH_INDEX, _x, _y)
+            draw_hero_sprite(spr, IMG_DASH_INDEX, _x, _y)
             break
         case B_ATTACK:
             hero_draw_attack(_x, _y);
@@ -35,7 +36,7 @@ function hero_draw(_x, _y) {
         case H_DIE:
             break;
         default:
-            draw_hero_sprite(spr_hero, IMG_IDLE_INDEX, _x, _y)
+            draw_hero_sprite(spr, IMG_IDLE_INDEX, _x, _y)
             break
     }
 }
@@ -63,27 +64,27 @@ function hero_draw_attack(_x, _y) {
             index = animate(IMG_ATTACK_RECOVER_INDEX, IMG_ATTACK_RECOVER_NUM, IMG_ATTACK_RECOVER_RATE, attack.state.step);
             break;
     }
-    
-    draw_hero_sprite(spr_hero_attack, index, _x, _y)
+    var spr = jump.double ? spr_hero_attack : spr_hero_attack_alt;
+    draw_hero_sprite(spr, index, _x, _y)
 }
 
 function hero_draw_projection() {
     var vec = {x: (dash.x - x)/dash.distance, y: (dash.y - y)/dash.distance};
-        var dist = dash.distance;
+    var dist = dash.distance;
+    
+    while (dist > 4) {
+        var _tex = sprite_get_texture(spr_hero, 0);
+        var _tw = texture_get_texel_width(_tex);
+        var _th = texture_get_texel_height(_tex);
+        shader_set(shd_dash_projection);
+        shader_set_uniform_f(shader_get_uniform(shd_dash_projection, "texel"), _tw, _th);
+        shader_set_uniform_f(shader_get_uniform(shd_dash_projection, "color"), 229/256.0, 45/256.0, 64/256.0);
+        hero_draw(x + vec.x*dist, y + vec.y*dist);
         
-        while (dist > 4) {
-            var _tex = sprite_get_texture(spr_hero, 0);
-            var _tw = texture_get_texel_width(_tex);
-            var _th = texture_get_texel_height(_tex);
-            shader_set(shd_dash_projection);
-            shader_set_uniform_f(shader_get_uniform(shd_dash_projection, "texel"), _tw, _th);
-            shader_set_uniform_f(shader_get_uniform(shd_dash_projection, "color"), 229/256.0, 45/256.0, 64/256.0);
-            hero_draw(x + vec.x*dist, y + vec.y*dist);
-            
-            shader_reset();
-            
-            dist -= 4 + dash.distance/8;
-        }
+        shader_reset();
+        
+        dist -= 4 + dash.distance/8;
+    }
 }
 
 function hero_create_after_shadow() {

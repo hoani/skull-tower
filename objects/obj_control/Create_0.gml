@@ -10,3 +10,4 @@ global.g = new Gravity(0.125, 270);
 boss_hp = new_hp(0, 0, function (){});
 
 scroll_canvas_init()
+screen_shake_init()

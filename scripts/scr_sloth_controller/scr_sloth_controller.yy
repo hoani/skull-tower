@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_sloth_controller",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_sloth_controller",
+  "parent":{
+    "name":"sloth",
+    "path":"folders/Scripts/boss/sloth.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

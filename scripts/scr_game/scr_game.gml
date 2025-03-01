@@ -22,3 +22,8 @@ function game_init(){
 	
 	audio_init()
 }
+
+function game_update() {
+    global.step += global.s
+    global.mono ++
+}

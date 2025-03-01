@@ -100,12 +100,12 @@ dash = {
 
 
 attack = {
-    inst: instance_create(x, y, obj_hero_slash, { depth: depth -1 }),
+    inst: instance_create_hero(x, y, obj_hero_slash, { depth: depth -1 }),
     state: new_state(ATTACK_NONE),
     start: {count: 4},
     slash: { xspd: 0, yspd: 0, count: 12 },
     stab: { xspd: 1, yspd: -1, count: 6 },
-    swing: { xspd: 0, yspd: -3, count: 12 },
+    swing: { xspd: 0, yspd: -1.5, count: 12 },
     recover: { count: (IMG_ATTACK_RECOVER_NUM * IMG_ATTACK_RECOVER_RATE) },
     buffering: 0,
     buffering_count: 10,

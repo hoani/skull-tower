@@ -9,7 +9,7 @@ function sfx_init() {
 }
 
 function create_sfx(_x, _y, _snd, _gain) {
-	instance_create_depth(_x, _y, 0, obj_sfx, {snd: _snd, gain: _gain})
+	instance_create(_x, _y, obj_sfx, {snd: _snd, gain: _gain})
 }
 
 function new_sfx(){

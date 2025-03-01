@@ -2,7 +2,7 @@ function hero_die(){
     if state.current == H_DIE {
         return
     }
-    instance_create(x, y, obj_hero_die, {
+    instance_create_hero(x, y, obj_hero_die, {
         image_angle: g.dir-270, 
         image_xscale: face,
         depth: depth,
@@ -92,7 +92,7 @@ function hero_create_after_shadow() {
     var dist = 0;
     
     while (dist < dash.distance - 4) {
-        instance_create(x + vec.x*dist, y + vec.y*dist, obj_hero_shadow, {
+        instance_create_sfx(x + vec.x*dist, y + vec.y*dist, obj_hero_shadow, {
             image_angle: image_angle,
             image_yscale: face,
             image_index: IMG_DASH_INDEX,
@@ -103,7 +103,6 @@ function hero_create_after_shadow() {
             b: 64/256.0,
             xspd: vec.x/8,
             yspd: vec.y/8,
-            depth: depth + 1,
         });
         
         dist += 4 + dash.distance/8;

@@ -12,8 +12,8 @@ function do_moving_block_break() {
     var delta = 4;
     for (var i = min(x0, x1, x2, x3); i <= max(x0, x1, x2, x3); i+=delta) {
         for (var j = min(y0, y1, y2, y3); j <= max(y0, y1, y2, y3); j+=delta) {
-            instance_create(i, j, obj_part_fade, {
-                depth: depth -1,
+            instance_create_mblocks(i, j, obj_part_fade, {
+                depth: depth - 1,
                 xspd: -dx/16,
                 yspd: -dy/16,
                 scale: 1/4,

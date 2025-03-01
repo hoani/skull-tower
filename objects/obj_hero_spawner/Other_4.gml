@@ -1,1 +1,1 @@
-instance_create(x, y, obj_hero, {depth: depth});
+instance_create_hero(x, y, obj_hero, {depth: depth});

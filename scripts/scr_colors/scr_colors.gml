@@ -1,0 +1,5 @@
+#macro C_BLUE ($E8513A)
+#macro C_WHITE ($ffffff)
+#macro C_LTGRAY ($FFADC4)
+#macro C_GRAY ($B2636f)
+#macro C_BLACK ($5E212B)

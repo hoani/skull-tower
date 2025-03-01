@@ -24,6 +24,21 @@ function moving_block_wraparound() {
     }
 }
 
+
+function moving_block_falling() {
+    if place_meeting(x + dx, y+dy, obj_block_place) {
+        while(!place_meeting(x + sign(dx), y+sign(dy), obj_block_place)) {
+            x += sign(dx);
+            y += sign(dy);
+        }
+        xspd = 0;
+        yspd = 0;
+        return
+    }
+    x += dx;
+    y += dy;
+}
+
 function moving_delta_update() {
     return lateral_update()
 }
@@ -75,8 +90,7 @@ function moving_floor_update() {
     }
     
     
-    
-    moving_block_wraparound()
+    do_move()
     
     floor_update_coords()
     
@@ -172,7 +186,7 @@ function moving_block_update() {
     
     
     
-    moving_block_wraparound()
+    do_move()
     
     floor_update_coords()
     

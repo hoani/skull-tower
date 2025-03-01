@@ -1,5 +1,10 @@
 
 function get_block_contact(_x, _y, _gdir, _face, _inst) {
+    if !instance_exists(_inst) {
+        return { x: x, y: y } // Shouldn't happen, but just incase.
+    }
+    
+    
     // Sorry for this fuckery - but it should work.
     if (_gdir == (180 + _face*90)) {
         return {

@@ -60,8 +60,8 @@
   },
   "origin":0,
   "parent":{
-    "name":"platform",
-    "path":"folders/Sprites/platform.yy",
+    "name":"obstacles",
+    "path":"folders/Sprites/obstacles.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

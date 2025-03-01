@@ -553,7 +553,7 @@ function update_gravity() {
     if f.grav == noone {
         f.grav = collision_point(x, y, obj_gravity_field, false, true);
     }
-    if f.grav != noone {
+    if instance_exists(f.grav) {
         g.update_direction(f.grav.gdir);
     } else {
         g.update_direction(global.g.dir); // default.
@@ -627,7 +627,7 @@ function check_collision_point(x0, y0, obj, excludes=[], current=noone) {
 
 function set_floor_frame(inst) {
     f.floor.inst = inst;
-    if inst != noone {
+    if instance_exists(inst) {
         f.floor.slope = inst.floor_angle(x, y, width, g.dir);
     } else {
         f.floor.slope = 0;

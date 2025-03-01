@@ -3,9 +3,3 @@
 
 moving_block_update()
 
-if global.debug {
-    if keyboard_check_pressed(ord("Q")) {
-        xspd = -xspd;
-        yspd = -yspd;
-    }
-}

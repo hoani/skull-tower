@@ -3,8 +3,7 @@ event_inherited()
 floor_bodies = []
 push_bodies = []
 
-xmove = 0;
-ymove = 0;
+lateral_init()
 
-dx = 0;
-dy = 0;
+
+do_move = moving_block_wraparound

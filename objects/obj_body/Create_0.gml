@@ -59,7 +59,7 @@ lateral = {
 jump_height = {
     min: 8,
     max: 18,    
-    double: 16,
+    double: 22,
     hang: 16,
 }
 

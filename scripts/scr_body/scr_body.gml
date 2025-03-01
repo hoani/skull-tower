@@ -424,6 +424,7 @@ function move_contact_x(_dx, obj, forcex=false) {
         }
         // Check step logic, but only if the slope isn't steeper than 30 deg.
         if floor_is_steppable() {
+            show_debug_message("did step")
             var _step_height = f.floor.inst == noone ? step_height.air : step_height.floor;
             dy0 = dy0 + -_step_height;
             dy1 = dy1 + -_step_height;
@@ -459,7 +460,7 @@ function move_contact_x(_dx, obj, forcex=false) {
     }
     
     if global.debug {
-        show_debug_message($"floor_angle {f.floor.slope} sx, sx ({sx}, {sy}) spd ({spd.x}, {spd.y}), moved {dist}")
+        show_debug_message($"floor_angle {f.floor.slope} sx, sy ({sx}, {sy}) spd ({spd.x}, {spd.y}), moved {dist}")
     }
     
     // Prevent jumping when reaching corners of slopes.
@@ -490,8 +491,8 @@ function move_contact_y(_dy, obj, _update_gravity=true) {
     var delta = _dy;
     var inst = noone;
     while(dist < abs(_dy)) {
-        var dx0 = - (w_2-1);
-        var dx1 = w_2-1;
+        var dx0 = - (w_2);
+        var dx1 = w_2;
         var dy0 = h_2*sign(_dy);
         var dy1 = dy0 + delta;
         var c = body_collision_coords(dx0, dy0, dx1, dy1)

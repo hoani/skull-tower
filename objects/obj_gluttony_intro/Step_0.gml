@@ -2,8 +2,8 @@ if !active {
     return		
 }
 
-if boss_registry_get(BI_SLOTH) == BOSS_FIGHT {
-    instance_create_enemy(x, y, obj_sloth)
+if boss_registry_get(BI_GLUTTONY) == BOSS_FIGHT {
+    instance_create_enemy(x, y, obj_gluttony)
     instance_destroy()
 }
 

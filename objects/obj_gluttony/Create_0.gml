@@ -21,7 +21,7 @@ function gluttony_set_target() {
         targetx = floor(4*obj_hero.x/room_width)*(room_width/4) + room_width/8;
     }
     if targetx == prev {
-        targetx = (targetx + room_width/4 % room_width)
+        targetx = (targetx + room_width/4) % (room_width*3/4)
     }
 }
 

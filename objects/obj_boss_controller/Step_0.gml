@@ -8,9 +8,9 @@ switch room {
     case rm_gluttony_boss:
         gluttony_controller_update(state)
         break
-    //case rm_envy:
-        //envy_controller_update(state)
-        //break
+    case rm_envy_boss:
+        envy_controller_update(state)
+        break
     case rm_lust_boss:
         lust_controller_update(state)
         break

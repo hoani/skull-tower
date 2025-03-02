@@ -8,8 +8,8 @@
   "name":"obj_floor",
   "overriddenProperties":[],
   "parent":{
-    "name":"platform",
-    "path":"folders/Objects/platform.yy",
+    "name":"parents",
+    "path":"folders/Objects/platform/parents.yy",
   },
   "parentObjectId":null,
   "persistent":false,

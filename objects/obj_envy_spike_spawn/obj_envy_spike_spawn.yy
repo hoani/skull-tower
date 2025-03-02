@@ -1,15 +1,18 @@
 {
   "$GMObject":"",
-  "%Name":"obj_dash_barrier",
+  "%Name":"obj_envy_spike_spawn",
   "eventList":[
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":7,"eventType":7,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":1,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"obj_dash_barrier",
+  "name":"obj_envy_spike_spawn",
   "overriddenProperties":[],
   "parent":{
-    "name":"parents",
-    "path":"folders/Objects/platform/parents.yy",
+    "name":"envy",
+    "path":"folders/Objects/boss/envy.yy",
   },
   "parentObjectId":null,
   "persistent":false,
@@ -30,8 +33,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_dash_barrier",
-    "path":"sprites/spr_dash_barrier/spr_dash_barrier.yy",
+    "name":"spr_envy_spike",
+    "path":"sprites/spr_envy_spike/spr_envy_spike.yy",
   },
   "spriteMaskId":null,
   "visible":true,

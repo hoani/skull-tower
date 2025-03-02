@@ -6,8 +6,8 @@
   "name":"obj_block",
   "overriddenProperties":[],
   "parent":{
-    "name":"platform",
-    "path":"folders/Objects/platform.yy",
+    "name":"parents",
+    "path":"folders/Objects/platform/parents.yy",
   },
   "parentObjectId":{
     "name":"obj_floor",

@@ -12,8 +12,8 @@
     {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_floor","path":"objects/obj_floor/obj_floor.yy",},"propertyId":{"name":"yspd","path":"objects/obj_floor/obj_floor.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"0",},
   ],
   "parent":{
-    "name":"platform",
-    "path":"folders/Objects/platform.yy",
+    "name":"parents",
+    "path":"folders/Objects/platform/parents.yy",
   },
   "parentObjectId":{
     "name":"obj_floor",

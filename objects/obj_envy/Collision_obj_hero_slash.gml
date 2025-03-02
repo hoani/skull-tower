@@ -1,0 +1,4 @@
+
+hp_damage(hp)
+
+

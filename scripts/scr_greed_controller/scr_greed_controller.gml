@@ -1,0 +1,48 @@
+
+
+function greed_controller_update(_state) {
+    var _boss_index = BI_GREED;
+    var _obj_intro = obj_greed_intro;
+    var _obj_boss = obj_greed;
+    var _music = MUSIC_GREED;
+    
+    if boss_registry_get(_boss_index) == BOSS_DEFEAT {
+        with(obj_pending_next_room) {
+            instance_destroy()
+        }
+        instance_destroy()
+        return;
+    }
+    
+    switch _state.current {
+    case BOSS_CONTROLLER_PREINTRO:
+        obj_hero.disable = true
+        obj_hero.hspd = 0
+        if _state.mono > 30 {
+            state_set(_state, BOSS_CONTROLLER_INTRO)
+            _obj_intro.active = true
+        }
+        break
+    case BOSS_CONTROLLER_INTRO:
+        if !instance_exists(_obj_intro) {
+            boss_registry_set(_boss_index, BOSS_FIGHT)
+            if !audio_is_playing(_music) {
+                music_start(_music)
+            }
+            state_set(_state, BOSS_CONTROLLER_FIGHT)
+            obj_hero.disable = false
+        }
+        break
+    case BOSS_CONTROLLER_FIGHT:
+        if !instance_exists(_obj_boss) {
+            state_set(_state, BOSS_CONTROLLER_COMPLETE)
+            music_fade_out(1000)
+        }
+        break
+    case BOSS_CONTROLLER_COMPLETE:
+        if !instance_exists(obj_boss_die) {
+            boss_registry_set(_boss_index, BOSS_DEFEAT)
+        }
+        break;
+    }
+}

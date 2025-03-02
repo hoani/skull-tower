@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_greed_controller",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_greed_controller",
+  "parent":{
+    "name":"controllers",
+    "path":"folders/Scripts/boss/controllers.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_pride_controller",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_pride_controller",
+  "parent":{
+    "name":"controllers",
+    "path":"folders/Scripts/boss/controllers.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

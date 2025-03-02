@@ -20,7 +20,7 @@ switch room {
     case rm_wrath_boss:
         wrath_controller_update(state)
         break 
-    //case rm_pride:
-        //pride_controller_update(state)
-        //break
+    case rm_pride_boss:
+        pride_controller_update(state)
+        break
 }

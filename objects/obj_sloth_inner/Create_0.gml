@@ -1,0 +1,1 @@
+invincibility = 0

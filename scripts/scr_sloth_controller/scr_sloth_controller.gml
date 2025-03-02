@@ -1,45 +1,66 @@
 
 function sloth_controller_update(_state) {
-    switch phase {
+    
+    if boss_registry_get(BI_SLOTH) == BOSS_DEFEAT {
+        with(obj_door_block) {
+            instance_destroy()
+        }
+        with(obj_moving_block) {
+            disable = true
+        }
+        with(obj_spikes) {
+            instance_destroy()
+        }
+        instance_destroy()
+        return;
+    }
+    
+    switch _state.current {
     case BOSS_CONTROLLER_PREINTRO:
-        if obj_hero.x > room_width/4 {
+        obj_hero.disable = true
+        obj_hero.hspd = 0
+        if _state.mono > 30 {
             state_set(_state, BOSS_CONTROLLER_INTRO)
             obj_sloth_intro.active = true
-            set_state(STATE_CUTSCENE)
-            obj_hero.hspd = 0
         }
         break
     case BOSS_CONTROLLER_INTRO:
         if !instance_exists(obj_sloth_intro) {
-            music_start(snd_music_fallen)
-            boss_controller_set_phase(BOSS_CONTROLLER_PHASE_FIGHT)
-            set_state(STATE_PLAY)
-            with(obj_fallen_block) {
-                activate_fallen_block()
+            boss_registry_set(BI_SLOTH, BOSS_FIGHT)
+            if !audio_is_playing(MUSIC_SLOTH) {
+                music_start(MUSIC_SLOTH)
+            }
+            state_set(_state, BOSS_CONTROLLER_FIGHT)
+            obj_hero.disable = false
+            with(obj_moving_block) {
+                disable = false
             }
         }
         break
-    case BOSS_CONTROLLER_PHASE_FIGHT:
-        if !instance_exists(obj_fallen) {
-            boss_controller_set_phase(BOSS_CONTROLLER_PHASE_COMPLETE)
+    case BOSS_CONTROLLER_FIGHT:
+        if !instance_exists(obj_sloth) {
+            state_set(_state, BOSS_CONTROLLER_COMPLETE)
             music_fade_out(1000)
-            with(obj_fallen_block) {
-                stop = true	
+            
+            with(obj_moving_block) {
+                disable = true
             }
-            with(obj_spike) {
+            with(obj_spikes) {
                 instance_destroy()
             }
+            
         }
         break
-    case BOSS_CONTROLLER_PHASE_COMPLETE:
+    case BOSS_CONTROLLER_COMPLETE:
         if !instance_exists(obj_boss_die) {
-            obj_next_prompt.alarm[0] = 300
-            
-            with(obj_next_block) {
+            // Setup next room trigger.
+            with(obj_door_block) {
                 instance_destroy()
             }
+            boss_registry_set(BI_SLOTH, BOSS_DEFEAT)
             
             instance_destroy()
         }
         break;
     }
+}

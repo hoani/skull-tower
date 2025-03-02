@@ -6,4 +6,5 @@ wall_bodies = []
 
 lateral_init()
 
+
 do_move = moving_block_wraparound

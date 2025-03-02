@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_gluttony_controller",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_gluttony_controller",
+  "parent":{
+    "name":"gluttony",
+    "path":"folders/Scripts/boss/gluttony.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

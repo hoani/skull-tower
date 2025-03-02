@@ -5,7 +5,7 @@ switch state.current {
     case S_FADE_IN:
         if state.step >= BOSS_TITLE_FADE_COUNT {
             state_set(state, S_WAIT);
-            //sfx_create(x, y, snd_boss_intro, 1)
+            create_sfx(x, y, snd_boss_title, 1)
         }
         break;
     case S_WAIT:

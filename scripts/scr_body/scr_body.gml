@@ -126,12 +126,14 @@ function body_update_speed(cmds) {
             spd.x += -jump.start_speed * f.floor.ssin;
             jump.buffering = 0;
             jump.coyote = 0;
+            create_sfx(x, y, snd_jump)
         } else if (f.hang != noone) {
             spd.y = -jump.hang_speed;
             spd.x = 0;
             jump.buffering = 0;
             jump.coyote = 0;
             f.hang = noone;
+            create_sfx(x, y, snd_jump)
         } else if f.wall.pressing {
             spd.y = -jump.start_speed;
             spd.x = -face * jump.start_speed * jump.wall_factor;
@@ -139,11 +141,13 @@ function body_update_speed(cmds) {
             jump.buffering = 0;
             jump.coyote = 0;
             lateral.cooldown = lateral.wallkick_cooldown;
+            create_sfx(x, y, snd_jump)
         } else if jump.double {
             spd.y = -jump.double_speed;
             jump.buffering = 0;
             jump.coyote = 0;
             jump.double = false;
+            create_sfx(x, y, snd_jump)
         } else {
             jump.buffering = max(0, jump.buffering - global.s);
         }
@@ -341,6 +345,7 @@ function do_dash() {
         x = dash.x;
         y = dash.y;
         dash.cooldown = dash.cooldown_count;
+        create_sfx(x, y, snd_dash)
     }
     dash.trigger = false;
     dash.target = 0;

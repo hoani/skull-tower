@@ -1,7 +1,10 @@
 {
   "$GMObject":"",
   "%Name":"obj_spikes",
-  "eventList":[],
+  "eventList":[
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":1,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+  ],
   "managed":true,
   "name":"obj_spikes",
   "overriddenProperties":[],
@@ -9,7 +12,10 @@
     "name":"obstacle",
     "path":"folders/Objects/obstacle.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"obj_damage_base",
+    "path":"objects/obj_damage_base/obj_damage_base.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,

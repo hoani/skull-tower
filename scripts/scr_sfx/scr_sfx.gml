@@ -8,7 +8,7 @@ function sfx_init() {
 	}
 }
 
-function create_sfx(_x, _y, _snd, _gain) {
+function create_sfx(_x, _y, _snd, _gain=1) {
 	instance_create(_x, _y, obj_sfx, {snd: _snd, gain: _gain})
 }
 

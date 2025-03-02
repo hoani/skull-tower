@@ -42,7 +42,7 @@
     ],
     "top":0,
   },
-  "origin":4,
+  "origin":7,
   "parent":{
     "name":"gluttony",
     "path":"folders/Sprites/bosses/gluttony.yy",
@@ -95,7 +95,7 @@
     "visibleRange":null,
     "volume":1.0,
     "xorigin":16,
-    "yorigin":48,
+    "yorigin":96,
   },
   "swatchColours":null,
   "swfPrecision":0.5,

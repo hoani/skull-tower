@@ -2,7 +2,7 @@
   "$GMSprite":"",
   "%Name":"spr_next_room",
   "bboxMode":1,
-  "bbox_bottom":7,
+  "bbox_bottom":15,
   "bbox_left":0,
   "bbox_right":7,
   "bbox_top":0,
@@ -16,7 +16,7 @@
   ],
   "gridX":0,
   "gridY":0,
-  "height":8,
+  "height":16,
   "HTile":false,
   "layers":[
     {"$GMImageLayer":"","%Name":"d1547f66-4130-4615-baba-1c2fdbe9bdab","blendMode":0,"displayName":"default","isLocked":false,"name":"d1547f66-4130-4615-baba-1c2fdbe9bdab","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},

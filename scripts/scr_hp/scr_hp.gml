@@ -40,7 +40,7 @@ function hp_damage(_hp){
 
 function hp_blink(_hp) {
 	if hp_invulnerable(_hp) {
-		return _hp.invulnerable % 2 >= 1
+		return _hp.invulnerable % 6 >= 3
 	}
 	return false
 }

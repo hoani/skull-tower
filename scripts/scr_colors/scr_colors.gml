@@ -3,3 +3,5 @@
 #macro C_LTGRAY ($FFADC4)
 #macro C_GRAY ($B2636f)
 #macro C_BLACK ($5E212B)
+#macro C_DKRED (#872450)
+#macro C_PINK (#ff7fbd)

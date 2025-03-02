@@ -4,8 +4,8 @@
   "bboxMode":0,
   "bbox_bottom":12,
   "bbox_left":3,
-  "bbox_right":13,
-  "bbox_top":3,
+  "bbox_right":15,
+  "bbox_top":1,
   "collisionKind":1,
   "collisionTolerance":0,
   "DynamicTexturePage":false,
@@ -19,6 +19,7 @@
   "height":16,
   "HTile":false,
   "layers":[
+    {"$GMImageLayer":"","%Name":"1422a150-35cd-4566-b279-e0a4bba4cfd0","blendMode":0,"displayName":"Layer 1","isLocked":false,"name":"1422a150-35cd-4566-b279-e0a4bba4cfd0","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
     {"$GMImageLayer":"","%Name":"9ec3367d-d59e-4a00-8f60-c8a658984d2f","blendMode":0,"displayName":"default","isLocked":false,"name":"9ec3367d-d59e-4a00-8f60-c8a658984d2f","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
   "name":"spr_sloth_die",

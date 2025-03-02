@@ -7,6 +7,7 @@ function attack_update() {
         case ATTACK_START:
             if attack.state.step >= attack.start.count {
                 state_set(attack.state, ATTACK_SLASH);
+                create_sfx(x, y, snd_hero_slash)
             }
             break;
         case ATTACK_SLASH:
@@ -15,8 +16,9 @@ function attack_update() {
                     state_set(attack.state, ATTACK_NONE);
                 } else {
                     state_set(attack.state, ATTACK_STAB);
-                    spd.x += face*attack.stab.xspd*2;
+                    spd.x = clamp(spd.x + face*attack.stab.xspd*2, -lateral.air.max, lateral.air.max);
                     spd.y += attack.stab.yspd;
+                    create_sfx(x, y, snd_hero_slash)
                 }
             }
             break;
@@ -27,6 +29,7 @@ function attack_update() {
                 } else {
                     state_set(attack.state, ATTACK_SWING);
                     spd.y += attack.swing.yspd;
+                    create_sfx(x, y, snd_hero_slash)
                 }
             }
             break;

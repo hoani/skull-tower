@@ -1,13 +1,13 @@
-
+state_update(state)
 
 
 switch room {
-    case rm_sloth:
+    case rm_sloth_boss:
         sloth_controller_update(state)
         break	
-    //case rm_gluttony:
-        //gluttony_controller_update(state)
-        //break
+    case rm_gluttony_boss:
+        gluttony_controller_update(state)
+        break
     //case rm_envy:
         //envy_controller_update(state)
         //break

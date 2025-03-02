@@ -74,6 +74,7 @@ jump = {
     coyote_count: 5,
     wall_factor: 1,
     double: true,
+    auto_boost: false,
 }
 
 dash = {
@@ -116,6 +117,8 @@ width = 8;
 w_2 = width/2;
 height = 8;
 h_2 = height/2;
+
+y_drop = false;
 
 step_height = {
     floor: 4,

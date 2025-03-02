@@ -77,7 +77,7 @@ function body_update_speed(cmds) {
     f.wall.pressing = f.wall.pressing && pressing_into_wall();
     
     var x_accel = 0;
-    
+    y_drop = false;
 
     dash.cooldown = max(0, dash.cooldown - global.s);
     lateral.cooldown = max(0, lateral.cooldown - global.s);
@@ -86,15 +86,19 @@ function body_update_speed(cmds) {
     if dash.cooldown == 0 && lateral.cooldown == 0 {
         if commands_check(cmds, CMD_LEFT) {
             x_accel -= g.y;
+            y_drop = g.x < 0;
         }
         if commands_check(cmds, CMD_RIGHT) {
             x_accel += g.y;
+            y_drop = g.x > 0;
         }
         if commands_check(cmds, CMD_DOWN) {
             x_accel -= g.x;
+            y_drop = g.y > 0;
         }
         if commands_check(cmds, CMD_UP) {
             x_accel += g.x;
+            y_drop = g.y < 0;
         }
     }
     
@@ -157,7 +161,8 @@ function body_update_speed(cmds) {
     }
 
     if f.wall.pressing == false || spd.y < 0 {
-        if (spd.y > 0 || !commands_check(cmds, CMD_JUMP)) && attack.state.current == ATTACK_NONE {
+        if (spd.y > 0 || !commands_check(cmds, CMD_JUMP)) && attack.state.current == ATTACK_NONE && !jump.auto_boost {
+            jump.auto_boost = false;
             body_apply_gravity(jump.drop_factor);
         } else {
             body_apply_gravity();
@@ -295,7 +300,12 @@ function update_wall_frames() {
 }
     
 function body_update_movement() {
+    
     update_excludes(); // Need to update excludes at least once, even if not moving.
+    
+    if y_drop && instance_exists(f.floor.inst) {
+        move_contact_y(1, obj_block)
+    }
     
     base_lateral_update(spd.x, spd.y);
     

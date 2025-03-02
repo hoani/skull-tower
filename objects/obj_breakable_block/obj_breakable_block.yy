@@ -11,8 +11,8 @@
     {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_falling_block","path":"objects/obj_falling_block/obj_falling_block.yy",},"propertyId":{"name":"yaccel","path":"objects/obj_falling_block/obj_falling_block.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"0.125",},
   ],
   "parent":{
-    "name":"platform",
-    "path":"folders/Objects/platform.yy",
+    "name":"obstacle",
+    "path":"folders/Objects/obstacle.yy",
   },
   "parentObjectId":{
     "name":"obj_falling_block",

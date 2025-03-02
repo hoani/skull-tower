@@ -14,6 +14,7 @@
 
 
 function body_update(cmds) {
+    update_gravity();
     body_update_frames()
     var had_floor = (f.floor.inst != noone);
     body_update_speed(cmds);

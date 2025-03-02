@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"scr_sloth_controller",
   "parent":{
-    "name":"sloth",
-    "path":"folders/Scripts/boss/sloth.yy",
+    "name":"controllers",
+    "path":"folders/Scripts/boss/controllers.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

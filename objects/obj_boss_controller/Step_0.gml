@@ -17,9 +17,9 @@ switch room {
     //case rm_greed:
        //greed_controller_update(state)
        //break
-    //case rm_wrath:
-        //wrath_controller_update(state)
-        //break 
+    case rm_wrath_boss:
+        wrath_controller_update(state)
+        break 
     //case rm_pride:
         //pride_controller_update(state)
         //break

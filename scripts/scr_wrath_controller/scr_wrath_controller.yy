@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"scr_gluttony_controller",
+  "%Name":"scr_wrath_controller",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"scr_gluttony_controller",
+  "name":"scr_wrath_controller",
   "parent":{
     "name":"controllers",
     "path":"folders/Scripts/boss/controllers.yy",

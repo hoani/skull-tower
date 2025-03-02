@@ -1,14 +1,14 @@
 {
   "$GMRoom":"v1",
-  "%Name":"rm_level_00",
+  "%Name":"rm_start",
   "creationCodeFile":"",
   "inheritCode":false,
   "inheritCreationOrder":false,
   "inheritLayers":false,
   "instanceCreationOrder":[
-    {"name":"inst_1403E21E_2_2_1","path":"rooms/rm_level_00/rm_level_00.yy",},
-    {"name":"inst_59871D6B_3_2_1","path":"rooms/rm_level_00/rm_level_00.yy",},
-    {"name":"inst_75C831B9_5_2_1","path":"rooms/rm_level_00/rm_level_00.yy",},
+    {"name":"inst_1403E21E_2_2_1","path":"rooms/rm_start/rm_start.yy",},
+    {"name":"inst_59871D6B_3_2_1","path":"rooms/rm_start/rm_start.yy",},
+    {"name":"inst_75C831B9_5_2_1","path":"rooms/rm_start/rm_start.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -36,7 +36,7 @@
     {"$GMRAssetLayer":"","%Name":"back_assets","assets":[],"depth":900,"effectEnabled":true,"effectType":null,"gridX":4,"gridY":4,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"back_assets","properties":[],"resourceType":"GMRAssetLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRBackgroundLayer":"","%Name":"Background","animationFPS":30.0,"animationSpeedType":0,"colour":4294967295,"depth":1000,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"hspeed":0.0,"htiled":true,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"Background","properties":[],"resourceType":"GMRBackgroundLayer","resourceVersion":"2.0","spriteId":{"name":"spr_tower","path":"sprites/spr_tower/spr_tower.yy",},"stretch":false,"userdefinedAnimFPS":false,"userdefinedDepth":false,"visible":true,"vspeed":0.0,"vtiled":true,"x":0,"y":0,},
   ],
-  "name":"rm_level_00",
+  "name":"rm_start",
   "parent":{
     "name":"Rooms",
     "path":"folders/Rooms.yy",

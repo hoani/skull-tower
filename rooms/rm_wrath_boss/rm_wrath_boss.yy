@@ -72,8 +72,8 @@
   ],
   "name":"rm_wrath_boss",
   "parent":{
-    "name":"Rooms",
-    "path":"folders/Rooms.yy",
+    "name":"6-wrath",
+    "path":"folders/Rooms/6-wrath.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

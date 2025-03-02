@@ -105,8 +105,8 @@
   ],
   "name":"rm_sloth_boss",
   "parent":{
-    "name":"Rooms",
-    "path":"folders/Rooms.yy",
+    "name":"1-sloth",
+    "path":"folders/Rooms/1-sloth.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

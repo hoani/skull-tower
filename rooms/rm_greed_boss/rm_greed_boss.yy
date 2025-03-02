@@ -44,8 +44,8 @@
   ],
   "name":"rm_greed_boss",
   "parent":{
-    "name":"Rooms",
-    "path":"folders/Rooms.yy",
+    "name":"5-greed",
+    "path":"folders/Rooms/5-greed.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

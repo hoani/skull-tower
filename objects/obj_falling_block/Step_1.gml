@@ -1,5 +1,9 @@
 
 // Platforms always move first - this way we know that the character's state is valid going into character movement.
+if disable {
+    return
+}
+
 
 if !place_meeting(x + sign(xaccel), y + sign(yaccel), obj_block_place) {
     var xmin = sign(xaccel) == -1 ? -term : xspd;

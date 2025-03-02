@@ -9,7 +9,7 @@
   "name":"obj_moving_block",
   "overriddenProperties":[
     {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_floor","path":"objects/obj_floor/obj_floor.yy",},"propertyId":{"name":"xspd","path":"objects/obj_floor/obj_floor.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"0",},
-    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_floor","path":"objects/obj_floor/obj_floor.yy",},"propertyId":{"name":"yspd","path":"objects/obj_floor/obj_floor.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"1",},
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_floor","path":"objects/obj_floor/obj_floor.yy",},"propertyId":{"name":"yspd","path":"objects/obj_floor/obj_floor.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"0",},
   ],
   "parent":{
     "name":"platform",

@@ -52,8 +52,8 @@
   ],
   "name":"rm_lust_boss",
   "parent":{
-    "name":"Rooms",
-    "path":"folders/Rooms.yy",
+    "name":"4-lust",
+    "path":"folders/Rooms/4-lust.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

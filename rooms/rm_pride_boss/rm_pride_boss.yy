@@ -54,8 +54,8 @@
   ],
   "name":"rm_pride_boss",
   "parent":{
-    "name":"Rooms",
-    "path":"folders/Rooms.yy",
+    "name":"7-pride",
+    "path":"folders/Rooms/7-pride.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

@@ -70,8 +70,8 @@
   ],
   "name":"rm_envy_boss",
   "parent":{
-    "name":"Rooms",
-    "path":"folders/Rooms.yy",
+    "name":"2-envy",
+    "path":"folders/Rooms/2-envy.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

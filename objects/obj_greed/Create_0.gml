@@ -22,12 +22,18 @@ hands_image = 0;
 
 spawn_count = 0;
 spawn_dir = 1;
-spawn_x = -16;
+spawn_x = -24;
 
 function greed_spawn_block() {
     spawn_x += (32 + irandom(2)*8);
     var _x = spawn_dir == 1 ? room_width - spawn_x : spawn_x ;
     var _y = 32;
+    
+    spawn_count++
+    
+    if _x > room_width || _x < 0 {
+        return // skip this one
+    }
     
     instance_create_mblocks(_x, _y, obj_falling_block_summon, {
         xaccel: 0, 
@@ -37,7 +43,7 @@ function greed_spawn_block() {
         image_xscale: 1 + 0.5 * ceil(2*(1.0 - hp.current/hp.max)),
         image_yscale: 1,
     }) 
-    spawn_count++
+    
 }
 
 function greed_trade_blocks() {

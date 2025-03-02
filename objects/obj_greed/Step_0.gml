@@ -28,7 +28,7 @@ switch state.current {
             state_set(state, state_spawn);
             spawn_dir = -spawn_dir // for next round.
             spawn_count = 0;
-            spawn_x = -16;
+            spawn_x = -(24+irandom(1)*8);
         }
         break;
     case state_spawn:

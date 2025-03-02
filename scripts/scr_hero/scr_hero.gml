@@ -9,6 +9,8 @@ function hero_die(){
     });
     state_set(state, H_DIE);
     disable = true;
+    obj_control.boss_hp = new_hp(0, 0, function(){})
+    
 }
 
 function hero_draw(_x, _y) {

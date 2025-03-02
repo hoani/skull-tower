@@ -5,6 +5,7 @@ image_speed = 0
 
 #macro GLUTTONY_INTRO_APPEAR 0
 #macro GLUTTONY_INTRO_TAUNT 1
+#macro GLUTTONY_INTRO_GO_UP 2
 
 state = new_state(GLUTTONY_INTRO_APPEAR)
 

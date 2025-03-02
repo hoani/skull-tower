@@ -3,8 +3,8 @@ if !active {
 }
 
 if boss_registry_get(BI_GLUTTONY) == BOSS_FIGHT {
-    instance_create_enemy(x, y, obj_gluttony)
-    instance_destroy()
+    state_set(state, GLUTTONY_INTRO_GO_UP)
+    y = ystart - 48
 }
 
 state_update(state)
@@ -24,7 +24,14 @@ switch state.current {
             spawn_title_gluttony()
         }
         if state.step>60 && !instance_exists(obj_boss_title) {
-            instance_create_enemy(x, y, obj_gluttony)
+            state_set(state, GLUTTONY_INTRO_GO_UP)
+        }
+        break
+    case GLUTTONY_INTRO_GO_UP:
+        image_index = 1;
+        y -= 1;
+        if y <= ystart - 48 {
+            instance_create_enemy(x, ystart-48, obj_gluttony)
             instance_destroy()
         }
         break

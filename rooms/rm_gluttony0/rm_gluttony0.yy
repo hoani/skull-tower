@@ -33,6 +33,7 @@
     {"name":"inst_271E87E1","path":"rooms/rm_gluttony0/rm_gluttony0.yy",},
     {"name":"inst_4585CBF8","path":"rooms/rm_gluttony0/rm_gluttony0.yy",},
     {"name":"inst_2A03AC25","path":"rooms/rm_gluttony0/rm_gluttony0.yy",},
+    {"name":"inst_459B5FA4","path":"rooms/rm_gluttony0/rm_gluttony0.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -88,6 +89,7 @@
         {"$GMRInstance":"v1","%Name":"inst_2A03AC25","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_2A03AC25","objectId":{"name":"obj_tutorial","path":"objects/obj_tutorial/obj_tutorial.yy",},"properties":[
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_tutorial","path":"objects/obj_tutorial/obj_tutorial.yy",},"propertyId":{"name":"which","path":"objects/obj_tutorial/obj_tutorial.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"spr_tutorial_dash",},
           ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":136.0,"y":72.0,},
+        {"$GMRInstance":"v1","%Name":"inst_459B5FA4","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_459B5FA4","objectId":{"name":"obj_tutorial_clear","path":"objects/obj_tutorial_clear/obj_tutorial_clear.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.5,"scaleY":1.0,"x":88.0,"y":80.0,},
       ],"layers":[],"name":"sfx","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRAssetLayer":"","%Name":"back_assets","assets":[
         {"$GMRSpriteGraphic":"","%Name":"graphic_DDB5B82_2","animationSpeed":1.0,"colour":4294967295,"frozen":false,"headPosition":0.0,"ignore":false,"inheritedItemId":null,"inheritItemSettings":false,"name":"graphic_DDB5B82_2","resourceType":"GMRSpriteGraphic","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"spriteId":{"name":"spr_window","path":"sprites/spr_window/spr_window.yy",},"x":24.0,"y":20.0,},

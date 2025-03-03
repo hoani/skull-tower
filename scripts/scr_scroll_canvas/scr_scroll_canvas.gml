@@ -45,10 +45,10 @@ function draw_scroll_canvas() {
         draw_surface(global.sc.prev, _x*(1.0-_frac)*room_width, _y*(1.0-_frac)*room_width)
     } else {
         // Backup.
-        draw_set_color(c_black);
+        draw_set_color(C_BLACK);
         draw_set_alpha(1);
         draw_rectangle(0, 0, room_width, room_height, false);
-        draw_set_color(c_white);
+        draw_set_color(C_WHITE);
     }
     draw_surface(application_surface, _x*(-_frac)*room_width, _y*(-_frac)*room_width)
 }

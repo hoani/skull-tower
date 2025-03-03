@@ -2,6 +2,7 @@ function hero_die(){
     if state.current == H_DIE {
         return
     }
+    
     instance_create_hero(x, y, obj_hero_die, {
         image_angle: g.dir-270, 
         image_xscale: face,
@@ -10,6 +11,7 @@ function hero_die(){
     state_set(state, H_DIE);
     disable = true;
     obj_control.boss_hp = new_hp(0, 0, function(){})
+    stats_increment_death()
     
 }
 

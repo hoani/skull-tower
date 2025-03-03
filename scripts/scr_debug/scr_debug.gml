@@ -6,7 +6,7 @@
 
 function debug_init() {
 	global.debug = true
-	global.diagnostics = true
+	global.diagnostics = false
 	global.show_gui = true
 	
 	fps_avg = 0

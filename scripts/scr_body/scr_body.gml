@@ -62,6 +62,17 @@ function pressing_into_wall() {
     return (f.floor.inst == noone) && ((f.wall.left != noone && face == F_LEFT) || (f.wall.right != noone && face == F_RIGHT))
 }
 
+function body_jump_common() {
+    jump.buffering = 0;
+    jump.coyote = 0;
+    create_sfx(x, y, snd_jump)
+    instance_create_sfx(x, y, obj_part_fade, {
+        scale: 1/2,
+        image_angle: irandom(360),
+        image_blend: C_WHITE,
+    })  
+}
+
     
 function body_update_speed(cmds) {
     var had_floor = false;
@@ -129,30 +140,22 @@ function body_update_speed(cmds) {
         if (f.floor.inst != noone || jump.coyote > 0) {
             spd.y = -jump.start_speed * f.floor.scos;
             spd.x += -jump.start_speed * f.floor.ssin;
-            jump.buffering = 0;
-            jump.coyote = 0;
-            create_sfx(x, y, snd_jump)
+            body_jump_common() 
         } else if (f.hang != noone) {
             spd.y = -jump.hang_speed;
             spd.x = 0;
-            jump.buffering = 0;
-            jump.coyote = 0;
             f.hang = noone;
-            create_sfx(x, y, snd_jump)
+            body_jump_common() 
         } else if f.wall.pressing {
             spd.y = -jump.start_speed;
             spd.x = -face * jump.start_speed * jump.wall_factor;
             face = -face
-            jump.buffering = 0;
-            jump.coyote = 0;
             lateral.cooldown = lateral.wallkick_cooldown;
-            create_sfx(x, y, snd_jump)
+            body_jump_common() 
         } else if jump.double {
             spd.y = -jump.double_speed;
-            jump.buffering = 0;
-            jump.coyote = 0;
             jump.double = false;
-            create_sfx(x, y, snd_jump)
+            body_jump_common() 
         } else {
             jump.buffering = max(0, jump.buffering - global.s);
         }
@@ -220,8 +223,31 @@ function body_update_state() {
         return;
     }
     
+    if state.current == B_JUMP {
+        instance_create_sfx(x-4, y+4, obj_part_fade, {
+            scale: 1/2,
+            image_angle: irandom(360),
+            image_blend: C_WHITE,
+            lifetime: 24,
+            yspd: -0.125,
+        })
+        instance_create_sfx(x+4, y+4, obj_part_fade, {
+            scale: 1/2,
+            image_angle: irandom(360),
+            image_blend: C_WHITE,
+            lifetime: 24,
+            yspd: -0.125,
+        }) 
+    }
+    
     if spd.x != 0  {
         state_set(state, B_RUN);
+        
+        instance_create_sfx(x, y+4, obj_part_fade, {
+            scale: 1/4,
+            image_angle: irandom(360),
+            image_blend: C_WHITE,
+        }) 
     } else {
         state_set(state, B_IDLE);
     }

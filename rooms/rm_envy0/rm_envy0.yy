@@ -23,6 +23,8 @@
     {"name":"inst_4E80087D","path":"rooms/rm_envy0/rm_envy0.yy",},
     {"name":"inst_1BCD4055","path":"rooms/rm_envy0/rm_envy0.yy",},
     {"name":"inst_4174C686","path":"rooms/rm_envy0/rm_envy0.yy",},
+    {"name":"inst_523B2D41","path":"rooms/rm_envy0/rm_envy0.yy",},
+    {"name":"inst_2DAA92A1","path":"rooms/rm_envy0/rm_envy0.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -70,7 +72,12 @@
         {"$GMRInstance":"v1","%Name":"inst_22CF1A7E","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_22CF1A7E","objectId":{"name":"obj_breakable_block_triggered","path":"objects/obj_breakable_block_triggered/obj_breakable_block_triggered.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.5,"scaleY":2.0,"x":116.0,"y":24.0,},
       ],"layers":[],"name":"moving_blocks","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRInstanceLayer":"","%Name":"enemy","depth":600,"effectEnabled":true,"effectType":null,"gridX":8,"gridY":8,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[],"layers":[],"name":"enemy","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
-    {"$GMRInstanceLayer":"","%Name":"sfx","depth":700,"effectEnabled":true,"effectType":null,"gridX":8,"gridY":8,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[],"layers":[],"name":"sfx","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
+    {"$GMRInstanceLayer":"","%Name":"sfx","depth":700,"effectEnabled":true,"effectType":null,"gridX":8,"gridY":8,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
+        {"$GMRInstance":"v1","%Name":"inst_523B2D41","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_523B2D41","objectId":{"name":"obj_tutorial","path":"objects/obj_tutorial/obj_tutorial.yy",},"properties":[
+            {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_tutorial","path":"objects/obj_tutorial/obj_tutorial.yy",},"propertyId":{"name":"which","path":"objects/obj_tutorial/obj_tutorial.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"spr_tutorial_wallkick",},
+          ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":40.0,"y":120.0,},
+        {"$GMRInstance":"v1","%Name":"inst_2DAA92A1","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_2DAA92A1","objectId":{"name":"obj_tutorial_clear","path":"objects/obj_tutorial_clear/obj_tutorial_clear.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":2.0,"scaleY":1.0,"x":24.0,"y":48.0,},
+      ],"layers":[],"name":"sfx","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRAssetLayer":"","%Name":"back_assets","assets":[
         {"$GMRSpriteGraphic":"","%Name":"graphic_66E4858_6","animationSpeed":1.0,"colour":4294967295,"frozen":false,"headPosition":0.0,"ignore":false,"inheritedItemId":null,"inheritItemSettings":false,"name":"graphic_66E4858_6","resourceType":"GMRSpriteGraphic","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"spriteId":{"name":"spr_window","path":"sprites/spr_window/spr_window.yy",},"x":88.0,"y":72.0,},
         {"$GMRSpriteGraphic":"","%Name":"graphic_5475993E_5","animationSpeed":1.0,"colour":4294967295,"frozen":false,"headPosition":0.0,"ignore":false,"inheritedItemId":null,"inheritItemSettings":false,"name":"graphic_5475993E_5","resourceType":"GMRSpriteGraphic","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"spriteId":{"name":"spr_prev_door","path":"sprites/spr_prev_door/spr_prev_door.yy",},"x":0.0,"y":120.0,},

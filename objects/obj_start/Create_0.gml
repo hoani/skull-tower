@@ -13,7 +13,7 @@ state = new_state(state_title)
 story_text = [
     "   Skeletrex has\n   been defeated\nand humanity knows\n  peace once again.",
     "   However, the\nseven bone generals\n  are plotting to\n revive skeletrex.",
-    "   Damn bonies!\nHumanity needs a\n  true warrior to\n   defeat the\n  bone generals!",
+    "   Damn bonies!\nHumanity needs a\n  true warrior to\n    defeat the\n  bone generals!",
 ];
 
 story_index = 0;

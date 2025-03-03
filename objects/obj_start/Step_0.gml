@@ -28,7 +28,7 @@ switch state.current {
         break;
     case state_story2:
         story_index = min(story_index + 1, string_length(story_text[2]))
-        if commands_continue_check() {
+        if state.step > story_duration  && commands_continue_check() {
             state_set(state, state_story2_fade)
         }
         break;

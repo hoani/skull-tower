@@ -44,7 +44,10 @@ function accelerate_x(_face) {
     var _max = (f.floor.inst == noone) ? lateral.air.max : (1 - _face*slip_factor*f.floor.ssin)*lateral.floor.max;
     
     if (_face == F_LEFT && f.wall.left != noone) || (_face == F_RIGHT && f.wall.right != noone) {
-        _accel = 0;          
+        _accel = 0;
+        if f.floor.inst == noone && sign(spd.x) == _face {
+            spd.x = 0    
+        }    
     }
     
     var _spd = spd.x + _face*_accel;

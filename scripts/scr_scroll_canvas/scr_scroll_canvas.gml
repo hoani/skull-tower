@@ -13,12 +13,14 @@ function scroll_canvas_init() {
 function update_scroll_canvas() {
     var _scroll_prev = global.sc.scroll;
     global.sc.scroll = max(0, global.sc.scroll - 1)
-    if global.sc.scroll != 0 {
-        obj_hero.disable = true;
-    } else {
-        if global.sc.scroll != _scroll_prev {
-            obj_hero.disable = false;
-        }
+    if instance_exists(obj_hero){
+         if global.sc.scroll != 0 {
+             obj_hero.disable = true;
+         } else {
+             if global.sc.scroll != _scroll_prev {
+                 obj_hero.disable = false;
+             }
+         }
     }
 }
 

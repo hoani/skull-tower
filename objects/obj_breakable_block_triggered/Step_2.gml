@@ -1,6 +1,6 @@
 if instance_exists(obj_hero) && !triggered {
     var x_dist = min(abs(x0 - obj_hero.x), abs(x1 - obj_hero.x))
-    if x_dist < 4 && obj_hero.y > y && collision_line(x, y, obj_hero.x, obj_hero.y, obj_block, true, true) == noone {
+    if (x_dist < 4 || abs(x - obj_hero.x) < 16 * image_xscale) && obj_hero.y > y && collision_line(x, y, obj_hero.x, obj_hero.y, obj_block, true, true) == noone {
         triggered = true
     }
 }

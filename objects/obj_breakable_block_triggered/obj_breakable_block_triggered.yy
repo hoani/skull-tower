@@ -12,6 +12,7 @@
     {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_floor","path":"objects/obj_floor/obj_floor.yy",},"propertyId":{"name":"yspd","path":"objects/obj_floor/obj_floor.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"0",},
     {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_falling_block","path":"objects/obj_falling_block/obj_falling_block.yy",},"propertyId":{"name":"yaccel","path":"objects/obj_falling_block/obj_falling_block.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"0.125",},
     {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_moving_block","path":"objects/obj_moving_block/obj_moving_block.yy",},"propertyId":{"name":"disable","path":"objects/obj_moving_block/obj_moving_block.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"true",},
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_falling_block","path":"objects/obj_falling_block/obj_falling_block.yy",},"propertyId":{"name":"term","path":"objects/obj_falling_block/obj_falling_block.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"4",},
   ],
   "parent":{
     "name":"obstacle",
@@ -34,7 +35,9 @@
   "physicsShape":1,
   "physicsShapePoints":[],
   "physicsStartAwake":true,
-  "properties":[],
+  "properties":[
+    {"$GMObjectProperty":"v1","%Name":"countdown","filters":[],"listItems":[],"multiselect":false,"name":"countdown","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"30","varType":0,},
+  ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":true,

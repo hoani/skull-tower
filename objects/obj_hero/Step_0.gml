@@ -7,5 +7,8 @@ switch state.current {
             // Increase death count.
         }
         break;
-        
+}
+
+if y > room_height {
+    hero_die()
 }

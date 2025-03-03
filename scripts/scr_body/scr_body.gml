@@ -250,7 +250,6 @@ function body_move(_dx, _dy, _update_gravity=true) {
     x += g.y * _dx + g.x * _dy;
     y += g.y * _dy - g.x * _dx;
     x = clamp(x, w_2, room_width - w_2)
-    y = clamp(y, 0, room_height - (height + h_2))
     update_excludes();
     if _update_gravity {
         update_gravity();

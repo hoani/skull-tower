@@ -15,3 +15,6 @@ scroll_canvas_init()
 screen_shake_init()
 
 room_resetter_init()
+
+
+

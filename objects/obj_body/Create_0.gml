@@ -1,6 +1,6 @@
 
 
-cmds = commands_init()
+cmds = global.cmds
 commands_register_single_player(cmds)
 
 // frame objects

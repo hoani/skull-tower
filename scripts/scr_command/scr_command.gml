@@ -69,37 +69,39 @@ function commands_init() {
 }
 
 function commands_register_single_player(_cmds) {
-	commands_register(_cmds, CMD_LEFT, function(){return keyboard_check(vk_left)});
-	commands_register(_cmds, CMD_RIGHT, function(){return keyboard_check(vk_right)})
-	commands_register(_cmds, CMD_UP, function(){return keyboard_check(vk_up)})
-	commands_register(_cmds, CMD_DOWN, function(){return keyboard_check(vk_down)})
-	commands_register(_cmds, CMD_A, function(){return keyboard_check(ACTION_KEY)})
-	commands_register(_cmds, CMD_A, function(){return keyboard_check(ALT_ACTION_KEY)})
-	commands_register(_cmds, CMD_B, function(){return keyboard_check(BLOCK_KEY)})
-    commands_register(_cmds, CMD_JUMP, function(){return keyboard_check(ord("C"))})
+	commands_register(_cmds, CMD_LEFT, function(_cmds){return keyboard_check(vk_left)});
+	commands_register(_cmds, CMD_RIGHT, function(_cmds){return keyboard_check(vk_right)})
+	commands_register(_cmds, CMD_UP, function(_cmds){return keyboard_check(vk_up)})
+	commands_register(_cmds, CMD_DOWN, function(_cmds){return keyboard_check(vk_down)})
+	commands_register(_cmds, CMD_A, function(_cmds){return keyboard_check(ACTION_KEY)})
+	commands_register(_cmds, CMD_A, function(_cmds){return keyboard_check(ALT_ACTION_KEY)})
+	commands_register(_cmds, CMD_B, function(_cmds){return keyboard_check(BLOCK_KEY)})
+    commands_register(_cmds, CMD_JUMP, function(_cmds){return keyboard_check(ord("C"))})
 }
 
 function has_controller(_cmds) {
 	return _cmds.gamepad != -1
 }
 
-function connect_gamepad(_cmds, _device, _index) {
+function connect_gamepad(_cmds, _index) {
 	if _cmds.gamepad != -1 {
-		if _device == _index {
-			_cmds.gamepad = _device
-		}
+        _cmds.gamepad = _index
 		return
 	}
 	
-	_cmds.gamepad = _device
-	commands_register(_cmds, CMD_LEFT, function(){return gamepad_button_check(_cmds.gamepad, gp_padl)});
-	commands_register(_cmds, CMD_RIGHT, function(){return gamepad_button_check(_cmds.gamepad, gp_padr)});
-	commands_register(_cmds, CMD_UP, function(){return gamepad_button_check(_cmds.gamepad, gp_padu)});
-	commands_register(_cmds, CMD_DOWN, function(){return gamepad_button_check(_cmds.gamepad, gp_padd)});
-	commands_register(_cmds, CMD_A, function(){return gamepad_button_check(_cmds.gamepad, gp_face1)});
-	commands_register(_cmds, CMD_A, function(){return gamepad_button_check(_cmds.gamepad, gp_face2)});
-	commands_register(_cmds, CMD_B, function(){return gamepad_button_check(_cmds.gamepad, gp_face3)});
-	commands_register(_cmds, CMD_B, function(){return gamepad_button_check(_cmds.gamepad, gp_face4)});
+	_cmds.gamepad = _index
+	commands_register(_cmds, CMD_LEFT, function(_cmds){return gamepad_button_check(_cmds.gamepad, gp_padl)});
+	commands_register(_cmds, CMD_RIGHT, function(_cmds){return gamepad_button_check(_cmds.gamepad, gp_padr)});
+	commands_register(_cmds, CMD_UP, function(_cmds){return gamepad_button_check(_cmds.gamepad, gp_padu)});
+	commands_register(_cmds, CMD_DOWN, function(_cmds){return gamepad_button_check(_cmds.gamepad, gp_padd)});
+	commands_register(_cmds, CMD_A, function(_cmds){return gamepad_button_check(_cmds.gamepad, gp_face1)});
+	commands_register(_cmds, CMD_JUMP, function(_cmds){return gamepad_button_check(_cmds.gamepad, gp_face2)});
+	commands_register(_cmds, CMD_JUMP, function(_cmds){return gamepad_button_check(_cmds.gamepad, gp_face3)});
+	commands_register(_cmds, CMD_A, function(_cmds){return gamepad_button_check(_cmds.gamepad, gp_face4)});
+    commands_register(_cmds, CMD_B, function(_cmds){return gamepad_button_check(_cmds.gamepad, gp_shoulderl)});
+    commands_register(_cmds, CMD_B, function(_cmds){return gamepad_button_check(_cmds.gamepad, gp_shoulderr)});
+    commands_register(_cmds, CMD_B, function(_cmds){return gamepad_button_check(_cmds.gamepad, gp_shoulderlb)});
+    commands_register(_cmds, CMD_B, function(_cmds){return gamepad_button_check(_cmds.gamepad, gp_shoulderrb)});
 }
 
 function commands_update(_cmds) {
@@ -117,7 +119,7 @@ function commands_input_update(_cmds, _cmd) {
 	var _check = false;
 	var _checks = struct_get(_cmds.checks, _cmd);
 	for (var _i=0; _i<array_length(_checks); _i++) {
-		_check |= _checks[_i]();
+		_check |= _checks[_i](_cmds);
 	}
 	
 	var _pressed = _check && (_last != _check);	

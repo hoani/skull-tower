@@ -23,6 +23,8 @@ function game_init(){
 	audio_init()
     
     boss_registry_init()
+    
+    global.cmds = commands_init()
 }
 
 function game_update() {

@@ -7,26 +7,24 @@ switch state.current {
             state_set(state, state_story0)
         }
         break;
+    case state_story0_fade:    
+    case state_story1_fade:     
+        if state.step >= fade_frames {
+            state_set(state, state.current + 1)
+            story_index++
+            text_index = 0
+        }
+        break;
     case state_story0:
-        story_index = min(story_index + 1, string_length(story_text[0]))
-        if state.step > story_duration {
-            state_set(state, state_story1)
-            story_index = 0;
-        }
-        break;
     case state_story1:
-        story_index = min(story_index + 1, string_length(story_text[1]))
-        if state.step > story_duration {
-            state_set(state, state_story2)
-            story_index = 0;
-        }
-        break;
     case state_story2:
-        story_index = min(story_index + 1, string_length(story_text[2]))
-        if state.step > story_duration {
-            state_set(state, state_credits)
-        }
-        break;
+            if state.step % character_frames == 0 {
+                text_index = min(text_index + 1, string_length(story_text[story_index]))
+            }
+            if (state.step > min_story_duration && commands_continue_check()) || state.step > max_story_duration {
+                state_set(state, state.current + 1)
+            }
+            break;
     case state_credits:
         if commands_continue_check() {
             trigger_room_transition(rm_boot)

@@ -32,28 +32,28 @@ draw_text(room_width - 8, 16, $"{stats_deaths()}");
 
 
 
-var _frac = clamp((state.step-(story_duration-16))/16, 0, 1)
+var _frac = clamp(state.step/fade_frames, 0, 1);
 switch state.current {
-    case state_story0:
-        draw_ending_text(_sx, _sy, string_copy(story_text[0], 0, story_index), _frac)
-        break;
-    case state_story1:
-        draw_ending_text(_sx, _sy, string_copy(story_text[1], 0, story_index), _frac)
-        break;
     case state_story2:
-        draw_ending_text(_sx, _sy, string_copy(story_text[2], 0, story_index), 0)
-        _frac = clamp(1-(state.step-64)/16, 0, 1);
-    
+        _frac = clamp(1-(state.step-180)/16, 0, 1);
+            
         shader_set(shd_dissolve);
         shader_set_uniform_f(shader_get_uniform(shd_dissolve, "frac"), _frac);
         
         draw_sprite(spr_ending_award, award, room_width/2, 60)
         shader_reset();
+    case state_story0:
+    case state_story1:
+        draw_ending_text(_sx, _sy, string_copy(story_text[story_index], 0, text_index), 0)
+        break;
+    case state_story0_fade:
+    case state_story1_fade:
+        draw_ending_text(_sx, _sy, story_text[story_index], _frac)
         break;
     case state_credits:
         draw_ending_text(_sx, _sy, story_text[2], 0)
         draw_sprite(spr_ending_award, award, room_width/2, 60)
-        _frac = clamp(1-(state.step-64)/16, 0, 1);
+        _frac = clamp(1-(state.step-16)/16, 0, 1);
         
         shader_set(shd_dissolve);
         shader_set_uniform_f(shader_get_uniform(shd_dissolve, "frac"), _frac);

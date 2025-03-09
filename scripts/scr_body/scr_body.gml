@@ -51,9 +51,12 @@ function accelerate_x(_face) {
     }
     
     var _spd = spd.x + _face*_accel;
-    if abs(_spd) < _max || abs(_spd) < abs(spd.x) {
+    if abs(_spd) <= _max || abs(_spd) < abs(spd.x) {
         spd.x = _spd    
+    } else if abs(_spd) > _max && abs(spd.x) < _max {
+        spd.x = sign(_spd) * _max;
     }
+    
     if face != _face && f.hang != noone {
         f.hang = noone;
     }
@@ -140,6 +143,8 @@ function body_update_speed(cmds) {
     }
     
     if jump.buffering != 0 && dash.cooldown == 0 && attack.state.current == ATTACK_NONE {
+        jump.buffering = max(0, jump.buffering - global.s);
+        
         if (f.floor.inst != noone || jump.coyote > 0) {
             spd.y = -jump.start_speed * f.floor.scos;
             spd.x += -jump.start_speed * f.floor.ssin;
@@ -155,12 +160,10 @@ function body_update_speed(cmds) {
             face = -face
             lateral.cooldown = lateral.wallkick_cooldown;
             body_jump_common() 
-        } else if jump.double {
+        } else if jump.double && spd.y >= 0 && double_jump_check() {
             spd.y = -jump.double_speed;
             jump.double = false;
             body_jump_common() 
-        } else {
-            jump.buffering = max(0, jump.buffering - global.s);
         }
     }
     if jump.coyote > 0 {
@@ -168,11 +171,16 @@ function body_update_speed(cmds) {
     }
 
     if f.wall.pressing == false || spd.y < 0 {
+        var _jump_factor = 1.0;
+            if abs(spd.y) < 0.25 {
+                _jump_factor = 0.5;
+            }
+        
         if (spd.y > 0 || !commands_check(cmds, CMD_JUMP)) && attack.state.current == ATTACK_NONE && !jump.auto_boost {
             jump.auto_boost = false;
-            body_apply_gravity(jump.drop_factor);
+            body_apply_gravity(jump.drop_factor*_jump_factor);
         } else {
-            body_apply_gravity();
+            body_apply_gravity(_jump_factor);
         }
     } else {
         body_apply_gravity(jump.wall_factor);
@@ -202,6 +210,16 @@ function body_update_speed(cmds) {
     if (sign(x_accel) == face || abs(spd.x) > 1.0) {
         f.wall.pressing = pressing_into_wall();
     }
+}
+
+
+function double_jump_check() {
+    // Check there's no imminent wall collision.
+    var dx0 = 0;
+    var dx1 = (spd.x*jump.buffering);
+    var c = body_collision_coords(dx0, 0, dx1, 0)
+    
+    return check_collision_line(c.x0, c.y0, c.x1, c.y1, obj_block) == noone
 }
 
 function body_update_state() {

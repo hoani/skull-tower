@@ -29,7 +29,7 @@ slip = 2.0;
 slip_factor = 0.5; // Portion of max speed that is affected by slopes.
 
 
-term_velocity = 3;
+term_velocity = 2;
 wall_term_velocity = 1.5;
 wall_friction_factor = 0.5; 
 
@@ -45,12 +45,12 @@ lateral = {
     cooldown: 0,
     wallkick_cooldown: 5,
     floor: {
-        max: 2,
+        max: 1,
         accel: 0.25 + frict,
         frict: frict,
     },
     air: {
-        max: 2,
+        max: 1,
         accel: 0.25,
         decel: 1/32,
     },

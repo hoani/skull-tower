@@ -11,7 +11,7 @@ function audio_init() {
 	music_init()
 	
 	set_sfx_gain(1/4)
-	set_music_gain(1/4)
+	set_music_gain(0.5)
 }
 
 function sound_on(){

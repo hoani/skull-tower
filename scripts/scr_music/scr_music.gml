@@ -9,8 +9,9 @@ function music_init() {
 		prev: -1,
 		current: -1,
 		step: 0,
-		gain: 0.5,
+		gain: 1.0,
 	}
+    global.music.bus.gain = global.music.gain
 	audio_emitter_bus(global.music.em, global.music.bus)
 }
 

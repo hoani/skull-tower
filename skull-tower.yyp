@@ -40,6 +40,7 @@
     {"$GMFolder":"","%Name":"6-wrath","folderPath":"folders/Rooms/6-wrath.yy","name":"6-wrath","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"7-pride","folderPath":"folders/Rooms/7-pride.yy","name":"7-pride","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"base","folderPath":"folders/Rooms/base.yy","name":"base","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"z-test","folderPath":"folders/Rooms/z-test.yy","name":"z-test","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Scripts","folderPath":"folders/Scripts.yy","name":"Scripts","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"audio","folderPath":"folders/Scripts/audio.yy","name":"audio","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"boss","folderPath":"folders/Scripts/boss.yy","name":"boss","resourceType":"GMFolder","resourceVersion":"2.0",},
@@ -179,6 +180,7 @@
     {"id":{"name":"rm_sloth1","path":"rooms/rm_sloth1/rm_sloth1.yy",},},
     {"id":{"name":"rm_splash","path":"rooms/rm_splash/rm_splash.yy",},},
     {"id":{"name":"rm_start","path":"rooms/rm_start/rm_start.yy",},},
+    {"id":{"name":"rm_test_jump","path":"rooms/rm_test_jump/rm_test_jump.yy",},},
     {"id":{"name":"rm_wrath_boss","path":"rooms/rm_wrath_boss/rm_wrath_boss.yy",},},
     {"id":{"name":"rm_wrath0","path":"rooms/rm_wrath0/rm_wrath0.yy",},},
     {"id":{"name":"rm_wrath1","path":"rooms/rm_wrath1/rm_wrath1.yy",},},
@@ -352,6 +354,9 @@
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
     {"roomId":{"name":"rm_splash","path":"rooms/rm_splash/rm_splash.yy",},},
+    {"children":[
+        {"roomId":{"name":"rm_test_jump","path":"rooms/rm_test_jump/rm_test_jump.yy",},},
+      ],"groupName":"test",},
     {"roomId":{"name":"rm_boot","path":"rooms/rm_boot/rm_boot.yy",},},
     {"children":[
         {"roomId":{"name":"rm_start","path":"rooms/rm_start/rm_start.yy",},},

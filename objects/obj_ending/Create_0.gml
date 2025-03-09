@@ -1,10 +1,13 @@
 state_wait = 0
 state_story0 = 1
-state_story1 = 2
-state_story2 = 3
-state_credits = 4
+state_story0_fade = 2
+state_story1 = 3
+state_story1_fade = 4
+state_story2 = 5
+state_credits = 6
 
-story_duration = 240
+min_story_duration = 300
+max_story_duration = 450
 
 state = new_state(state_wait)
 
@@ -22,5 +25,6 @@ award = stats_award()
 time = stats_time_string()
 
 
-
+fade_frames = 32
+character_frames = 4;
 

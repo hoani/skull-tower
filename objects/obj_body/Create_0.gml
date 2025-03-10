@@ -83,6 +83,7 @@ jump = {
     wall_coyote_count: 8,
     double: true,
     auto_boost: false,
+    roof_clip: 4, // vertical clip when moving horizontally through the air.
 }
 
 dash = {

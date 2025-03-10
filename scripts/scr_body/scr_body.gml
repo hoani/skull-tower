@@ -431,7 +431,7 @@ function check_collision_floor() {
 function update_wall_frames() {
     var dx0 = w_2;
     var dy0 = h_2-step_height.floor;
-    var dy1 = -(h_2-1);
+    var dy1 = -(h_2-jump.roof_clip);
     var c = body_collision_coords(-dx0, dy0, -(dx0+1), dy1);
     f.wall.left = check_collision_rectangle(c.x0, c.y0, c.x1, c.y1, obj_block, f.excludes, f.wall.left);
     c = body_collision_coords(dx0, dy0, dx0+1, dy1);
@@ -579,11 +579,10 @@ function move_contact_x(_dx, obj, forcex=false, with_stepping=true) {
             continue;
         }
         // Check step logic, but only if the slope isn't steeper than 30 deg.
-        if floor_is_steppable() {
+        if floor_is_steppable() && with_stepping{
+            // Attempt step.
             var _step_height = f.floor.inst == noone ? step_height.air : step_height.floor;
-            dy0 = dy0 + -_step_height;
-            dy1 = dy1 + -_step_height;
-            c = body_collision_coords(dx0, dy0, dx1, dy1);
+            c = body_collision_coords(dx0, dy0 - _step_height, dx1, dy1 - _step_height);
             var inst2 = check_collision_rectangle(c.x0, c.y0, c.x1, c.y1, obj, f.excludes)
             if inst2 == noone {
                 inst = noone;
@@ -606,6 +605,19 @@ function move_contact_x(_dx, obj, forcex=false, with_stepping=true) {
                     sy = 0 // Treat slope as a wall.
                 }
                 continue;
+            }
+            // Attempt roof clip.
+            if f.floor.inst == noone {
+                c = body_collision_coords(dx0, dy0 + jump.roof_clip, dx1, dy1 + jump.roof_clip);
+                inst2 = check_collision_rectangle(c.x0, c.y0, c.x1, c.y1, obj, f.excludes)
+                if inst2 == noone {
+                    inst = noone;
+                    body_move(delta, jump.roof_clip)
+                    dist += abs(delta);
+                    
+                    f.roof = move_contact_y(-jump.roof_clip, obj_block)
+                    continue;
+                }
             }
         }
         if abs(delta) == 1.0 {
@@ -660,7 +672,7 @@ function move_contact_y(_dy, obj, _update_gravity=true, _with_squish=false) {
             if _with_squish && delta < 0 {
                 inst = do_lateral_squish(delta, _update_gravity)
                 if inst == noone {
-                    show_debug_message("did squish")
+                    show_debug_message($"did squish {delta}")
                     dist += abs(delta);
                 }
             }
@@ -705,6 +717,7 @@ function check_lateral_squish(_dy, _dx) {
     var current = _dy > 0 ? f.floor.inst : f.roof; // Provide the current floor or roof for the collision rectangle.
     return check_collision_rectangle(c.x0, c.y0, c.x1, c.y1, obj_block, f.excludes, current) 
 }
+
 
 function move_to_hang(_dy, hang_candidate) {
     if abs(_dy) == 0.0 {

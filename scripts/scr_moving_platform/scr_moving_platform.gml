@@ -148,7 +148,7 @@ function moving_block_update() {
                 }
             }
             if _pspd.y < 0 {
-                var contact = move_contact_y(_pspd.y, obj_block);
+                var contact = move_contact_y(_pspd.y, obj_block, true, true);
                 if contact != noone {
                     if other.id == f.hang {
                         f.hang = noone;
@@ -168,7 +168,13 @@ function moving_block_update() {
             if contact != noone && contact != f.floor.inst {
                 squash_block(_pspd.x, _pspd.y);
             }
-            contact = move_contact_y(_pspd.y, obj_block);
+            contact = move_contact_y(_pspd.y, obj_block, true, true);
+            if contact != noone {
+                // See if we can move out of the way of the block.
+                if do_lateral_squish(-_pspd.y, true) == noone {
+                    contact = move_contact_y(_pspd.y, obj_block, true, true);
+                }
+            }
             if contact != noone {
                 squash_block(_pspd.x, _pspd.y);
             }
@@ -224,7 +230,7 @@ function moving_block_update() {
                 move_contact_x(_pspd.x, obj_block);
             } 
             if _pspd.y > 0 {
-                move_contact_y(_pspd.y, obj_floor);
+                move_contact_y(_pspd.y, obj_floor, true, true);
             }
         }
     }

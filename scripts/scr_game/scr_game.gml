@@ -25,6 +25,10 @@ function game_init(){
     boss_registry_init()
     
     global.cmds = commands_init()
+    
+    if global.debug {
+        music_disable()
+    }
 }
 
 function game_update() {

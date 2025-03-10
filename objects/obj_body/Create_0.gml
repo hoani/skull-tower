@@ -30,8 +30,8 @@ slip_factor = 0.5; // Portion of max speed that is affected by slopes.
 
 
 term_velocity = 2;
-wall_term_velocity = 1.5;
-wall_friction_factor = 0.5; 
+wall_term_velocity = 0.5;
+wall_friction_factor = 0.25; 
 
 g = new Gravity(global.g.mag, global.g.dir);
 
@@ -40,6 +40,11 @@ spd = {
     y: 0,
 }
 
+turn = {
+    cooldown: 0,
+    air_cooldown: 2,
+    floor_cooldown: 6 
+}
 
 lateral = {
     cooldown: 0,
@@ -54,6 +59,7 @@ lateral = {
         accel: 0.25,
         decel: 1/32,
     },
+    squish: 4,
 }
 
 jump_height = {
@@ -72,7 +78,9 @@ jump = {
     buffering_count: 10,
     coyote: 0,
     coyote_count: 5,
-    wall_factor: 1,
+    wall_factor: 0.75, // Wall lateral speed (compared to vertical)
+    wall_coyote: 0,
+    wall_coyote_count: 8,
     double: true,
     auto_boost: false,
 }
@@ -128,8 +136,6 @@ step_height = {
 state = new_state(B_IDLE)
 
 face = F_RIGHT;
-
-decelerating = false;
 
 
 disable = false;

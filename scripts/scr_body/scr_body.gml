@@ -49,7 +49,7 @@ function accelerate_x(_face) {
             spd.x = 0    
         }    
     }
-    
+
     var _spd = spd.x + _face*_accel;
     if abs(_spd) <= _max || abs(_spd) < abs(spd.x) {
         spd.x = _spd    
@@ -57,26 +57,80 @@ function accelerate_x(_face) {
         spd.x = sign(_spd) * _max;
     }
     
-    if face != _face && f.hang != noone {
-        f.hang = noone;
+    if sign(spd.x) == _face && face != _face{
+        face = _face;
     }
-    face = _face;
 }
 
 
 function pressing_into_wall() {
-    return (f.floor.inst == noone) && ((f.wall.left != noone && face == F_LEFT) || (f.wall.right != noone && face == F_RIGHT))
+    var _facing_wall = (f.floor.inst == noone) && ((f.wall.left != noone && face == F_LEFT) || (f.wall.right != noone && face == F_RIGHT))
+    
+    var c = body_collision_point(face*(w_2 + 1), h_2)
+    
+    return (check_collision_point(c.x, c.y, obj_block) != noone) && _facing_wall
 }
 
 function body_jump_common() {
     jump.buffering = 0;
-    jump.coyote = 0;
+    jump.coyote = 0;    
+    jump.wall_coyote = 0;
     create_sfx(x, y, snd_jump)
     instance_create_sfx(x, y, obj_part_fade, {
         scale: 1/2,
         image_angle: irandom(360),
         image_blend: C_WHITE,
     })  
+}
+
+function movement_inputs(cmds) {
+    var result = {
+        pressed: {
+            x: 0,
+            y: 0,
+        },
+        held: {
+            x: 0,
+            y: 0,
+        }
+    }
+    
+    if commands_check_pressed(cmds, CMD_LEFT) {
+        result.pressed.x -= g.y;
+        result.pressed.y -= g.x;
+    }
+    if commands_check_pressed(cmds, CMD_RIGHT) {
+        result.pressed.x += g.y;
+        result.pressed.y += g.x;
+    }
+    if commands_check_pressed(cmds, CMD_DOWN) {
+        result.pressed.x -= g.x;
+        result.pressed.y += g.y;
+    }
+    if commands_check_pressed(cmds, CMD_UP) {
+        result.pressed.x += g.x;
+        result.pressed.y -= g.y;
+    }
+    
+    
+    if commands_check(cmds, CMD_LEFT) {
+        result.held.x -= g.y;
+        result.held.y -= g.x;
+    }
+    if commands_check(cmds, CMD_RIGHT) {
+        result.held.x += g.y;
+        result.held.y += g.x;
+    }
+    if commands_check(cmds, CMD_DOWN) {
+        result.held.x -= g.x;
+        result.held.y += g.y;
+    }
+    if commands_check(cmds, CMD_UP) {
+        result.held.x += g.x;
+        result.held.y -= g.y;
+    }
+    
+    return result
 }
 
     
@@ -86,38 +140,41 @@ function body_update_speed(cmds) {
         spd.y = 0;
         had_floor = true;
     }
-    if f.roof != noone && spd.y < 0 {
+    if spd.y < 0 && !body_can_move_up() {
         spd.y = 0;
     }
     
-    decelerating = !(commands_check(cmds, CMD_LEFT) ^^ commands_check(cmds, CMD_RIGHT));
     
-    f.wall.pressing = f.wall.pressing && pressing_into_wall();
-    
-    var x_accel = 0;
-    y_drop = false;
 
     dash.cooldown = max(0, dash.cooldown - global.s);
+    turn.cooldown = max(0, turn.cooldown - global.s);
     lateral.cooldown = max(0, lateral.cooldown - global.s);
     attack.buffering = max(0, attack.buffering - global.s);
     
-    if dash.cooldown == 0 && lateral.cooldown == 0 {
-        if commands_check(cmds, CMD_LEFT) {
-            x_accel -= g.y;
-            y_drop = g.x < 0;
+    var movement = movement_inputs(cmds);
+    y_drop = (movement.held.y > 0);
+    
+    if f.hang != noone && y_drop {
+        f.hang = noone;
+    }
+    
+    if movement.pressed.x != face && movement.pressed.x != 0 {
+        face = movement.pressed.x
+        if f.floor.inst != noone || f.wall.pressing {
+            turn.cooldown = turn.floor_cooldown // Turning on the floor or pushing off wall.
+        } else {
+            turn.cooldown = turn.air_cooldown // Lower cooldown in the air.
         }
-        if commands_check(cmds, CMD_RIGHT) {
-            x_accel += g.y;
-            y_drop = g.x > 0;
+        
+        
+        if f.hang != noone {
+            f.hang = noone;
         }
-        if commands_check(cmds, CMD_DOWN) {
-            x_accel -= g.x;
-            y_drop = g.y > 0;
-        }
-        if commands_check(cmds, CMD_UP) {
-            x_accel += g.x;
-            y_drop = g.y < 0;
-        }
+    }
+    
+    var x_accel = 0;
+    if dash.cooldown == 0 && lateral.cooldown == 0 && turn.cooldown == 0 {
+        x_accel = movement.held.x
     }
     
     if commands_check_pressed(cmds, CMD_A) {
@@ -138,6 +195,29 @@ function body_update_speed(cmds) {
         dash.trigger = true;    
     }
     
+    if f.floor.inst != noone {
+        var _slip = -slip*f.floor.ssin
+        if (sign(_slip) == F_LEFT && f.wall.left == noone) || (sign(_slip) == F_RIGHT && f.wall.right == noone) {
+            spd.x += _slip*global.s;
+        }
+    }
+    
+    apply_body_friction(x_accel)
+    
+    
+    accelerate_x(x_accel);
+    
+    if (sign(x_accel) == face || abs(spd.x) > 0.75 || f.wall.pressing) {
+        var _pressing_prev = f.wall.pressing;
+        f.wall.pressing = pressing_into_wall();
+        if _pressing_prev && !f.wall.pressing {
+            if spd.y > 0 {
+                spd.y = 0
+                jump.wall_coyote = jump.wall_coyote_count
+            }
+        }
+    }
+    
     if commands_check_pressed(cmds, CMD_JUMP) {
         jump.buffering = jump.buffering_count;
     }
@@ -154,10 +234,15 @@ function body_update_speed(cmds) {
             spd.x = 0;
             f.hang = noone;
             body_jump_common() 
-        } else if f.wall.pressing {
+        } else if (f.wall.pressing) {
             spd.y = -jump.start_speed;
             spd.x = -face * jump.start_speed * jump.wall_factor;
             face = -face
+            lateral.cooldown = lateral.wallkick_cooldown;
+            body_jump_common() 
+        } else if (jump.wall_coyote > 0) {
+            spd.y = -jump.start_speed;
+            spd.x = face * jump.start_speed * jump.wall_factor;
             lateral.cooldown = lateral.wallkick_cooldown;
             body_jump_common() 
         } else if jump.double && spd.y >= 0 && double_jump_check() {
@@ -169,8 +254,12 @@ function body_update_speed(cmds) {
     if jump.coyote > 0 {
         jump.coyote = max(0, jump.coyote - global.s);
     }
+    if jump.wall_coyote > 0 {
+        jump.wall_coyote = max(0, jump.wall_coyote - global.s);
+    }
+    
 
-    if f.wall.pressing == false || spd.y < 0 {
+    if f.wall.pressing || spd.y < 0 {
         var _jump_factor = 1.0;
             if abs(spd.y) < 0.25 {
                 _jump_factor = 0.5;
@@ -183,32 +272,25 @@ function body_update_speed(cmds) {
             body_apply_gravity(_jump_factor);
         }
     } else {
-        body_apply_gravity(jump.wall_factor);
+        body_apply_gravity();
     }
+}
+
+function apply_body_friction(x_accel) {
+    var on_floor = instance_exists(f.floor.inst);
     
-    if f.floor.inst != noone {
-        var _slip = -slip*f.floor.ssin
-        if (sign(_slip) == F_LEFT && f.wall.left == noone) || (sign(_slip) == F_RIGHT && f.wall.right == noone) {
-            spd.x += _slip*global.s;
-        }
-    }
+    var apply = (sign(x_accel) != sign(spd.x) && lateral.cooldown == 0)
+    apply |= on_floor
+    apply |= turn.cooldown != 0
     
-    if abs(spd.x) > 0 {
-        var _delta = lateral.air.decel;
-        if f.floor.inst != noone {
-            _delta = lateral.floor.frict * abs(f.floor.scos);
-        }
+    // When on the floor, we always apply friction. When we are in the air, we only apply it when there's no input
+    if abs(spd.x) > 0 && apply {
+        var _delta = on_floor ? lateral.floor.frict * abs(f.floor.scos) : lateral.air.decel;
         if abs(spd.x) < _delta {
             spd.x = 0;
         } else {
             spd.x -= sign(spd.x)*_delta;
         }
-    }
-    
-    accelerate_x(x_accel);
-    
-    if (sign(x_accel) == face || abs(spd.x) > 1.0) {
-        f.wall.pressing = pressing_into_wall();
     }
 }
 
@@ -221,6 +303,15 @@ function double_jump_check() {
     
     return check_collision_line(c.x0, c.y0, c.x1, c.y1, obj_block) == noone
 }
+
+// used to verify whether we set our y speed to zero.
+function body_can_move_up() {
+    if f.roof == noone {
+        return true
+    }
+    return check_lateral_squish(-1, -lateral.squish) == noone || check_lateral_squish(-1, lateral.squish) == noone
+}
+
 
 function body_update_state() {
     if dash.cooldown != 0 {
@@ -244,6 +335,7 @@ function body_update_state() {
         return;
     }
     
+    // Landing particles.
     if state.current == B_JUMP {
         instance_create_sfx(x-4, y+4, obj_part_fade, {
             scale: 1/2,
@@ -280,7 +372,7 @@ function body_apply_gravity(factor=1) {
         var accel = g.mag*factor* global.s;
         var y_spd_max = term_velocity;
         if f.wall.pressing {
-            y_spd_max *= wall_friction_factor;
+            y_spd_max = wall_term_velocity;
         }
         if spd.y > 0 {
             accel *= f.wall.pressing ? wall_friction_factor : 1.0;
@@ -367,7 +459,7 @@ function body_update_movement() {
         var c = body_collision_point(_dx, _dy);    
         var hang_candidate = face == F_LEFT ? f.wall.left : f.wall.right;
         var hang_start = collision_point(c.x, c.y, obj_block, true, true);
-        set_floor_frame(move_contact_y(spdy, obj_floor))
+        set_floor_frame(move_contact_y(spdy, obj_floor, true, false))
         f.roof = check_collision_roof()
         c = body_collision_point(_dx, _dy); 
         if !hang_start && collision_point(c.x, c.y, hang_candidate, true, true) {
@@ -376,7 +468,7 @@ function body_update_movement() {
             move_to_hang(-spdy, f.hang);
         }
     } else if spdy < 0 {
-        f.roof = move_contact_y(spdy, obj_block)
+        f.roof = move_contact_y(spdy, obj_block, true, true)
         set_floor_frame(check_collision_floor())
     } else {
         f.roof = check_collision_roof()
@@ -410,7 +502,7 @@ function do_dash() {
 }
 
 function calculate_dash() {
-    var _face = f.wall.pressing ? -face : face;
+    var _face = face;
     var dx0 = 0;
     var dx1 = _face*(dash.target + w_2);
     var dy0 = -h_2;
@@ -448,7 +540,7 @@ function check_hang(_inst) {
 }
 
 
-function move_contact_x(_dx, obj, forcex=false) {
+function move_contact_x(_dx, obj, forcex=false, with_stepping=true) {
     var dist = 0;
     var delta = min(_dx, width); // If dx > width, we cap delta to avoid clipping through walls.
     var inst = noone;
@@ -488,7 +580,6 @@ function move_contact_x(_dx, obj, forcex=false) {
         }
         // Check step logic, but only if the slope isn't steeper than 30 deg.
         if floor_is_steppable() {
-            show_debug_message("did step")
             var _step_height = f.floor.inst == noone ? step_height.air : step_height.floor;
             dy0 = dy0 + -_step_height;
             dy1 = dy1 + -_step_height;
@@ -547,7 +638,7 @@ function floor_is_steppable() {
 }
 
 
-function move_contact_y(_dy, obj, _update_gravity=true) {
+function move_contact_y(_dy, obj, _update_gravity=true, _with_squish=false) {
     if abs(_dy) == 0.0 {
         return noone
     }
@@ -557,7 +648,7 @@ function move_contact_y(_dy, obj, _update_gravity=true) {
     while(dist < abs(_dy)) {
         var dx0 = - (w_2);
         var dx1 = w_2;
-        var dy0 = h_2*sign(_dy);
+        var dy0 = h_2*sign(delta);
         var dy1 = dy0 + delta;
         var c = body_collision_coords(dx0, dy0, dx1, dy1)
         var current = _dy > 0 ? f.floor.inst : f.roof; // Provide the current floor or roof for the collision rectangle.
@@ -566,6 +657,14 @@ function move_contact_y(_dy, obj, _update_gravity=true) {
             body_move(0, delta, _update_gravity)
             dist += abs(delta);
         } else {
+            if _with_squish && delta < 0 {
+                inst = do_lateral_squish(delta, _update_gravity)
+                if inst == noone {
+                    show_debug_message("did squish")
+                    dist += abs(delta);
+                }
+            }
+            
             if abs(delta) == 1.0 {
                 break;
             }
@@ -573,6 +672,38 @@ function move_contact_y(_dy, obj, _update_gravity=true) {
         }
     }
     return inst
+}
+
+
+function do_lateral_squish(delta, _update_gravity=true) {
+    var inst = check_lateral_squish(delta, -lateral.squish)
+    if inst == noone {
+        body_move(-lateral.squish, delta, _update_gravity)
+        move_contact_x(lateral.squish, obj_block, false, false)
+        return noone
+    }
+    inst = check_lateral_squish(delta, lateral.squish)
+    if inst == noone {
+        body_move(lateral.squish, delta, _update_gravity)
+        move_contact_x(-lateral.squish, obj_block, false, false)
+        return noone
+    }
+    return inst
+}
+
+
+function check_lateral_squish(_dy, _dx) {
+    if abs(_dy) == 0.0 {
+        return noone
+    }
+
+    var dx0 = -(w_2) + _dx;
+    var dx1 = w_2 + _dx;
+    var dy0 = h_2*sign(_dy);
+    var dy1 = dy0 + _dy;
+    var c = body_collision_coords(dx0, dy0, dx1, dy1)
+    var current = _dy > 0 ? f.floor.inst : f.roof; // Provide the current floor or roof for the collision rectangle.
+    return check_collision_rectangle(c.x0, c.y0, c.x1, c.y1, obj_block, f.excludes, current) 
 }
 
 function move_to_hang(_dy, hang_candidate) {

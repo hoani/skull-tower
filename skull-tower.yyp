@@ -180,9 +180,10 @@
     {"id":{"name":"rm_sloth1","path":"rooms/rm_sloth1/rm_sloth1.yy",},},
     {"id":{"name":"rm_splash","path":"rooms/rm_splash/rm_splash.yy",},},
     {"id":{"name":"rm_start","path":"rooms/rm_start/rm_start.yy",},},
+    {"id":{"name":"rm_test_horizontal_blocks","path":"rooms/rm_test_horizontal_blocks/rm_test_horizontal_blocks.yy",},},
     {"id":{"name":"rm_test_jump","path":"rooms/rm_test_jump/rm_test_jump.yy",},},
-    {"id":{"name":"rm_test_moving_blocks","path":"rooms/rm_test_moving_blocks/rm_test_moving_blocks.yy",},},
     {"id":{"name":"rm_test_simple","path":"rooms/rm_test_simple/rm_test_simple.yy",},},
+    {"id":{"name":"rm_test_vertical_blocks","path":"rooms/rm_test_vertical_blocks/rm_test_vertical_blocks.yy",},},
     {"id":{"name":"rm_test_wallkick","path":"rooms/rm_test_wallkick/rm_test_wallkick.yy",},},
     {"id":{"name":"rm_wrath_boss","path":"rooms/rm_wrath_boss/rm_wrath_boss.yy",},},
     {"id":{"name":"rm_wrath0","path":"rooms/rm_wrath0/rm_wrath0.yy",},},
@@ -218,6 +219,7 @@
     {"id":{"name":"scr_particles","path":"scripts/scr_particles/scr_particles.yy",},},
     {"id":{"name":"scr_pride_controller","path":"scripts/scr_pride_controller/scr_pride_controller.yy",},},
     {"id":{"name":"scr_room_resetter","path":"scripts/scr_room_resetter/scr_room_resetter.yy",},},
+    {"id":{"name":"scr_save","path":"scripts/scr_save/scr_save.yy",},},
     {"id":{"name":"scr_screen_shake","path":"scripts/scr_screen_shake/scr_screen_shake.yy",},},
     {"id":{"name":"scr_scroll_canvas","path":"scripts/scr_scroll_canvas/scr_scroll_canvas.yy",},},
     {"id":{"name":"scr_sfx","path":"scripts/scr_sfx/scr_sfx.yy",},},
@@ -306,6 +308,7 @@
     {"id":{"name":"spr_lust_hair","path":"sprites/spr_lust_hair/spr_lust_hair.yy",},},
     {"id":{"name":"spr_lust_title","path":"sprites/spr_lust_title/spr_lust_title.yy",},},
     {"id":{"name":"spr_lust","path":"sprites/spr_lust/spr_lust.yy",},},
+    {"id":{"name":"spr_menu_arrow","path":"sprites/spr_menu_arrow/spr_menu_arrow.yy",},},
     {"id":{"name":"spr_movable_block","path":"sprites/spr_movable_block/spr_movable_block.yy",},},
     {"id":{"name":"spr_moving_block","path":"sprites/spr_moving_block/spr_moving_block.yy",},},
     {"id":{"name":"spr_moving_floor","path":"sprites/spr_moving_floor/spr_moving_floor.yy",},},
@@ -358,15 +361,9 @@
   "RoomOrderNodes":[
     {"roomId":{"name":"rm_splash","path":"rooms/rm_splash/rm_splash.yy",},},
     {"children":[
-        {"roomId":{"name":"rm_test_moving_blocks","path":"rooms/rm_test_moving_blocks/rm_test_moving_blocks.yy",},},
-        {"roomId":{"name":"rm_test_jump","path":"rooms/rm_test_jump/rm_test_jump.yy",},},
-        {"roomId":{"name":"rm_test_wallkick","path":"rooms/rm_test_wallkick/rm_test_wallkick.yy",},},
-        {"roomId":{"name":"rm_test_simple","path":"rooms/rm_test_simple/rm_test_simple.yy",},},
-      ],"groupName":"test",},
-    {"roomId":{"name":"rm_boot","path":"rooms/rm_boot/rm_boot.yy",},},
-    {"children":[
         {"roomId":{"name":"rm_start","path":"rooms/rm_start/rm_start.yy",},},
       ],"groupName":"start",},
+    {"roomId":{"name":"rm_boot","path":"rooms/rm_boot/rm_boot.yy",},},
     {"children":[
         {"roomId":{"name":"rm_gluttony0","path":"rooms/rm_gluttony0/rm_gluttony0.yy",},},
         {"roomId":{"name":"rm_gluttony1","path":"rooms/rm_gluttony1/rm_gluttony1.yy",},},
@@ -407,6 +404,13 @@
         {"roomId":{"name":"rm_indoor_base","path":"rooms/rm_indoor_base/rm_indoor_base.yy",},},
         {"roomId":{"name":"rm_outside_base","path":"rooms/rm_outside_base/rm_outside_base.yy",},},
       ],"groupName":"base",},
+    {"children":[
+        {"roomId":{"name":"rm_test_vertical_blocks","path":"rooms/rm_test_vertical_blocks/rm_test_vertical_blocks.yy",},},
+        {"roomId":{"name":"rm_test_horizontal_blocks","path":"rooms/rm_test_horizontal_blocks/rm_test_horizontal_blocks.yy",},},
+        {"roomId":{"name":"rm_test_jump","path":"rooms/rm_test_jump/rm_test_jump.yy",},},
+        {"roomId":{"name":"rm_test_wallkick","path":"rooms/rm_test_wallkick/rm_test_wallkick.yy",},},
+        {"roomId":{"name":"rm_test_simple","path":"rooms/rm_test_simple/rm_test_simple.yy",},},
+      ],"groupName":"test",},
   ],
   "templateType":"game",
   "TextureGroups":[

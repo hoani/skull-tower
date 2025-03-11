@@ -1,13 +1,50 @@
 
 state_update(state)
 
+
+
 switch state.current {
-    case state_title: 
+    case state_title:
+        with (obj_hero) {
+            disable = true
+        }
+        commands_update(global.cmds)
+        if commands_check_pressed(global.cmds, CMD_UP) {
+            menu_index--
+            menu_last_step = state.step
+        }
+        if commands_check_pressed(global.cmds, CMD_DOWN) {
+            menu_index++
+            menu_last_step = state.step 
+        }
+        var _allow_hold = (state.step - menu_last_step) > menu_hold_frames
+        if commands_check(global.cmds, CMD_UP) && _allow_hold  {
+            menu_index--
+            menu_last_step = state.step
+        }
+        if commands_check(global.cmds, CMD_DOWN) && _allow_hold {
+            menu_index++
+            menu_last_step = state.step 
+        }
+        var menu_min = continue_enabled ? 0:1;
+        menu_index = clamp(menu_index, menu_min, menu_num-1)
         if commands_continue_check() {
-            state_set(state, state_fade)
+            if menu_index == menu_item_credits {
+                state_set(state, state_credits_selected)
+            } else {
+                state_set(state, state_new_selected)
+            }
+        }
+        
+        break;
+    case state_new_selected:
+    case state_continue_selected: 
+    case state_credits_selected:
+        if state.step >= selected_frames {
+            state_set(state, state.current + 1)
         }
         break;
-    case state_fade: 
+    case state_new:
     case state_story0_fade:    
     case state_story1_fade:     
     case state_story2_fade:
@@ -15,6 +52,9 @@ switch state.current {
             state_set(state, state.current + 1)
             story_index++
             text_index = 0
+            with (obj_hero) {
+                disable = false
+            }
         }
         break;
     case state_story0:
@@ -27,7 +67,18 @@ switch state.current {
             state_set(state, state.current + 1)
         }
         break;
+    
     case state_idle:
+        break;
+    case state_credits:
+        if commands_continue_check() {
+            state_set(state, state_credits_fade)
+        }
+        break;
+    case state_credits_fade:
+        if state.step >= fade_frames*2 {
+            state_set(state, state_title)
+        }
         break;
 }
 

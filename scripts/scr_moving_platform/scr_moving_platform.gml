@@ -130,7 +130,7 @@ function moving_block_update() {
         var _pspd = g.convert(other.dx, other.dy, global.g);
         if f.floor.inst == other.id || f.hang == other.id {
             array_push(other.floor_bodies, id);
-        } else if (f.wall.left == other.id || f.wall.right == other.id) && sign(spd.x) == sign(_pspd.x) && abs(spd.x) > abs(_pspd.x) {
+        } else if ((f.wall.left == other.id && face == F_LEFT) || (f.wall.right == other.id && face == F_RIGHT)) && f.wall.pressing {
             array_push(other.wall_bodies, id);
         } else if place_meeting(x - other.dx, y - other.dy, other.id) && !array_contains(f.excludes, other.id)  {
             array_push(other.push_bodies, id);
@@ -164,8 +164,8 @@ function moving_block_update() {
         var body = push_bodies[i];
         with(body) {
             var _pspd = g.convert(other.dx, other.dy, global.g);
-            var contact = move_contact_x(_pspd.x, obj_block, true);
-            if contact != noone && contact != f.floor.inst {
+            var contact = move_contact_x(_pspd.x, obj_block, true, true);
+            if contact != noone && (contact != f.floor.inst || f.floor.inst == noone) {
                 squash_block(_pspd.x, _pspd.y);
             }
             contact = move_contact_y(_pspd.y, obj_block, true, true);
@@ -173,6 +173,7 @@ function moving_block_update() {
                 // See if we can move out of the way of the block.
                 if do_lateral_squish(-_pspd.y, true) == noone {
                     contact = move_contact_y(_pspd.y, obj_block, true, true);
+                    move_contact_y(_pspd.y, obj_block, true, true); // Don't count the second move as squishable.
                 }
             }
             if contact != noone {
@@ -186,7 +187,10 @@ function moving_block_update() {
         with(body) {
             var _pspd = g.convert(other.dx, other.dy, global.g);
             if sign(face) != sign(_pspd.x) {
-                move_contact_x(_pspd.x + sign(_pspd.x), obj_block); // Only move x if it is moving away from the block.
+                var contact = move_contact_x(_pspd.x + sign(_pspd.x), obj_block); // Only move x if it is moving away from the block.
+                if contact != noone {
+                    squash_block(_pspd.x, _pspd.y);
+                }
             }
         }
     }
@@ -215,9 +219,9 @@ function moving_block_update() {
         with(body) {
             var _pspd = g.convert(other.dx, other.dy, global.g);
             if sign(face) == sign(_pspd.x) {
-                move_contact_x(_pspd.x, obj_block, true);
+                move_contact_x(_pspd.x, obj_block, true, false);
             } else {
-                move_contact_x(-_pspd.x, obj_block, true);
+                move_contact_x(-_pspd.x, obj_block, true, false);
             }
         }
     }

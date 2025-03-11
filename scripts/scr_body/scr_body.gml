@@ -210,6 +210,7 @@ function body_update_speed(cmds) {
     if (sign(x_accel) == face || abs(spd.x) > 0.75 || f.wall.pressing) {
         var _pressing_prev = f.wall.pressing;
         f.wall.pressing = pressing_into_wall();
+        show_debug_message($"checking pressing into wall {f.wall.pressing}")
         if _pressing_prev && !f.wall.pressing {
             if spd.y > 0 {
                 spd.y = 0
@@ -328,6 +329,7 @@ function body_update_state() {
         if f.hang != noone {
             state_set(state, B_HANG);  
         } else if f.wall.pressing {
+            show_debug_message("state >>>>>>> wall press")
             state_set(state, B_WALL);
         } else {
             state_set(state, B_JUMP);

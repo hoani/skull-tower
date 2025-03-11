@@ -19,6 +19,13 @@ function stats_reset() {
     }
 }
 
+function stats_set(deaths, frames) {
+    global.stats = {
+        start_mono: global.mono - frames,
+        deaths: deaths,
+    }
+}
+
 function stats_increment_death() {
     global.stats.deaths++
 }
@@ -38,6 +45,10 @@ function stats_award() {
         return AWARD_HERO
     }
     return AWARD_WARRIOR
+}
+
+function stats_frames() {
+    return global.mono - global.stats.start_mono
 }
 
 

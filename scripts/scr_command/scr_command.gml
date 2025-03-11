@@ -23,13 +23,15 @@ function commands_continue_check() {
 	gamepad_button_check_pressed(0, gp_face1) || 
 	gamepad_button_check_pressed(0, gp_face2) || 
 	gamepad_button_check_pressed(0, gp_face3) || 
-	gamepad_button_check_pressed(0, gp_face4) || 
-	gamepad_button_check_pressed(0, gp_padl) || 
-	gamepad_button_check_pressed(0, gp_padr) || 
-	gamepad_button_check_pressed(0, gp_padu) || 
-	gamepad_button_check_pressed(0, gp_padd)
+	gamepad_button_check_pressed(0, gp_face4)
 	);
-	return _gp_input || keyboard_check(vk_anykey) || mouse_check_button(mb_any);	
+    var _kb_input = keyboard_check_pressed(ACTION_KEY) || 
+        keyboard_check_pressed(ALT_ACTION_KEY) || 
+        keyboard_check_pressed(BLOCK_KEY) ||
+        keyboard_check_pressed(vk_space) ||
+        keyboard_check_pressed(vk_enter)
+        
+	return _gp_input || _kb_input;	
 }
 	
 

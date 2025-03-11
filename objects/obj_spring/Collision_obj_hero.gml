@@ -14,5 +14,5 @@ other.jump.auto_boost = true
 other.jump.auto_boost = true
 
 if !audio_is_playing(snd_push) {
-    create_sfx(x, y, snd_push)
+    create_sfx(snd_push, x, y)
 }

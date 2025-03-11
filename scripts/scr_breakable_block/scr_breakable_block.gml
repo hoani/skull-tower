@@ -22,6 +22,6 @@ function do_moving_block_break() {
             })   
         }
     }
-    create_sfx(x, y, snd_crash)
+    create_sfx(snd_crash, x, y)
     instance_destroy()
 }

@@ -6,7 +6,7 @@ switch state.current {
         if y >= room_height/2 {
             y = room_height/2
             state_set(state, state_pause)
-            create_sfx(x, y, snd_boot)
+            create_sfx(snd_boot, x, y)
         }
         break;
     }

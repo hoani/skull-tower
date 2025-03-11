@@ -52,4 +52,4 @@ menu_item_new = 1;
 menu_item_credits = 2;
 
 
-continue_enabled = true
+continue_enabled = can_load()

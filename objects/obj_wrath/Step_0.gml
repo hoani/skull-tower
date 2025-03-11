@@ -38,7 +38,7 @@ switch state.current {
                 screen_shake_x(4, 6, 1)
             }
             
-            create_sfx(x, y, snd_wrath_slash)
+            create_sfx(snd_wrath_slash, x, y)
         }
         break
     case state_attack:

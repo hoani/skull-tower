@@ -2,6 +2,14 @@
 state_update(state)
 
 
+function menu_move(amt) {
+    menu_index += amt
+    menu_last_step = state.step 
+    create_sfx(snd_menu_move)
+    var menu_min = continue_enabled ? 0:1;
+    menu_index = clamp(menu_index, menu_min, menu_num-1)
+}
+
 
 switch state.current {
     case state_title:
@@ -10,27 +18,25 @@ switch state.current {
         }
         commands_update(global.cmds)
         if commands_check_pressed(global.cmds, CMD_UP) {
-            menu_index--
-            menu_last_step = state.step
+            menu_move(-1);
         }
         if commands_check_pressed(global.cmds, CMD_DOWN) {
-            menu_index++
-            menu_last_step = state.step 
+            menu_move(+1);
         }
         var _allow_hold = (state.step - menu_last_step) > menu_hold_frames
         if commands_check(global.cmds, CMD_UP) && _allow_hold  {
-            menu_index--
-            menu_last_step = state.step
+            menu_move(-1);
         }
         if commands_check(global.cmds, CMD_DOWN) && _allow_hold {
-            menu_index++
-            menu_last_step = state.step 
+            menu_move(+1);
         }
-        var menu_min = continue_enabled ? 0:1;
-        menu_index = clamp(menu_index, menu_min, menu_num-1)
+        
         if commands_continue_check() {
+            create_sfx(snd_menu_select)
             if menu_index == menu_item_credits {
                 state_set(state, state_credits_selected)
+            } else if menu_index == menu_item_continue {
+                state_set(state, state_continue_selected)
             } else {
                 state_set(state, state_new_selected)
             }
@@ -69,6 +75,11 @@ switch state.current {
         break;
     
     case state_idle:
+        break;
+    case state_continue:
+        if !load_game() {
+            state_set(state, state_new) // fallback in case continuing fails.
+        }
         break;
     case state_credits:
         if commands_continue_check() {

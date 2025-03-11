@@ -37,7 +37,7 @@ switch state.current {
                 instance_create(x, y, obj_pride_slash, { depth: depth-1, image_angle: 90})    
             }
             
-            create_sfx(x, y, snd_wrath_slash)
+            create_sfx(snd_wrath_slash, x, y)
         }
         break
     case state_attack:

@@ -2,7 +2,7 @@ if invincibility > 0 {
     return
 }
 
-create_sfx(x, y, snd_boss_damage)
+create_sfx(snd_boss_damage, x, y)
 
 instance_destroy()
 

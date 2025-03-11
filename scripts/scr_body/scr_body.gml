@@ -75,7 +75,7 @@ function body_jump_common() {
     jump.buffering = 0;
     jump.coyote = 0;    
     jump.wall_coyote = 0;
-    create_sfx(x, y, snd_jump)
+    create_sfx(snd_jump, x, y)
     instance_create_sfx(x, y, obj_part_fade, {
         scale: 1/2,
         image_angle: irandom(360),
@@ -496,7 +496,7 @@ function do_dash() {
         x = dash.x;
         y = dash.y;
         dash.cooldown = dash.cooldown_count;
-        create_sfx(x, y, snd_dash)
+        create_sfx(snd_dash, x, y)
     }
     dash.trigger = false;
     dash.target = 0;

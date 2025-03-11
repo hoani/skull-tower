@@ -33,7 +33,7 @@ function moving_block_falling() {
         }
         xspd = 0;
         yspd = 0;
-        create_sfx(x, y, snd_crash)
+        create_sfx(snd_crash, x, y)
         return
     }
     x += dx;

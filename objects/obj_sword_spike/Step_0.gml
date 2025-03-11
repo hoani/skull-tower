@@ -4,7 +4,7 @@ if pos == 0 {
     timer++
     if timer >= duration {
         pos=8
-        create_sfx(x, y, snd_envy_spike_spawn)
+        create_sfx(snd_envy_spike_spawn, x, y)
     }
 } else {
     pos = max(0, pos - 1/8)

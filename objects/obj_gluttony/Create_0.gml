@@ -6,7 +6,7 @@
 state = new_state(GLUT_SCAN);
 
 hp = new_hp(3, 120, function(){
-    create_sfx(x, y, snd_boss_damage)
+    create_sfx(snd_boss_damage, x, y)
 })
 
 obj_control.boss_hp = hp

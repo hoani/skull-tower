@@ -20,10 +20,8 @@ function stats_reset() {
 }
 
 function stats_set(deaths, frames) {
-    global.stats = {
-        start_mono: global.mono - frames,
-        deaths: deaths,
-    }
+    global.stats.start_mono = global.mono - frames 
+    global.stats.deaths = deaths
 }
 
 function stats_increment_death() {

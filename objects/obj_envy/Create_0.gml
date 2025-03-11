@@ -9,7 +9,7 @@ state_cooldown = 5;
 state = new_state(state_scan);
 
 hp = new_hp(6, 120, function(){
-    create_sfx(x, y, snd_boss_damage)
+    create_sfx(snd_boss_damage, x, y)
 })
 
 obj_control.boss_hp = hp

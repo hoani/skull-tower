@@ -3,7 +3,7 @@
 step = 0
 
 hp = new_hp(1, 0, function(){
-    create_sfx(x, y, snd_boss_damage)
+    create_sfx(snd_boss_damage, x, y)
 })
 
 face = 1

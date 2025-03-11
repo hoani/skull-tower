@@ -1,1 +1,1 @@
-create_sfx(x, y, snd_envy_spike_spawn)
+create_sfx(snd_envy_spike_spawn, x, y)

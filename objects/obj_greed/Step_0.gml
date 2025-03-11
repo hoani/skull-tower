@@ -57,7 +57,7 @@ switch state.current {
                 depth: depth-1,
             })
             screen_shake_y(4, 6, 1)
-            create_sfx(x, y, snd_crash)
+            create_sfx(snd_crash, x, y)
         }
         break;
     case state_drop_hands:

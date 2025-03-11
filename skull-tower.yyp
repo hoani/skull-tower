@@ -182,6 +182,7 @@
     {"id":{"name":"rm_sloth_boss","path":"rooms/rm_sloth_boss/rm_sloth_boss.yy",},},
     {"id":{"name":"rm_sloth0","path":"rooms/rm_sloth0/rm_sloth0.yy",},},
     {"id":{"name":"rm_sloth1","path":"rooms/rm_sloth1/rm_sloth1.yy",},},
+    {"id":{"name":"rm_sloth2","path":"rooms/rm_sloth2/rm_sloth2.yy",},},
     {"id":{"name":"rm_splash","path":"rooms/rm_splash/rm_splash.yy",},},
     {"id":{"name":"rm_start","path":"rooms/rm_start/rm_start.yy",},},
     {"id":{"name":"rm_test_horizontal_blocks","path":"rooms/rm_test_horizontal_blocks/rm_test_horizontal_blocks.yy",},},
@@ -380,6 +381,7 @@
     {"children":[
         {"roomId":{"name":"rm_sloth0","path":"rooms/rm_sloth0/rm_sloth0.yy",},},
         {"roomId":{"name":"rm_sloth1","path":"rooms/rm_sloth1/rm_sloth1.yy",},},
+        {"roomId":{"name":"rm_sloth2","path":"rooms/rm_sloth2/rm_sloth2.yy",},},
         {"roomId":{"name":"rm_sloth_boss","path":"rooms/rm_sloth_boss/rm_sloth_boss.yy",},},
       ],"groupName":"sloth",},
     {"children":[

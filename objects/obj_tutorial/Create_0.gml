@@ -2,4 +2,4 @@ triggered = false
 count = 0
 done = false
 
-depth = -9000
+depth = obj_hero_spawner.depth + 10

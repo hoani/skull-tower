@@ -162,9 +162,12 @@
     {"id":{"name":"rm_envy_boss","path":"rooms/rm_envy_boss/rm_envy_boss.yy",},},
     {"id":{"name":"rm_envy0","path":"rooms/rm_envy0/rm_envy0.yy",},},
     {"id":{"name":"rm_envy1","path":"rooms/rm_envy1/rm_envy1.yy",},},
+    {"id":{"name":"rm_envy2","path":"rooms/rm_envy2/rm_envy2.yy",},},
     {"id":{"name":"rm_gluttony_boss","path":"rooms/rm_gluttony_boss/rm_gluttony_boss.yy",},},
     {"id":{"name":"rm_gluttony0","path":"rooms/rm_gluttony0/rm_gluttony0.yy",},},
     {"id":{"name":"rm_gluttony1","path":"rooms/rm_gluttony1/rm_gluttony1.yy",},},
+    {"id":{"name":"rm_gluttony2","path":"rooms/rm_gluttony2/rm_gluttony2.yy",},},
+    {"id":{"name":"rm_gluttony3","path":"rooms/rm_gluttony3/rm_gluttony3.yy",},},
     {"id":{"name":"rm_greed_boss","path":"rooms/rm_greed_boss/rm_greed_boss.yy",},},
     {"id":{"name":"rm_greed0","path":"rooms/rm_greed0/rm_greed0.yy",},},
     {"id":{"name":"rm_greed1","path":"rooms/rm_greed1/rm_greed1.yy",},},
@@ -370,6 +373,8 @@
     {"children":[
         {"roomId":{"name":"rm_gluttony0","path":"rooms/rm_gluttony0/rm_gluttony0.yy",},},
         {"roomId":{"name":"rm_gluttony1","path":"rooms/rm_gluttony1/rm_gluttony1.yy",},},
+        {"roomId":{"name":"rm_gluttony2","path":"rooms/rm_gluttony2/rm_gluttony2.yy",},},
+        {"roomId":{"name":"rm_gluttony3","path":"rooms/rm_gluttony3/rm_gluttony3.yy",},},
         {"roomId":{"name":"rm_gluttony_boss","path":"rooms/rm_gluttony_boss/rm_gluttony_boss.yy",},},
       ],"groupName":"gluttony",},
     {"children":[
@@ -380,6 +385,7 @@
     {"children":[
         {"roomId":{"name":"rm_envy0","path":"rooms/rm_envy0/rm_envy0.yy",},},
         {"roomId":{"name":"rm_envy1","path":"rooms/rm_envy1/rm_envy1.yy",},},
+        {"roomId":{"name":"rm_envy2","path":"rooms/rm_envy2/rm_envy2.yy",},},
         {"roomId":{"name":"rm_envy_boss","path":"rooms/rm_envy_boss/rm_envy_boss.yy",},},
       ],"groupName":"envy",},
     {"children":[

@@ -8,7 +8,7 @@ if triggered && !done {
     shader_set_uniform_f(_uniform_frac, _frac);
     
     
-    draw_sprite(which, img, room_width/2, room_height/2)
+    draw_sprite(which, img, room_width/2+xoffset, room_height/2+yoffset)
     shader_reset();
 } else if done && count < 16 {
     var _frac = min(1, count/16);
@@ -17,6 +17,6 @@ if triggered && !done {
     shader_set_uniform_f(_uniform_frac, _frac);
     
     
-    draw_sprite(which, img, room_width/2, room_height/2)
+    draw_sprite(which, img, room_width/2+xoffset, room_height/2+yoffset)
     shader_reset();
 }

@@ -66,5 +66,19 @@ function stats_draw_play() {
     draw_set_color(c_white)
     draw_set_halign(fa_center)
     draw_set_valign(fa_top)
-    draw_text(room_width/2, 0, stats_time_string())
+    
+    var _x = room_width/2;
+    
+    if instance_exists(obj_next_room) {
+        if obj_next_room.image_angle == 90 {
+            draw_set_halign(fa_left)
+            _x = 0;
+        }
+    }
+    
+    
+    draw_text(_x, 0, stats_time_string())
 }
+
+
+

@@ -175,6 +175,7 @@
     {"id":{"name":"rm_lust_boss","path":"rooms/rm_lust_boss/rm_lust_boss.yy",},},
     {"id":{"name":"rm_lust0","path":"rooms/rm_lust0/rm_lust0.yy",},},
     {"id":{"name":"rm_lust1","path":"rooms/rm_lust1/rm_lust1.yy",},},
+    {"id":{"name":"rm_lust2","path":"rooms/rm_lust2/rm_lust2.yy",},},
     {"id":{"name":"rm_outside_base","path":"rooms/rm_outside_base/rm_outside_base.yy",},},
     {"id":{"name":"rm_pride_boss","path":"rooms/rm_pride_boss/rm_pride_boss.yy",},},
     {"id":{"name":"rm_pride0","path":"rooms/rm_pride0/rm_pride0.yy",},},
@@ -393,6 +394,7 @@
     {"children":[
         {"roomId":{"name":"rm_lust0","path":"rooms/rm_lust0/rm_lust0.yy",},},
         {"roomId":{"name":"rm_lust1","path":"rooms/rm_lust1/rm_lust1.yy",},},
+        {"roomId":{"name":"rm_lust2","path":"rooms/rm_lust2/rm_lust2.yy",},},
         {"roomId":{"name":"rm_lust_boss","path":"rooms/rm_lust_boss/rm_lust_boss.yy",},},
       ],"groupName":"lust",},
     {"children":[

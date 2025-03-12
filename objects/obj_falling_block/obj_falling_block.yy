@@ -13,8 +13,8 @@
     "path":"folders/Objects/obstacle.yy",
   },
   "parentObjectId":{
-    "name":"obj_moving_block",
-    "path":"objects/obj_moving_block/obj_moving_block.yy",
+    "name":"obj_moving_block_stackable",
+    "path":"objects/obj_moving_block_stackable/obj_moving_block_stackable.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,

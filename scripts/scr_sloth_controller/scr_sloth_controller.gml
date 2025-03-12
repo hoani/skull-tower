@@ -1,13 +1,30 @@
 
+function sloth_disable_moving_platforms() {
+    with(obj_moving_block) {
+        disable = true
+    }
+    with(obj_bone_ledge) {
+        disable = true
+    }
+}
+
+function sloth_enable_moving_platforms() {
+    with(obj_moving_block) {
+        disable = false
+    }
+    with(obj_bone_ledge) {
+        disable = false
+    }
+}
+
+
 function sloth_controller_update(_state) {
     
     if boss_registry_get(BI_SLOTH) == BOSS_DEFEAT {
         with(obj_door_block) {
             instance_destroy()
         }
-        with(obj_moving_block) {
-            disable = true
-        }
+        sloth_disable_moving_platforms()
         with(obj_spikes) {
             instance_destroy()
         }
@@ -32,9 +49,7 @@ function sloth_controller_update(_state) {
             }
             state_set(_state, BOSS_CONTROLLER_FIGHT)
             obj_hero.disable = false
-            with(obj_moving_block) {
-                disable = false
-            }
+            sloth_enable_moving_platforms()
         }
         break
     case BOSS_CONTROLLER_FIGHT:
@@ -42,9 +57,7 @@ function sloth_controller_update(_state) {
             state_set(_state, BOSS_CONTROLLER_COMPLETE)
             music_fade_out(1000)
             
-            with(obj_moving_block) {
-                disable = true
-            }
+            sloth_disable_moving_platforms()
             with(obj_spikes) {
                 instance_destroy()
             }

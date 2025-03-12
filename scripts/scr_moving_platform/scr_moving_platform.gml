@@ -16,11 +16,11 @@ function moving_block_wraparound() {
     
     y += dy;
     if y0 > room_height && y1 > room_height && y2 > room_height && y3 > room_height {
-        y -= (room_height + max(abs(y0 - y1), abs(y1 - y2)));
+        y -= (room_height + 8 + max(abs(y0 - y1), abs(y1 - y2)));
     }
     
     if y0 < 0 && y1 < 0 && y2 < 0 && y3 < 0 {
-        y += (room_height + max(abs(y0 - y1), abs(y1 - y2)));
+        y += (room_height + 8 + max(abs(y0 - y1), abs(y1 - y2)));
     }
 }
 

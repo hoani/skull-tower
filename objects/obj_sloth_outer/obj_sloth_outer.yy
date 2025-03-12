@@ -4,7 +4,9 @@
   "eventList":[],
   "managed":true,
   "name":"obj_sloth_outer",
-  "overriddenProperties":[],
+  "overriddenProperties":[
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_sloth_inner","path":"objects/obj_sloth_inner/obj_sloth_inner.yy",},"propertyId":{"name":"knockback","path":"objects/obj_sloth_inner/obj_sloth_inner.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"1.5",},
+  ],
   "parent":{
     "name":"sloth",
     "path":"folders/Objects/boss/sloth.yy",

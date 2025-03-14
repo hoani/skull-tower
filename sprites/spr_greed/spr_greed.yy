@@ -31,7 +31,7 @@
   "origin":4,
   "parent":{
     "name":"greed",
-    "path":"folders/Sprites/bosses/greed.yy",
+    "path":"folders/Sprites/background/bosses/greed.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

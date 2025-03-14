@@ -15,15 +15,36 @@ function hero_die(){
     
 }
 
+function get_hero_jump_index() {
+    if spd.y >= 0.75 {
+        return IMG_JUMP_INDEX + 5;
+    }
+    if spd.y >= 5/16 {
+        return IMG_JUMP_INDEX + 4;
+    }
+    if spd.y >= 0 {
+        return IMG_JUMP_INDEX + 3;
+    }
+    if spd.y >= -5/16 {
+        return IMG_JUMP_INDEX + 2;
+    }
+    if spd.y >= -0.75 {
+        return IMG_JUMP_INDEX + 1;
+    }
+    return IMG_JUMP_INDEX + 0;
+}
+
 function hero_draw(_x, _y) {
     var spr = jump.double ? spr_hero : spr_hero_alt;
+    var img = IMG_IDLE_INDEX;
     switch state.current {
         case B_RUN:
-            var img = animate(IMG_RUN_INDEX, IMG_RUN_NUM, IMG_RUN_RATE, state.step)
+            img = animate(IMG_RUN_INDEX, IMG_RUN_NUM, IMG_RUN_RATE, state.step)
             draw_hero_sprite(spr, img, _x, _y)
             break;
         case B_JUMP:
-            draw_hero_sprite(spr, IMG_JUMP_INDEX, _x, _y)
+            img = get_hero_jump_index()
+            draw_hero_sprite(spr, img, _x, _y)
             break;
         case B_WALL:
             draw_hero_sprite(spr, IMG_WALL_INDEX, _x, _y)
@@ -40,7 +61,10 @@ function hero_draw(_x, _y) {
         case H_DIE:
             break;
         default:
-            draw_hero_sprite(spr, IMG_IDLE_INDEX, _x, _y)
+            if landing.cooldown != 0 {
+                img = animate(IMG_LANDING_INDEX, IMG_LANDING_NUM, IMG_LANDING_RATE, landing.cooldown_frames - landing.cooldown)
+            }
+            draw_hero_sprite(spr, img, _x, _y)
             break
     }
 }

@@ -54,17 +54,17 @@ function debug_control() {
     
     if keyboard_check_pressed(DEBUG_KEY_NEXT_ROOM) {
         if room == room_last {
-          room_goto(room_first)  
+            trigger_room_transition(room_first)
         } else {
-            room_goto_next()
+            trigger_room_transition(room_next(room))
         }
     }
     
     if keyboard_check_pressed(DEBUG_KEY_PREV_ROOM) {
         if room == room_first {
-            room_goto(room_last)  
+            trigger_room_transition(room_last)
         } else {
-            room_goto_previous()
+            trigger_room_transition(room_previous(room))
         }
     }
 	

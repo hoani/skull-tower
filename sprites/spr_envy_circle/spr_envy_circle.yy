@@ -27,7 +27,7 @@
   "origin":4,
   "parent":{
     "name":"envy",
-    "path":"folders/Sprites/bosses/envy.yy",
+    "path":"folders/Sprites/background/bosses/envy.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -5,7 +5,10 @@ event_inherited();
 
 #macro IMG_IDLE_INDEX (0)
 #macro IMG_JUMP_INDEX (1)
-#macro IMG_RUN_INDEX (2)
+#macro IMG_LANDING_INDEX (IMG_JUMP_INDEX + 6)
+#macro IMG_LANDING_NUM (2)
+#macro IMG_LANDING_RATE (4) 
+#macro IMG_RUN_INDEX (IMG_LANDING_INDEX + IMG_LANDING_NUM)
 #macro IMG_RUN_NUM (4)
 #macro IMG_RUN_RATE (8) 
 #macro IMG_WALL_INDEX (IMG_RUN_INDEX + IMG_RUN_NUM)

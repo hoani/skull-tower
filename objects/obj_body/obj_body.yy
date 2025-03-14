@@ -31,6 +31,7 @@
   "properties":[
     {"$GMObjectProperty":"v1","%Name":"squash_floor","filters":[],"listItems":[],"multiselect":false,"name":"squash_floor","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"body_squash_floor","varType":0,},
     {"$GMObjectProperty":"v1","%Name":"squash_block","filters":[],"listItems":[],"multiselect":false,"name":"squash_block","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"body_squash_block","varType":0,},
+    {"$GMObjectProperty":"v1","%Name":"disable","filters":[],"listItems":[],"multiselect":false,"name":"disable","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"false","varType":0,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

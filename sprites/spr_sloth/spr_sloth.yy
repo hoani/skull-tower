@@ -28,7 +28,7 @@
   "origin":4,
   "parent":{
     "name":"sloth",
-    "path":"folders/Sprites/bosses/sloth.yy",
+    "path":"folders/Sprites/background/bosses/sloth.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

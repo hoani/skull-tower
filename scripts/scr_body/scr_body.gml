@@ -146,7 +146,8 @@ function body_update_speed(cmds) {
     
     
 
-    dash.cooldown = max(0, dash.cooldown - global.s);
+    dash.cooldown = max(0, dash.cooldown - global.s);    
+    landing.cooldown = max(0, landing.cooldown - global.s);
     turn.cooldown = max(0, turn.cooldown - global.s);
     lateral.cooldown = max(0, lateral.cooldown - global.s);
     attack.buffering = max(0, attack.buffering - global.s);
@@ -210,11 +211,14 @@ function body_update_speed(cmds) {
     if (sign(x_accel) == face || abs(spd.x) > 0.75 || f.wall.pressing) {
         var _pressing_prev = f.wall.pressing;
         f.wall.pressing = pressing_into_wall();
-        if _pressing_prev && !f.wall.pressing {
+        if _pressing_prev && !f.wall.pressing { 
             if spd.y > 0 {
                 spd.y = 0
                 jump.wall_coyote = jump.wall_coyote_count
             }
+        }
+        if !_pressing_prev && f.wall.pressing {
+            create_sfx(snd_wall, x, y)
         }
     }
     
@@ -328,7 +332,6 @@ function body_update_state() {
         if f.hang != noone {
             state_set(state, B_HANG);  
         } else if f.wall.pressing {
-            show_debug_message("state >>>>>>> wall press")
             state_set(state, B_WALL);
         } else {
             state_set(state, B_JUMP);
@@ -351,7 +354,9 @@ function body_update_state() {
             image_blend: C_WHITE,
             lifetime: 24,
             yspd: -0.125,
-        }) 
+        })
+        create_sfx(snd_land, x, y)
+        landing.cooldown = landing.cooldown_frames;
     }
     
     if spd.x != 0  {

@@ -49,6 +49,12 @@ function attack_update() {
 function command_attack() {
     switch attack.state.current {
         case ATTACK_NONE:
+            if f.wall.pressing {
+                var inputs = movement_inputs(cmds);
+                if inputs.held.x == 0 {
+                    face = -face;
+                }
+            }
             state_set(attack.state, ATTACK_START);
             return true;
         case ATTACK_START:

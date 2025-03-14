@@ -70,7 +70,7 @@ function stats_draw_play() {
     var _x = room_width/2;
     
     if instance_exists(obj_next_room) {
-        if obj_next_room.image_angle == 90 {
+        if obj_next_room.image_angle == 90 && obj_next_room.x > room_width/4{
             draw_set_halign(fa_left)
             _x = 0;
         }

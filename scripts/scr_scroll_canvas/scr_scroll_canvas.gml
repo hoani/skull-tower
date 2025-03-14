@@ -17,7 +17,7 @@ function update_scroll_canvas() {
          if global.sc.scroll != 0 {
              obj_hero.disable = true;
          } else {
-             if global.sc.scroll != _scroll_prev {
+             if global.sc.scroll != _scroll_prev && !instance_exists(obj_boss_controller) {
                  obj_hero.disable = false;
              }
          }

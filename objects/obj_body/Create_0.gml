@@ -1,4 +1,7 @@
 
+sfx_run = new_sfx()
+sfx_gain(sfx_run, 0.25)
+snd_run_id = -1
 
 cmds = global.cmds
 commands_register_single_player(cmds)
@@ -138,8 +141,10 @@ state = new_state(B_IDLE)
 
 face = F_RIGHT;
 
-
-disable = false;
+landing = {
+    cooldown: 0,
+    cooldown_frames: IMG_LANDING_NUM*IMG_LANDING_RATE,
+}
 
 
 lateral_init()

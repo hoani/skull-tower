@@ -6,6 +6,7 @@ varying vec2 v_vTexcoord;
 varying vec4 v_vColour;
 
 uniform float frac;
+uniform float time;
 
 float hash(vec2 p)
 {
@@ -19,7 +20,7 @@ void main()
 {
     //Set the output the vertex color multiplied by texture color of each pixel.
     vec4 texCol = texture2D( gm_BaseTexture, v_vTexcoord );
-    texCol.a *= (hash(v_vTexcoord)) < frac ? 0.:1.;  
+    texCol.a *= (hash(v_vTexcoord*(time + 1.0))) < frac ? 0.:1.;  
     
     gl_FragColor = v_vColour * texCol;
 }

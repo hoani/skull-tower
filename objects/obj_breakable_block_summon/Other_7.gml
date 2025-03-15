@@ -6,4 +6,5 @@ instance_create_depth(x, y, depth, obj_breakable_block, {
     yaccel: yaccel,
     image_xscale: image_xscale,
     image_yscale: image_yscale,
+    collision_obj: collision_obj,
 })

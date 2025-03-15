@@ -45,7 +45,7 @@
   "origin":7,
   "parent":{
     "name":"gluttony",
-    "path":"folders/Sprites/background/bosses/gluttony.yy",
+    "path":"folders/Sprites/bosses/gluttony.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

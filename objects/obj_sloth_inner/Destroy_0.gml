@@ -5,3 +5,7 @@ instance_create(x, y, obj_part_fade, {
     image_angle: image_angle,
     lifetime: 16,
 })
+
+with (obj_spike_spawn) {
+    active = true
+}

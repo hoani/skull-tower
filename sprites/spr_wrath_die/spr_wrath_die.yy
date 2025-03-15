@@ -30,7 +30,7 @@
   "origin":4,
   "parent":{
     "name":"wrath",
-    "path":"folders/Sprites/background/bosses/wrath.yy",
+    "path":"folders/Sprites/bosses/wrath.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

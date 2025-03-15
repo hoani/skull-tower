@@ -28,7 +28,7 @@
   "origin":4,
   "parent":{
     "name":"lust",
-    "path":"folders/Sprites/background/bosses/lust.yy",
+    "path":"folders/Sprites/bosses/lust.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

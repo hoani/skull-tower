@@ -1,9 +1,6 @@
 function moving_block_breakable() {
     
-    if place_meeting(x + dx, y+dy, obj_block_place) {
-        do_moving_block_break();
-        return
-    }
+   
     x += dx;
     y += dy;
 }

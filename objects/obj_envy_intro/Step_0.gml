@@ -12,6 +12,7 @@ switch state.current {
     case state_wait:
         if state.step >= 30 {
             state_set(state, state_teleport)
+            create_sfx(snd_teleport, x, y)
             targety = y + 56
         }
         break;
@@ -29,6 +30,7 @@ switch state.current {
         if global.step % 30 == 0 && state.step >= 60 && !instance_exists(obj_boss_title) {
             state_set(state, state_go_up)
             targety = ystart
+            create_sfx(snd_teleport, x, y)
         }
         break
     case state_go_up:

@@ -5,7 +5,7 @@ if disable {
 }
 
 
-if !place_meeting(x + sign(xaccel), y + sign(yaccel), obj_block_place) {
+if !falling_block_collision(sign(xaccel), sign(yaccel)) {
     var xmin = sign(xaccel) == -1 ? -term : xspd;
     var xmax = sign(xaccel) == 1 ? term : xspd;
     

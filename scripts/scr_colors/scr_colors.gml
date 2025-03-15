@@ -5,3 +5,4 @@
 #macro C_BLACK ($5E212B)
 #macro C_DKRED (#872450)
 #macro C_PINK (#ff7fbd)
+#macro C_RED (#e52d40)

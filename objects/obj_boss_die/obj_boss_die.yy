@@ -32,8 +32,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_envy",
-    "path":"sprites/spr_envy/spr_envy.yy",
+    "name":"spr_envy_die",
+    "path":"sprites/spr_envy_die/spr_envy_die.yy",
   },
   "spriteMaskId":null,
   "visible":true,

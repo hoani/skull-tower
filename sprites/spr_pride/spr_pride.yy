@@ -42,7 +42,7 @@
   "origin":4,
   "parent":{
     "name":"pride",
-    "path":"folders/Sprites/background/bosses/pride.yy",
+    "path":"folders/Sprites/bosses/pride.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

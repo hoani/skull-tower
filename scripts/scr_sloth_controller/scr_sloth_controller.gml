@@ -28,6 +28,9 @@ function sloth_controller_update(_state) {
         with(obj_spikes) {
             instance_destroy()
         }
+        with(obj_spike_spawn) {
+            instance_destroy()
+        }
         instance_destroy()
         return;
     }
@@ -59,6 +62,9 @@ function sloth_controller_update(_state) {
             
             sloth_disable_moving_platforms()
             with(obj_spikes) {
+                instance_destroy()
+            }
+            with(obj_spike_spawn) {
                 instance_destroy()
             }
             

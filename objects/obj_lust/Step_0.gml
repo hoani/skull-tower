@@ -36,3 +36,18 @@ switch state.current {
 
 
 
+if enraged {
+    if state.step % 16 == 0 {
+        var xpos = x - 12 + irandom(24);
+        var ypos = y - 8 - irandom(16)
+        instance_create_enemy(xpos, ypos, obj_part_grow, {
+            sprite_index: spr_lust_heart,
+            image_blend: C_RED,
+            scale: 0.5,
+            lifetime: 32,
+            depth: depth - 1,
+            yspd: -0.125,
+            fade_on_destroy: true,
+        })
+    }
+}

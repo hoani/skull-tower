@@ -2,6 +2,11 @@ if hp_blink(hp) {
     return
 }
 
+if state.current == state_transform && !hp_invulnerable(hp) {
+    draw_sprite(spr_envy_transform, image_index, x, y);
+    return
+}
+
 var yoffset = 4*sin(2*pi*global.step/60);
 
 if targety != y || targetx != x {

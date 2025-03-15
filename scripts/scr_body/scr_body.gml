@@ -76,11 +76,7 @@ function body_jump_common() {
     jump.coyote = 0;    
     jump.wall_coyote = 0;
     create_sfx(snd_jump, x, y)
-    instance_create_sfx(x, y, obj_part_fade, {
-        scale: 1/2,
-        image_angle: irandom(360),
-        image_blend: C_WHITE,
-    })  
+    create_body_cloud_particle(0, 0, 1/2, 24, -0.125)
 }
 
 function movement_inputs(cmds) {
@@ -341,20 +337,8 @@ function body_update_state() {
     
     // Landing particles.
     if state.current == B_JUMP {
-        instance_create_sfx(x-4, y+4, obj_part_fade, {
-            scale: 1/2,
-            image_angle: irandom(360),
-            image_blend: C_WHITE,
-            lifetime: 24,
-            yspd: -0.125,
-        })
-        instance_create_sfx(x+4, y+4, obj_part_fade, {
-            scale: 1/2,
-            image_angle: irandom(360),
-            image_blend: C_WHITE,
-            lifetime: 24,
-            yspd: -0.125,
-        })
+        create_body_cloud_particle(-4, 4, 1/2, 24, -0.125)
+        create_body_cloud_particle(4, 4, 1/2, 24, -0.125)
         create_sfx(snd_land, x, y)
         landing.cooldown = landing.cooldown_frames;
     }
@@ -362,16 +346,29 @@ function body_update_state() {
     if spd.x != 0  {
         state_set(state, B_RUN);
         
-        instance_create_sfx(x, y+4, obj_part_fade, {
-            scale: 1/4,
-            image_angle: irandom(360),
-            image_blend: C_WHITE,
-        }) 
+        create_body_cloud_particle(0, 4)
     } else {
         state_set(state, B_IDLE);
     }
-    
 }
+
+
+function create_body_cloud_particle(_dx, _dy, scale=1/4, lifetime=16, yspd=0) {
+    var c = body_collision_point(_dx, _dy)
+    
+    var _spdx = g.x*(yspd)
+    var _spdy = g.y*(yspd)
+    
+    instance_create_sfx(c.x, c.y, obj_part_fade, {
+        scale: scale,
+        image_angle: irandom(360),
+        image_blend: C_WHITE,
+        lifetime: lifetime,
+        xspd: _spdx,
+        yspd: _spdy,
+    }) 
+}
+
 
 function body_apply_gravity(factor=1) {
     if f.floor.inst == noone && f.hang == noone {
@@ -475,7 +472,7 @@ function body_update_movement() {
         }
     } else if spdy < 0 {
         f.roof = move_contact_y(spdy, obj_block, true, true)
-        set_floor_frame(check_collision_floor())
+        //set_floor_frame(check_collision_floor())
     } else {
         f.roof = check_collision_roof()
         set_floor_frame(check_collision_floor())
@@ -499,6 +496,8 @@ function do_dash() {
         face = dash.face;
         x = dash.x;
         y = dash.y;
+        x = clamp(x, w_2, room_width - w_2)
+        update_excludes();
         dash.cooldown = dash.cooldown_count;
         create_sfx(snd_dash, x, y)
     }
@@ -745,7 +744,7 @@ function move_to_hang(_dy, hang_candidate) {
 
 function update_excludes() {
     var _dx = w_2-1;
-    var _dy = h_2-1;
+    var _dy = h_2;
     var c = body_collision_coords(-_dx, -_dy, _dx, _dy)
     var list = ds_list_create();
     var num = collision_rectangle_list(c.x0, c.y0, c.x1, c.y1, obj_floor, true, true, list, false);

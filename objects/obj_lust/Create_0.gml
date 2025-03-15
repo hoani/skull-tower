@@ -28,6 +28,7 @@ hp = new_hp(4, 120, function(){
         enraged = true
         sprite_index = spr_lust_enraged
         spr_hair = spr_lust_hair_enraged
+        create_sfx(snd_lust_enrage)
         
     }
 })
@@ -49,6 +50,7 @@ function lust_set_target() {
     var delta = angle_increment[angle_index] * 90;
     angle_index = (angle_index + 1 ) % array_length(angle_increment);
     angle = (angle + delta) % 360;
+    create_sfx(snd_lust_switch)
 }
 
 function lust_trigger_target() {
@@ -71,6 +73,8 @@ function lust_trigger_target() {
             break;
     }
     current.y = room_height/2;
+    
+    
 }
 
 

@@ -20,6 +20,7 @@ switch state.current {
         if state.step >= 30 {
             state_set(state, state_cycle_up)
             gravity_up.y = room_height/2
+            create_sfx(snd_lust_switch)
         }
         break;
     case state_cycle_up:
@@ -28,6 +29,7 @@ switch state.current {
             state_set(state, state_cycle_right)
             gravity_up.y = -room_height
             gravity_right.y = room_height/2
+            create_sfx(snd_lust_switch)
         }
         break;
     case state_cycle_right:
@@ -35,6 +37,7 @@ switch state.current {
             state_set(state, state_cycle_left)
             gravity_right.y = -room_height 
             gravity_left.y = room_height/2
+            create_sfx(snd_lust_switch)
         }
         break;
     case state_cycle_left:
@@ -42,6 +45,7 @@ switch state.current {
             state_set(state, state_cycle_down)
             gravity_left.y = -room_height 
             gravity_down.y = room_height/2
+            create_sfx(snd_lust_switch)
         }
         break;
     case state_cycle_down:

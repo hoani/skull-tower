@@ -30,9 +30,15 @@ function game_init(){
     if global.debug {
         music_disable()
     }
+    
+    
 }
 
 function game_update() {
     global.step += global.s
     global.mono ++
+    
+    if keyboard_check_pressed(vk_escape) {
+        game_restart()
+    }
 }

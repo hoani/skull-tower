@@ -10,13 +10,14 @@ state_update(state)
 
 switch state.current {
     case state_scan:
+    case state_retreat:
         image_index = animate(2, 4, 10, state.step);
         var dx = targetx - x;
         var dy = targety - y;
         if abs(dx) < spd && abs(dy) < spd {
             x = targetx            
             y = targety
-            state_set(state, state_telegraph);
+            state_set(state, state.current+1);
         } else {
             x = abs(dx) < spd ? targetx : x + sign(dx) * spd;
             y = abs(dy) < spd ? targety : y + sign(dy) * spd;
@@ -55,6 +56,43 @@ switch state.current {
             pride_set_target()
         }
         break
+    case state_far_block:
+        image_index = animate(13, 4, 30, global.step);
+        if state.step > 60 {
+            pride_spawn_block();
+            state_set(state, state_far_wait);
+        }
+        break;
+    case state_far_wait:
+        image_index = animate(13, 4, 30, global.step);
+        if state.step > 60 {
+            state_set(state, state_far_wave);
+        }
+        break;
+    case state_far_wave:
+        image_index = animate(13, 4, 30, global.step);
+        if state.step > 60 {
+            state_set(state, state_far_block);
+            pride_spawn_wave()
+            spawn_cycle++
+        }
+        break;
+    case state_advance:
+        // This is scan, but allows for a set numbe of steps to have expired.
+        image_index = animate(2, 4, 10, state.step);
+        var dx = targetx - x;
+        var dy = targety - y;
+        if abs(dx) < spd && abs(dy) < spd {
+            x = targetx            
+            y = targety
+            if state.step > 90 {
+                state_set(state, state_telegraph);
+            }
+        } else {
+            x = abs(dx) < spd ? targetx : x + sign(dx) * spd;
+            y = abs(dy) < spd ? targety : y + sign(dy) * spd;
+        }
+        break;
 }
 
 

@@ -3,7 +3,11 @@ if hp_blink(hp) {
 }
 
 if state.current = state_telegraph_hands {
-    draw_sprite_ext(spr_gluttony_telegraph, state.step/4, x, y, 1, 8, 0, c_white, 1);
+    var sx = 1
+    if enraged {
+        sx = 1.5
+    }
+    draw_sprite_ext(spr_gluttony_telegraph, state.step/4, x, y, sx, 8, 0, c_white, 1);
 }
 
 draw_self()
@@ -20,4 +24,4 @@ if state.current == state_drop_hands {
     hands_y = min(bottom - delta * (state.step - 60)/60, bottom);
 }
 
-draw_sprite(spr_greed_hands, hands_image, x, hands_y);
+draw_sprite(spr_hands, hands_image, x, hands_y);

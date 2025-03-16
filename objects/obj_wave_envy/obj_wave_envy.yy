@@ -7,6 +7,7 @@
   "overriddenProperties":[
     {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_wave","path":"objects/obj_wave/obj_wave.yy",},"propertyId":{"name":"wave","path":"objects/obj_wave/obj_wave.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"spr_wave_envy",},
     {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_wave","path":"objects/obj_wave/obj_wave.yy",},"propertyId":{"name":"front","path":"objects/obj_wave/obj_wave.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"spr_wave_envy_front",},
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_wave","path":"objects/obj_wave/obj_wave.yy",},"propertyId":{"name":"c_trail","path":"objects/obj_wave/obj_wave.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"C_GREEN",},
   ],
   "parent":{
     "name":"envy",

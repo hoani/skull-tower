@@ -94,7 +94,7 @@ switch state.current {
             state_set(state, state_transform);
             instance_create_depth(x, y, depth +1, obj_part_shrink, {
                 sprite_index: spr_envy_summon_circle,
-                image_blend: C_DKRED,
+                image_blend: C_DKGREEN,
                 lifetime: 32,   
                 scale: 3,
             })

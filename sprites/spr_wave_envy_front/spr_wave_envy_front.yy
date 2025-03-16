@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":5,
   "parent":{
-    "name":"obstacles",
-    "path":"folders/Sprites/obstacles.yy",
+    "name":"envy",
+    "path":"folders/Sprites/bosses/envy.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

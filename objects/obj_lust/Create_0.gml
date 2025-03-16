@@ -11,7 +11,7 @@ enraged = false
 
 spr_hair = spr_lust_hair
 
-hp = new_hp(4, 120, function(){
+hp = new_hp(4, 180, function(){
     create_sfx(snd_boss_damage, x, y)
     if hp.current == 2 {
         instance_create_depth(x-12, y-12, depth - 1, obj_part_grow, {
@@ -79,6 +79,9 @@ function lust_trigger_target() {
 
 
 function lust_spawn_blocks() {
+    if hp.current <= 0 {
+        return
+    }
     var _x = room_width/2 - (g.x * room_width/3);
     var _y = room_height/2 - (g.y * room_height/3);
     

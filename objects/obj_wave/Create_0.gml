@@ -13,7 +13,6 @@ height = abs(sprite_width*fsin) + abs(sprite_height*fcos)
 growth = spd/64
 
 image_blend = C_WHITE
-c_trail = C_PINK
 
 image_xscale = scale;
 image_yscale = scale;

@@ -55,6 +55,9 @@ function command_attack() {
                     face = -face;
                 }
             }
+            if f.hang != noone {
+                f.hang = noone;
+            }
             state_set(attack.state, ATTACK_START);
             return true;
         case ATTACK_START:

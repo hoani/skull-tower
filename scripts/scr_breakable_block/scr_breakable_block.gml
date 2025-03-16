@@ -15,7 +15,7 @@ function do_moving_block_break() {
                 yspd: -dy/16,
                 scale: 1/4,
                 image_angle: irandom(360),
-                image_blend: irandom(2) ? C_BLUE : (irandom(1) ? C_GRAY : C_LTGRAY),
+                image_blend: irandom(2) ? c_broken : (irandom(1) ? C_GRAY : C_LTGRAY),
             })   
         }
     }

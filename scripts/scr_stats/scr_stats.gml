@@ -68,6 +68,7 @@ function stats_draw_play() {
     draw_set_valign(fa_top)
     
     var _x = room_width/2;
+    var _y = 0;
     
     if instance_exists(obj_next_room) {
         if obj_next_room.image_angle == 90 && obj_next_room.x > room_width/4{
@@ -76,8 +77,12 @@ function stats_draw_play() {
         }
     }
     
+    if room == rm_pride_boss {
+        _y = room_height - 8;
+    }
     
-    draw_text(_x, 0, stats_time_string())
+    
+    draw_text(_x, _y, stats_time_string())
 }
 
 

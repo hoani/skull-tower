@@ -34,6 +34,7 @@
     {"$GMObjectProperty":"v1","%Name":"yaccel","filters":[],"listItems":[],"multiselect":false,"name":"yaccel","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
     {"$GMObjectProperty":"v1","%Name":"term","filters":[],"listItems":[],"multiselect":false,"name":"term","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"2","varType":0,},
     {"$GMObjectProperty":"v1","%Name":"collision_obj","filters":[],"listItems":[],"multiselect":false,"name":"collision_obj","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"obj_block_place","varType":0,},
+    {"$GMObjectProperty":"v1","%Name":"c_broken","filters":[],"listItems":[],"multiselect":false,"name":"c_broken","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"C_BLUE","varType":0,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

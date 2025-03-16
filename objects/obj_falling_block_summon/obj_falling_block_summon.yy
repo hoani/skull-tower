@@ -31,6 +31,8 @@
     {"$GMObjectProperty":"v1","%Name":"yspd","filters":[],"listItems":[],"multiselect":false,"name":"yspd","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
     {"$GMObjectProperty":"v1","%Name":"xaccel","filters":[],"listItems":[],"multiselect":false,"name":"xaccel","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
     {"$GMObjectProperty":"v1","%Name":"yaccel","filters":[],"listItems":[],"multiselect":false,"name":"yaccel","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
+    {"$GMObjectProperty":"v1","%Name":"summoned_spr","filters":[],"listItems":[],"multiselect":false,"name":"summoned_spr","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"spr_falling_block","varType":0,},
+    {"$GMObjectProperty":"v1","%Name":"term","filters":[],"listItems":[],"multiselect":false,"name":"term","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"2","varType":0,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

@@ -46,8 +46,8 @@
   },
   "origin":4,
   "parent":{
-    "name":"greed",
-    "path":"folders/Sprites/bosses/greed.yy",
+    "name":"obstacles",
+    "path":"folders/Sprites/obstacles.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

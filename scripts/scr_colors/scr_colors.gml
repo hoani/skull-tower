@@ -6,3 +6,6 @@
 #macro C_DKRED (#872450)
 #macro C_PINK (#ff7fbd)
 #macro C_RED (#e52d40)
+#macro C_GREEN (#00cc8b)
+#macro C_DKGREEN (#005a75 )
+#macro C_YELLOW (#ffd877)

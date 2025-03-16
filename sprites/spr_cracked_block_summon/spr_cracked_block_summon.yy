@@ -46,8 +46,8 @@
   },
   "origin":4,
   "parent":{
-    "name":"lust",
-    "path":"folders/Sprites/bosses/lust.yy",
+    "name":"obstacles",
+    "path":"folders/Sprites/obstacles.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

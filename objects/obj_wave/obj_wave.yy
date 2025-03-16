@@ -35,6 +35,7 @@
     {"$GMObjectProperty":"v1","%Name":"scale","filters":[],"listItems":[],"multiselect":false,"name":"scale","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"1","varType":0,},
     {"$GMObjectProperty":"v1","%Name":"wave","filters":[],"listItems":[],"multiselect":false,"name":"wave","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"spr_wave","varType":0,},
     {"$GMObjectProperty":"v1","%Name":"front","filters":[],"listItems":[],"multiselect":false,"name":"front","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"spr_wave_front","varType":0,},
+    {"$GMObjectProperty":"v1","%Name":"c_trail","filters":[],"listItems":[],"multiselect":false,"name":"c_trail","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"C_PINK","varType":0,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

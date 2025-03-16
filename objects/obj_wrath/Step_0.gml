@@ -24,7 +24,7 @@ switch state.current {
         break;
     case state_telegraph:
         image_index = do_target_x ? 3 : 5;
-        if state.step >= 70 {
+        if state.step >= 70 || (enraged && !do_target_x && state.step >= 5) {
             state_set(state, state_attack);
             var obj = do_target_x ? obj_wrath_slash_verical: obj_wrath_slash_horizontal;
             var _x = do_target_x ? x : room_width/2;
@@ -43,8 +43,13 @@ switch state.current {
         break
     case state_attack:
         image_index = do_target_x ? 4 : 6;
-        if state.step >= 30 {
-            state_set(state, state_recover);
+        if state.step >= 30 || (do_target_x && enraged && state.step >= 5) {
+            if do_target_x && enraged {
+                state_set(state, state_telegraph)
+                do_target_x = !do_target_x
+            } else {
+                state_set(state, state_recover);
+            }
         }
         break
     case state_recover:
@@ -54,7 +59,32 @@ switch state.current {
             wrath_set_target()
         }
         break
+    case state_transform:
+        image_index = animate(0, 6, 8, state.step);
+        if state.step == 10 {
+            create_sfx(snd_enrage, x, y)
+            
+        }
+        if state.step >= 48 {
+            enraged = true
+            sprite_index=spr_wrath_enraged
+            state_set(state, state_scan);
+            wrath_set_target()
+            do_target_x = true;
+        }
 }
 
 
 
+if enraged {
+    if state.step % 8 == 0 {
+        var xpos = x - 16 + irandom(32);
+        var ypos = y - irandom(16)
+        instance_create_enemy(xpos, ypos, obj_part_fade, {
+            depth: depth + 1,
+            yspd: -0.5,
+            image_angle: random(360),
+            scale: 0.75,
+        })
+    }
+}

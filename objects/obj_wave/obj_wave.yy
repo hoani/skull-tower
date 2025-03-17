@@ -8,7 +8,9 @@
   ],
   "managed":true,
   "name":"obj_wave",
-  "overriddenProperties":[],
+  "overriddenProperties":[
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_damage_base","path":"objects/obj_damage_base/obj_damage_base.yy",},"propertyId":{"name":"active","path":"objects/obj_damage_base/obj_damage_base.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"false",},
+  ],
   "parent":{
     "name":"obstacle",
     "path":"folders/Objects/obstacle.yy",

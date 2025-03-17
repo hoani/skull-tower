@@ -1,2 +1,3 @@
-
-hero_die()
+if other.active {
+    hero_die()
+}

@@ -70,7 +70,7 @@ switch state.current {
     case state_wave:
         image_index = 1;
         obj_envy_circle.image_index = envy_wave_circle_image()
-        if state.step >= 45 {
+        if state.step >= 55 {
             
             state_set(state, state_scan);
             envy_emit_wave()

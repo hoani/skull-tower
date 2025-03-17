@@ -79,7 +79,7 @@ switch state.current {
     case state_telegraph_hands:
         image_index = 2
         hands_image = 2
-        if state.step >= 50 {
+        if state.step >= 90 {
             state_set(state, state_drop_hands);
             greed_trade_blocks()
             instance_create(x, room_height - 8, obj_gluttony_slash, {

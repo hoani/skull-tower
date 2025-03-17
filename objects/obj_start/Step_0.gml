@@ -75,6 +75,9 @@ switch state.current {
         break;
     
     case state_idle:
+        if state.step == 1 {
+            instance_create_sfx(room_width/2, room_height/2+24, obj_tutorial_move)
+        }
         break;
     case state_continue:
         if !load_game() {

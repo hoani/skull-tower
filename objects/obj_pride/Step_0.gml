@@ -25,7 +25,7 @@ switch state.current {
         break;
     case state_telegraph:
         image_index = 6;
-        if state.step >= (60 - 4*hp.current) {
+        if state.step >= 70 {
             state_set(state, state_attack);
             
             if down {

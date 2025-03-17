@@ -102,15 +102,19 @@ function pride_set_target() {
                 left = true
             }
         }
-    } else if hp > 2 {
+    } else if hp.current > 2 {
         if attack_pos == 0 {
             down = true
             right = true
         }
         if attack_pos == 1 {
-            down = true
-            left = true
-            right = true
+            if irandom(1) == 0 {
+                down = true
+                left = true
+            } else {
+                down = true
+                right = true
+            }
         }
         if attack_pos == 2 {
             down = true

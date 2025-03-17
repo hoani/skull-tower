@@ -10,10 +10,26 @@
 #macro CMD_JUMP "hk_jump"
 
 
+#macro LEFT_KEY vk_left
+#macro ALT_LEFT_KEY ord("A")
+
+#macro RIGHT_KEY vk_right
+#macro ALT_RIGHT_KEY ord("D")
+
+#macro UP_KEY vk_up
+#macro ALT_UP_KEY ord("W")
+
+#macro DOWN_KEY vk_down
+#macro ALT_DOWN_KEY ord("S")
+
 #macro ACTION_KEY ord("Z")
-#macro ALT_ACTION_KEY ord("W")
+#macro ALT_ACTION_KEY ord("J")
 
 #macro BLOCK_KEY ord("X")
+#macro ALT_BLOCK_KEY ord("K")
+
+#macro JUMP_KEY ord("C")
+#macro ALT_JUMP_KEY ord("L")
 
 
 function commands_continue_check() {
@@ -71,14 +87,21 @@ function commands_init() {
 }
 
 function commands_register_single_player(_cmds) {
-	commands_register(_cmds, CMD_LEFT, function(_cmds){return keyboard_check(vk_left)});
-	commands_register(_cmds, CMD_RIGHT, function(_cmds){return keyboard_check(vk_right)})
-	commands_register(_cmds, CMD_UP, function(_cmds){return keyboard_check(vk_up)})
-	commands_register(_cmds, CMD_DOWN, function(_cmds){return keyboard_check(vk_down)})
+	commands_register(_cmds, CMD_LEFT, function(_cmds){return keyboard_check(LEFT_KEY)});
+	commands_register(_cmds, CMD_RIGHT, function(_cmds){return keyboard_check(RIGHT_KEY)})
+	commands_register(_cmds, CMD_UP, function(_cmds){return keyboard_check(UP_KEY)})
+	commands_register(_cmds, CMD_DOWN, function(_cmds){return keyboard_check(DOWN_KEY)})
+    commands_register(_cmds, CMD_LEFT, function(_cmds){return keyboard_check(ALT_LEFT_KEY)});
+    commands_register(_cmds, CMD_RIGHT, function(_cmds){return keyboard_check(ALT_RIGHT_KEY)})
+    commands_register(_cmds, CMD_UP, function(_cmds){return keyboard_check(ALT_UP_KEY)})
+    commands_register(_cmds, CMD_DOWN, function(_cmds){return keyboard_check(ALT_DOWN_KEY)})
+    
 	commands_register(_cmds, CMD_A, function(_cmds){return keyboard_check(ACTION_KEY)})
 	commands_register(_cmds, CMD_A, function(_cmds){return keyboard_check(ALT_ACTION_KEY)})
 	commands_register(_cmds, CMD_B, function(_cmds){return keyboard_check(BLOCK_KEY)})
-    commands_register(_cmds, CMD_JUMP, function(_cmds){return keyboard_check(ord("C"))})
+    commands_register(_cmds, CMD_B, function(_cmds){return keyboard_check(ALT_BLOCK_KEY)})
+    commands_register(_cmds, CMD_JUMP, function(_cmds){return keyboard_check(JUMP_KEY)})
+    commands_register(_cmds, CMD_JUMP, function(_cmds){return keyboard_check(ALT_JUMP_KEY)})
 }
 
 function has_controller(_cmds) {

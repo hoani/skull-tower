@@ -101,8 +101,8 @@ function lust_spawn_blocks() {
         instance_create_mblocks(_x, _y, obj_breakable_block_summon, {
             xaccel: g.x*g.mag*0.5, 
             yaccel: g.y*g.mag*0.5,
-            image_xscale: 1.0 + abs(g.y) * (0.5) * (1 + ceil(2-hp.current/2)),
-            image_yscale: 1.0 + abs(g.x) * (0.5) * (1 + ceil(2-hp.current/2)),
+            image_xscale: 1.0 + abs(g.y) * (0.5) * (0.5 + ceil(2-hp.current/2)),
+            image_yscale: 1.0 + abs(g.x) * (0.5) * (0.5 + ceil(2-hp.current/2)),
             collision_obj: obj_block,
         }) 
     } else {
@@ -126,8 +126,10 @@ function lust_spawn_blocks() {
     if enraged {
         var _ax = room_width/2 + (g.x * room_width/2);
         var _ay = room_height/2 + (g.y * room_height/2);
-        var _xw = max((abs(g.y) * (room_width-16)/3)/16, 1)
-        var _yw = max((abs(g.x) * (room_height-16)/3)/16, 1)
+        var _xw = max((abs(g.y) * (room_width-32)/3)/16, 1)
+        var _yw = max((abs(g.x) * (room_height-32)/3)/16, 1)
+        _xoff = (abs(g.y) * (room_width-32)/3) 
+        _yoff = (abs(g.x) * (room_height-32)/3)
         
         instance_create_mblocks(_ax, _ay, obj_breakable_block_summon, {
             xaccel: -g.x*g.mag*0.25, 

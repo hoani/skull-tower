@@ -12,4 +12,7 @@ draw_sprite_ext(wave, 0, x, y, image_xscale, image_yscale, image_angle, c_trail,
 
 shader_reset();
 
-draw_self()
+if active {
+    draw_self()
+}
+

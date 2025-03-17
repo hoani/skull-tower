@@ -2,6 +2,10 @@
 image_yscale = clamp(image_yscale + growth, 0, 1)
 image_xscale = clamp(image_xscale + growth, 0, 1)
 
+if image_xscale >  0.625 && image_yscale > 0.625 {
+    active = true;
+}
+
 
 if lateral_update() {
 

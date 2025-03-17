@@ -20,7 +20,13 @@ hp = new_hp(6, 150, function(){
         state_set(state, state_transform_teleport);
         targetx = scx
         targety = scy
+    } else {
+        if state.current == state_wave {
+            state_set(state, state_scan);
+            obj_envy_circle.image_index = 0
+        }
     }
+    
 })
 
 obj_control.boss_hp = hp

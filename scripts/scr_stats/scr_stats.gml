@@ -62,6 +62,11 @@ function stats_time_string() {
 
 
 function stats_draw_play() {
+    if global.debug && global.do_recording {
+        return
+    }
+    
+    
     draw_set_font(fnt_timer)
     draw_set_color(c_white)
     draw_set_halign(fa_center)

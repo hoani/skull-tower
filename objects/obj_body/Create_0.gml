@@ -131,6 +131,7 @@ height = 8;
 h_2 = height/2;
 
 y_drop = false;
+y_up = false;
 
 step_height = {
     floor: 4,

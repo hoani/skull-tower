@@ -46,9 +46,6 @@ function moving_floor_update() {
         } else if _pspd.y < 0 && place_meeting(x - other.dx, y - other.dy, other.id) && !place_meeting(x, y, other.id)  {
             array_push(other.push_bodies, id);
         }
-        if place_meeting(x - other.dx, y - other.dy, other.id) {
-            show_debug_message($"block colliding ${place_meeting(x, y, other.id)}")
-        }
     }
     
     

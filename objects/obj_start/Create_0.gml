@@ -19,12 +19,13 @@ state_credits_fade = 14
 min_story_duration = 300
 max_story_duration = 600
 
+
 state = new_state(state_title)
 
 story_text = [
     "   Skeletrex has\n   been defeated\nand humanity knows\n  peace once again.",
     "   However, the\nseven bone generals\n  are plotting to\n revive Skeletrex.",
-    "   Damn bonies!\nHumanity needs a\n  true warrior to\n    defeat the\n  bone generals!",
+    "   Damn bonies!       \nHumanity needs a\n  true warrior to\n    defeat the\n  bone generals!",
 ];
 
 story_index = -1;

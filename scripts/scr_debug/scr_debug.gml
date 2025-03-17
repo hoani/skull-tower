@@ -7,6 +7,7 @@
 function debug_init() {
 	global.debug = true
 	global.diagnostics = false
+    global.do_recording = false 
 	global.show_gui = true
 	
 	fps_avg = 0
@@ -17,7 +18,7 @@ function debug_update() {
 }
 
 function debug_draw() {
-	if !global.debug {
+	if !global.debug || global.do_recording {
 		return
 	}
 	if global.diagnostics {

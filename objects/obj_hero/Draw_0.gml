@@ -12,7 +12,7 @@ hero_draw(x, y);
 
 
 
-if !global.debug {
+if !global.debug || global.do_recording {
     return
 }
 

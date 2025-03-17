@@ -28,8 +28,6 @@ function load_game() {
         buffer_delete(_buffer);
         
         var data = json_parse(_json);
-        show_debug_message($"JSON: {_json}")
-        show_debug_message($"data: {data}")
         stats_set(data.deaths, data.frames);
         trigger_room_transition(data.room);
         return true

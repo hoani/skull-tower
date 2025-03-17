@@ -150,6 +150,7 @@ function body_update_speed(cmds) {
     
     var movement = movement_inputs(cmds);
     y_drop = (movement.held.y > 0);
+    y_up = (movement.held.y < 0);
     
     if f.hang != noone && y_drop {
         f.hang = noone;
@@ -453,7 +454,9 @@ function body_update_movement() {
     
     var spdx = dx;
     var spdy = dy;
-    show_debug_message($" pos ({x},{y}) spd ({spd.x}, {spd.y}) d ({dx}, {dy})")
+    if global.debug {
+        show_debug_message($" pos ({x},{y}) spd ({spd.x}, {spd.y}) d ({dx}, {dy})")
+    }
     move_contact_x(spdx, obj_block);
     
     if spdy > 0 {
@@ -677,7 +680,10 @@ function move_contact_y(_dy, obj, _update_gravity=true, _with_squish=false) {
             if _with_squish && delta < 0 {
                 inst = do_lateral_squish(delta, _update_gravity)
                 if inst == noone {
-                    show_debug_message($"did squish {delta}")
+                    if global.debug { 
+                        show_debug_message($"did squish {delta}");
+                    }
+                    
                     dist += abs(delta);
                 }
             }
@@ -851,10 +857,14 @@ function set_floor_frame(inst) {
 }
 
 function body_squash_floor(xspd, yspd) {
-    show_debug_message($"squash floor ({xspd}, {yspd})")    
+    if global.debug {
+        show_debug_message($"squash floor ({xspd}, {yspd})")  
+    }
 }
 
 function body_squash_block(xspd, yspd) {
-    show_debug_message($"squash block ({xspd}, {yspd})")    
+    if global.debug {
+        show_debug_message($"squash block ({xspd}, {yspd})")  
+    }
 } 
 

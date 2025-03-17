@@ -4,7 +4,7 @@ event_inherited();
 #macro H_DIE "die"
 
 #macro IMG_IDLE_INDEX (0)
-#macro IMG_JUMP_INDEX (1)
+#macro IMG_JUMP_INDEX (3)
 #macro IMG_LANDING_INDEX (IMG_JUMP_INDEX + 6)
 #macro IMG_LANDING_NUM (2)
 #macro IMG_LANDING_RATE (4) 

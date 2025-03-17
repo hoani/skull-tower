@@ -63,6 +63,13 @@ function hero_draw(_x, _y) {
         default:
             if landing.cooldown != 0 {
                 img = animate(IMG_LANDING_INDEX, IMG_LANDING_NUM, IMG_LANDING_RATE, landing.cooldown_frames - landing.cooldown)
+            } else {
+                if y_drop {
+                    img = 1;
+                }
+                if y_up {
+                    img = 2;
+                }
             }
             draw_hero_sprite(spr, img, _x, _y)
             break

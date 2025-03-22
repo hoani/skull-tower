@@ -5,7 +5,7 @@
 
 
 function debug_init() {
-	global.debug = true
+	global.debug = false
 	global.diagnostics = false
     global.do_recording = false 
 	global.show_gui = true

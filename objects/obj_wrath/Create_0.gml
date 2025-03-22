@@ -20,6 +20,12 @@ hp = new_hp(6, 70, function(){
             scale: 2,
         })
     }
+    if state.current == state_telegraph {
+        state_set(state, state_recover);
+        if enraged {
+            do_target_x = false; // setup for next attack
+        }
+    }
 })
 
 obj_control.boss_hp = hp

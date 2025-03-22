@@ -6,7 +6,7 @@ function lust_controller_update(_state) {
     var _obj_boss = obj_lust;
     var _music = MUSIC_LUST;
     
-    if boss_registry_get(_boss_index) == BOSS_DEFEAT {
+    if boss_registry_get(_boss_index) == BOSS_DEFEAT && !instance_exists(obj_boss_die) {
         with(obj_door_block) {
             instance_destroy()
         }
@@ -14,6 +14,7 @@ function lust_controller_update(_state) {
             instance_destroy()
         }
         instance_destroy()
+        obj_hero.disable = false
         return;
     }
     
@@ -40,12 +41,10 @@ function lust_controller_update(_state) {
         if !instance_exists(_obj_boss) {
             state_set(_state, BOSS_CONTROLLER_COMPLETE)
             music_fade_out(1000)
+            boss_registry_set(_boss_index, BOSS_DEFEAT)
         }
         break
     case BOSS_CONTROLLER_COMPLETE:
-        if !instance_exists(obj_boss_die) {
-            boss_registry_set(_boss_index, BOSS_DEFEAT)
-        }
         break;
     }
 }

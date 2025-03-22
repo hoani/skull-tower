@@ -27,9 +27,9 @@ function game_init(){
     
     global.cmds = commands_init()
     
-    if global.debug {
-        music_disable()
-    }
+    //if global.debug {
+        //music_disable()
+    //}
     
     
 }

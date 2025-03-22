@@ -43,9 +43,11 @@ function commands_continue_check() {
 	);
     var _kb_input = keyboard_check_pressed(ACTION_KEY) || 
         keyboard_check_pressed(ALT_ACTION_KEY) || 
+        keyboard_check_pressed(ALT_BLOCK_KEY) || 
         keyboard_check_pressed(BLOCK_KEY) ||
-        keyboard_check_pressed(vk_space) ||
-        keyboard_check_pressed(vk_enter)
+        keyboard_check_pressed(JUMP_KEY) || 
+        keyboard_check_pressed(ALT_JUMP_KEY) || 
+        keyboard_check_pressed(vk_space)
         
 	return _gp_input || _kb_input;	
 }

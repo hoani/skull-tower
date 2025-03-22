@@ -13,7 +13,7 @@ with(obj_sloth_inner) {
 with(obj_hero) {
     var _dir = point_direction(other.x, other.y, x, y)
     
-    spd.x = 2*dcos(_dir)
-    lateral.cooldown = 8
+    spd.x = 1*dcos(_dir)
+    lateral.cooldown = 2
     spd.y = clamp(-2* dsin(_dir), -2, 0.5);
 }

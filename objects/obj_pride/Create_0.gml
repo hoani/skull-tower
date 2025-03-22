@@ -10,9 +10,9 @@ state_advance = 8;
 
 state = new_state(state_scan);
 
-hp = new_hp(5, 120, function(){
+hp = new_hp(6, 120, function(){
     create_sfx(snd_boss_damage, x, y)
-    if hp.current % 2 == 0 {
+    if hp.current % 2 == 1 {
         pride_switch_to_far_mode()
     } else {
         pride_switch_to_close_mode()

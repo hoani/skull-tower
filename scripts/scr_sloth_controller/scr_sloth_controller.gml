@@ -20,7 +20,7 @@ function sloth_enable_moving_platforms() {
 
 function sloth_controller_update(_state) {
     
-    if boss_registry_get(BI_SLOTH) == BOSS_DEFEAT {
+    if boss_registry_get(BI_SLOTH) == BOSS_DEFEAT && !instance_exists(obj_boss_die){
         with(obj_door_block) {
             instance_destroy()
         }
@@ -32,6 +32,7 @@ function sloth_controller_update(_state) {
             instance_destroy()
         }
         instance_destroy()
+        obj_hero.disable = false
         return;
     }
     
@@ -67,7 +68,7 @@ function sloth_controller_update(_state) {
             with(obj_spike_spawn) {
                 instance_destroy()
             }
-            
+            boss_registry_set(BI_SLOTH, BOSS_DEFEAT)
         }
         break
     case BOSS_CONTROLLER_COMPLETE:
@@ -76,7 +77,6 @@ function sloth_controller_update(_state) {
             with(obj_door_block) {
                 instance_destroy()
             }
-            boss_registry_set(BI_SLOTH, BOSS_DEFEAT)
             
             instance_destroy()
         }

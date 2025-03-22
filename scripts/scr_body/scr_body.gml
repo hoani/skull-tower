@@ -152,8 +152,16 @@ function body_update_speed(cmds) {
     y_drop = (movement.held.y > 0);
     y_up = (movement.held.y < 0);
     
-    if f.hang != noone && y_drop {
-        f.hang = noone;
+    if y_drop {
+        if f.hang != noone {
+            f.hang = noone;
+        }
+         
+        if f.wall.pressing {
+            if movement.held.x == 0 {
+                face = -face;
+            }
+        }
     }
     
     if movement.pressed.x != face && movement.pressed.x != 0 {

@@ -17,7 +17,7 @@
   "option_operagx_mod_team_id":"",
   "option_operagx_mod_team_name":"",
   "option_operagx_mod_version":"1.0.0.0",
-  "option_operagx_next_version":"1.1.0.0",
+  "option_operagx_next_version":"2.0.0.0",
   "option_operagx_publicShareUrl":"https://gx.games/games/f4k21t/skull-tower/",
   "option_operagx_scale":0,
   "option_operagx_team_id":"61b07d96-f2fb-464b-80ec-a81b109f3c30",
